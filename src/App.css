@@ -1,0 +1,14 @@
+.app-background {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 40px 0;
+}
+
+.glass-card {
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.85);
+}
