@@ -8,28 +8,25 @@ export const ThemeToggle = () => {
   const { theme, toggleTheme, isTransitioning } = useTheme();
   const isDark = theme === "dark";
 
-  const handleToggle = () => {
-    console.log("Theme toggled! Current theme:", theme);
-    toggleTheme();
-  };
-
   return (
     <motion.button
-      onClick={handleToggle}
-      className="relative w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 flex items-center justify-center overflow-hidden group"
+      onClick={toggleTheme}
+      className={`relative w-10 h-10 rounded-full backdrop-blur-sm border transition-all duration-300 flex items-center justify-center overflow-hidden group ${
+        isDark
+          ? "bg-white/10 border-purple-500/30 hover:border-purple-500/60"
+          : "bg-black/10 border-purple-400/30 hover:border-purple-500/60"
+      }`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
-      {/* Background Glow */}
+      {/* Transition glow */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full"
-        animate={{
-          opacity: isTransitioning ? [0, 0.5, 0] : 0,
-        }}
+        animate={{ opacity: isTransitioning ? [0, 0.5, 0] : 0 }}
         transition={{ duration: 0.3 }}
       />
-      
+
       <AnimatePresence mode="wait">
         {isDark ? (
           <motion.div
@@ -55,8 +52,8 @@ export const ThemeToggle = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Ripple Effect */}
+
+      {/* Ripple on tap */}
       <motion.div
         className="absolute inset-0 rounded-full bg-white/20"
         initial={{ scale: 0, opacity: 0 }}

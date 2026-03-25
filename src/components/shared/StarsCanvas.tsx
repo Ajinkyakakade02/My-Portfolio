@@ -2,14 +2,25 @@
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "@/hooks/useTheme";
 
+interface Star {
+  normX: number;  // normalized 0-1 — survives resize without re-randomizing
+  normY: number;
+  x: number;
+  y: number;
+  radius: number;
+  baseAlpha: number;
+  twinkleOffset: number;  // phase offset so stars twinkle out of sync
+  twinkleSpeed: number;
+}
+
 export const StarsCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const starsRef = useRef<Star[]>([]);
   const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -19,35 +30,40 @@ export const StarsCanvas = () => {
     };
     setCanvasSize();
 
-    const stars: { x: number; y: number; radius: number; alpha: number; twinkleSpeed: number }[] = [];
-
-    // Create stars with random properties
-    for (let i = 0; i < 300; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        alpha: Math.random() * 0.5 + 0.2,
-        twinkleSpeed: Math.random() * 0.02 + 0.005,
+    // Initialize stars only once — they persist across theme changes and resizes
+    if (starsRef.current.length === 0) {
+      starsRef.current = Array.from({ length: 300 }, () => {
+        const normX = Math.random();
+        const normY = Math.random();
+        return {
+          normX,
+          normY,
+          x: normX * canvas.width,
+          y: normY * canvas.height,
+          radius: Math.random() * 1.8 + 0.2,
+          baseAlpha: Math.random() * 0.5 + 0.2,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          twinkleSpeed: Math.random() * 0.015 + 0.005,
+        };
       });
     }
 
     let animationFrameId: number;
     let time = 0;
+    const alphaMultiplier = theme === "dark" ? 1 : 0.15;
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      time += 0.016; // Approximate time increment
-        
-      stars.forEach((star) => {
-        // Twinkling effect
-        const twinkle = Math.sin(time * star.twinkleSpeed) * 0.3 + 0.7;
-        const finalAlpha = star.alpha * twinkle;
-        
+      time += 0.016;
+
+      starsRef.current.forEach((star) => {
+        // Each star twinkles at its own phase and speed
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset) * 0.25 + 0.75;
+        const finalAlpha = star.baseAlpha * twinkle * alphaMultiplier;
+
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${theme === 'dark' ? finalAlpha : finalAlpha * 0.4})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${finalAlpha})`;
         ctx.fill();
       });
 
@@ -56,15 +72,16 @@ export const StarsCanvas = () => {
 
     animate();
 
+    // On resize: scale positions proportionally — no flash from re-randomizing
     const handleResize = () => {
       setCanvasSize();
-      stars.forEach((star) => {
-        star.x = Math.random() * canvas.width;
-        star.y = Math.random() * canvas.height;
+      starsRef.current.forEach((star) => {
+        star.x = star.normX * canvas.width;
+        star.y = star.normY * canvas.height;
       });
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);

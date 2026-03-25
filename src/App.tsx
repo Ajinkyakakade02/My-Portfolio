@@ -1,12 +1,23 @@
 // src/App.tsx
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import EncryptionPage from "./pages/EncryptionPage";
+import AboutPage from "@/pages/AboutPage";
+import ProjectsPage from "@/pages/ProjectsPage";
+import GitHubPage from "@/pages/GitHubPage";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { StarsCanvas } from "./components/shared/StarsCanvas";
 import { useTheme } from "./hooks/useTheme";
+
+// Debug component to log route changes
+const RouteDebugger = () => {
+  const location = useLocation();
+  useEffect(() => {
+    console.log("Route changed to:", location.pathname);
+  }, [location]);
+  return null;
+};
 
 function App() {
   const { theme } = useTheme();
@@ -17,7 +28,7 @@ function App() {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       
-      if (anchor && anchor.hash && anchor.hash.startsWith('#') && window.location.pathname === '/') {
+      if (anchor && anchor.hash && anchor.hash.startsWith('#') && window.location.pathname === '/My-Portfolio/') {
         e.preventDefault();
         const id = anchor.hash.replace('#', '');
         const element = document.getElementById(id);
@@ -40,7 +51,8 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/My-Portfolio">
+      <RouteDebugger /> {/* Add this to see route changes in console */}
       <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
         theme === 'dark' ? 'bg-[#030014] text-white' : 'bg-white text-gray-900'
       }`}>
@@ -53,7 +65,17 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/encryption-page" element={<EncryptionPage />} />
+          <Route path="/about-me" element={<AboutPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/github" element={<GitHubPage />} />
+          {/* Add a catch-all route for debugging */}
+          <Route path="*" element={<div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-red-500 mb-4">404 - Page Not Found</h1>
+              <p className="text-gray-400">The page you're looking for doesn't exist.</p>
+              <p className="text-gray-400 mt-2">Current path: {window.location.pathname}</p>
+            </div>
+          </div>} />
         </Routes>
         
         {/* Footer */}
