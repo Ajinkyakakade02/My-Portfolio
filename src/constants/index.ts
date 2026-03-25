@@ -57,7 +57,7 @@ export const PROJECTS = [
   },
 ] as const;
 
-// Footer Data
+// Footer Data - UPDATED
 export const FOOTER_DATA = [
   {
     title: "Community",
@@ -65,7 +65,7 @@ export const FOOTER_DATA = [
       { 
         name: "GitHub", 
         icon: RxGithubLogo, 
-        link: "https://github.com" 
+        link: "https://github.com/Ajinkyakakade02"
       },
     ],
   },
@@ -75,7 +75,7 @@ export const FOOTER_DATA = [
       {
         name: "Linkedin",
         icon: RxLinkedinLogo,
-        link: "https://www.linkedin.com/in/abdul-raheman-389597281/",
+        link: "https://www.linkedin.com/in/ajinkyakakade",
       },
     ],
   },
@@ -85,13 +85,13 @@ export const FOOTER_DATA = [
       {
         name: "Contact Me",
         icon: null,
-        link: "mailto:arrahmanofficial9@gmail.com",
+        link: "mailto:ajinkya@example.com",
       },
     ],
   },
 ] as const;
 
-// SKILLS DATA - Only skills from your image
+// SKILLS DATA
 export const SKILL_DATA = [
   { skill_name: "HTML", image: "/skills/html.png", width: 80, height: 80 },
   { skill_name: "CSS", image: "/skills/css.png", width: 80, height: 80 },
@@ -139,13 +139,13 @@ export const FULLSTACK_SKILL = [] as const;
 // Other Skills
 export const OTHER_SKILL = [] as const;
 
-// Site Config
+// Site Config - UPDATED
 export const siteConfig = {
   name: "Space Portfolio",
   description: "A modern portfolio showcasing skills and projects",
   author: "Ajinkya Kakade",
   email: "ajinkya@example.com",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
-  twitter: "https://twitter.com",
+  github: "https://github.com/Ajinkyakakade02",
+  linkedin: "https://linkedin.com/in/ajinkyakakade",
+  twitter: "https://twitter.com/ajinkyakakade",
 };
