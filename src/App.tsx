@@ -51,7 +51,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/My-Portfolio">
+    <Router basename="/My-Portfolio-1">
       <RouteDebugger /> {/* Add this to see route changes in console */}
       <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${
         theme === 'dark' ? 'bg-[#030014] text-white' : 'bg-white text-gray-900'
