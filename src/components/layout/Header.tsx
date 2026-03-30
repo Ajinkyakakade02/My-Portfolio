@@ -1,8 +1,9 @@
 // src/components/layout/Header.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
-import { NAV_LINKS, SOCIALS, siteConfig } from "@/constants";
+import { SOCIALS, siteConfig } from "@/constants";
 import { getImagePath } from "@/lib/paths";
 
 // ==================== HELPERS ====================
@@ -14,44 +15,87 @@ export const Header = () => {
   const [activeSection, setActiveSection] = useState("about-me");
   const [scrolled, setScrolled] = useState(false);
   const { theme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  // Updated navigation links
+  const updatedNavLinks = [
+    { title: "Home", link: "#about-me", path: "/" },
+    { title: "Skills", link: "#skills", path: "/" },
+    { title: "All about me", link: "#encryption", path: "/" },
+    { title: "Experience", link: "#experience", path: "/" },
+    { title: "Contact", link: "#contact", path: "/" },
+  ];
+
+  // Function to navigate and scroll to section
+  const navigateAndScroll = (sectionId: string) => {
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Wait for navigation and DOM to update, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // On home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleNavClick = (e: React.MouseEvent, link: string, sectionId: string) => {
+    e.preventDefault();
+    navigateAndScroll(sectionId);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Update active section based on scroll position (only on home page)
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sectionIds = NAV_LINKS.map((l) => l.link.replace("#", ""));
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(sectionIds[i]);
-          break;
+      // Only update active section if on home page
+      if (location.pathname === "/") {
+        const sectionIds = updatedNavLinks.map((l) => l.link.replace("#", ""));
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sectionIds[i]);
+          if (el && window.scrollY >= el.offsetTop - 120) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
         }
+      } else {
+        // On other pages, reset active section or set to Home
+        setActiveSection("");
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
-  const scrollToSection = (e: React.MouseEvent, link: string) => {
+  // Handle logo click to go home
+  const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const id = link.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
-      setActiveSection(id);
+    if (location.pathname !== "/") {
+      navigate("/");
+    } else {
+      // If already on home, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
   };
-
-  // Updated navigation links - removed projects and security, added "All about me"
-  const updatedNavLinks = [
-    { title: "Home", link: "#about-me" },
-    { title: "Skills", link: "#skills" },
-    { title: "All about me", link: "#encryption" },
-    { title: "Experience", link: "#experience" },
-    { title: "Contact", link: "#contact" },
-  ];
 
   return (
     <motion.nav
@@ -70,12 +114,12 @@ export const Header = () => {
           {/* Left Side - Navigation Links */}
           <div className="hidden md:flex items-center gap-1">
             {updatedNavLinks.map((link, index) => {
-              const isActive = activeSection === link.link.replace("#", "");
+              const isActive = location.pathname === "/" && activeSection === link.link.replace("#", "");
               return (
                 <motion.a
                   key={link.title}
                   href={link.link}
-                  onClick={(e) => scrollToSection(e, link.link)}
+                  onClick={(e) => handleNavClick(e, link.link, link.link.replace("#", ""))}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
@@ -126,8 +170,8 @@ export const Header = () => {
             {/* Logo + Name */}
             <div className="flex items-center gap-3">
               <motion.a
-                href="#about-me"
-                onClick={(e) => scrollToSection(e, "#about-me")}
+                href="#"
+                onClick={handleLogoClick}
                 className="relative group cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -226,10 +270,10 @@ export const Header = () => {
                 <motion.a
                   key={link.title}
                   href={link.link}
-                  onClick={(e) => scrollToSection(e, link.link)}
+                  onClick={(e) => handleNavClick(e, link.link, link.link.replace("#", ""))}
                   whileTap={{ scale: 0.98 }}
                   className={`block px-4 py-3 rounded-xl transition-all duration-300 text-sm font-medium ${
-                    activeSection === link.link.replace("#", "")
+                    location.pathname === "/" && activeSection === link.link.replace("#", "")
                       ? "bg-purple-500/20 text-purple-400"
                       : "text-gray-300 hover:bg-white/5"
                   }`}

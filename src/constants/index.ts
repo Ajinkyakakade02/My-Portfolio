@@ -18,7 +18,7 @@ export const siteConfig = {
   github: "https://github.com/Ajinkyakakade02",
   linkedin: "https://www.linkedin.com/in/ajinkya-kakade-981a55288/",
   leetcode: "https://leetcode.com/u/Ajinkya_kakade_02/",
-  resumePath: "/My-Portfolio/Ajinkya_Kakade_Resume.pdf",
+  resumePath: "/Ajinkya_Kakade_Resume.pdf",
 } as const;
 
 // ==================== NAVIGATION ====================
