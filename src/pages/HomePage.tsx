@@ -303,7 +303,7 @@ const HeroContent = () => {
                   <SiLeetcode className="text-2xl" style={{ color: "#f89f1c" }} />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">100+</div>
+                  <div className="text-2xl font-bold text-white">160+</div>
                   <div className="text-xs font-medium text-cyan-300">LeetCode Problems</div>
                 </div>
               </motion.div>
