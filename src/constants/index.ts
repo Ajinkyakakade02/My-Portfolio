@@ -40,13 +40,15 @@ export const SOCIALS = [
 ] as const;
 
 // ==================== PROJECTS ====================
+// ==================== PROJECTS ====================
+// ==================== PROJECTS ====================
 export const PROJECTS = [
   {
     id: 1,
     title: "E-Learning Platform",
     description:
       "Modern e-learning platform with interactive courses, video lectures, progress tracking, and certification system.",
-    image: "/projects/project-1.webp",
+    image: "/projects/elearning-banner.webp",   // ✅ updated
     link: "https://elearn-pro-hyym.vercel.app",
     github: "https://github.com/Ajinkyakakade02/elearn-pro",
     technologies: ["React", "Spring Boot", "MySQL", "Tailwind"],
@@ -54,23 +56,23 @@ export const PROJECTS = [
   },
   {
     id: 2,
-    title: "Voice to Voice Translator",
+    title: "AI Content Moderation System",
     description:
-      "Real-time voice translation app supporting 50+ languages with natural speech synthesis and accent detection.",
-    image: "/projects/project-2.webp",
-    link: "#",
-    github: "#",
-    technologies: ["E-Speak", "WebRTC", "AI/ML", "Speech Recognition"],
-    icon: "🎤",
+      "AI-powered content moderation system that automatically detects and filters inappropriate content in real-time.",
+    image: "/projects/content-mod-banner.webp", // ✅ updated
+    link: "https://content-mod-ai.vercel.app/",
+    github: "https://github.com/Ajinkyakakade02",
+    technologies: ["AI/ML", "React", "FastAPI", "TensorFlow"],
+    icon: "🤖",
   },
   {
     id: 3,
     title: "Chat Application",
     description:
       "Instant messaging app with group chats, file sharing, emoji reactions, and real-time notifications.",
-    image: "/projects/project-3.webp",
-    link: "#",
-    github: "#",
+    image: "/projects/project-3.webp",   // unchanged (placeholder)
+    link: "https://github.com/Ajinkyakakade02",
+    github: "https://github.com/Ajinkyakakade02",
     technologies: ["WebSocket", "React", "TypeScript", "Spring Boot"],
     icon: "💬",
   },
@@ -79,9 +81,9 @@ export const PROJECTS = [
     title: "Auto Email Extension",
     description:
       "AI-powered email generator that creates professional emails based on context, tone, and recipient.",
-    image: "/projects/project-4.webp",
-    link: "#",
-    github: "#",
+    image: "/projects/project-4.webp",   // unchanged (placeholder)
+    link: "https://github.com/Ajinkyakakade02",
+    github: "https://github.com/Ajinkyakakade02",
     technologies: ["Gemini API", "React", "Spring Boot", "OAuth"],
     icon: "✉️",
   },
