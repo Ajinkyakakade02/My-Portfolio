@@ -1,9 +1,7 @@
 # 🚀 Space Portfolio - Futuristic Developer Portfolio
 
-![Space Portfolio Banner](https://via.placeholder.com/1200x400/030014/ffffff?text=Space+Portfolio)
-
 ## 🌟 Live Demo
-[View Live Demo](https://your-portfolio-url.vercel.app)
+[View Live Demo](https://ajinkya-kakade-portfolio.vercel.app/)
 
 ## 📋 Overview
 Space Portfolio is a modern, futuristic developer portfolio website built with React, TypeScript, and Tailwind CSS. It showcases a developer's skills, projects, and expertise with stunning space-themed visuals, smooth animations, and interactive elements.
