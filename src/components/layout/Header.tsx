@@ -1,38 +1,30 @@
 // src/components/layout/Header.tsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useTheme } from "@/hooks/useTheme";
 import { SOCIALS, siteConfig } from "@/constants";
 import { getImagePath } from "@/lib/paths";
-
-// ==================== HELPERS ====================
-const t = (theme: string, dark: string, light: string) =>
-  theme === "dark" ? dark : light;
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about-me");
   const [scrolled, setScrolled] = useState(false);
-  const { theme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Updated navigation links
+  // Updated navigation links – added "Projects", removed "Experience"
   const updatedNavLinks = [
     { title: "Home", link: "#about-me", path: "/" },
     { title: "Skills", link: "#skills", path: "/" },
-    { title: "All about me", link: "#encryption", path: "/" },
-    { title: "Experience", link: "#experience", path: "/" },
+    // { title: "Projects", link: "#projects", path: "/" },   // ✅ Added
+        { title: "All about me", link: "#view-my-work", path: "/" },
     { title: "Contact", link: "#contact", path: "/" },
   ];
 
   // Function to navigate and scroll to section
   const navigateAndScroll = (sectionId: string) => {
-    // If we're not on the home page, navigate to home first
     if (location.pathname !== "/") {
       navigate("/");
-      // Wait for navigation and DOM to update, then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -43,7 +35,6 @@ export const Header = () => {
         }
       }, 100);
     } else {
-      // On home page, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
         const offset = 80;
@@ -54,7 +45,7 @@ export const Header = () => {
     }
   };
 
-  const handleNavClick = (e: React.MouseEvent, link: string, sectionId: string) => {
+  const handleNavClick = (e: MouseEvent, _link: string, sectionId: string) => {
     e.preventDefault();
     navigateAndScroll(sectionId);
     setIsMobileMenuOpen(false);
@@ -65,7 +56,6 @@ export const Header = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Only update active section if on home page
       if (location.pathname === "/") {
         const sectionIds = updatedNavLinks.map((l) => l.link.replace("#", ""));
         for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -76,7 +66,6 @@ export const Header = () => {
           }
         }
       } else {
-        // On other pages, reset active section or set to Home
         setActiveSection("");
       }
     };
@@ -91,7 +80,6 @@ export const Header = () => {
     if (location.pathname !== "/") {
       navigate("/");
     } else {
-      // If already on home, scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
@@ -146,7 +134,6 @@ export const Header = () => {
 
           {/* Right Side - Logo + Name + Social */}
           <div className="flex items-center gap-4">
-            {/* Social Icons */}
             <div className="hidden md:flex items-center gap-2">
               {SOCIALS.map((social, index) => (
                 <motion.a
@@ -167,7 +154,6 @@ export const Header = () => {
               ))}
             </div>
 
-            {/* Logo + Name */}
             <div className="flex items-center gap-3">
               <motion.a
                 href="#"
@@ -255,7 +241,6 @@ export const Header = () => {
             className="md:hidden border-t backdrop-blur-2xl bg-[#030014]/98 border-purple-500/20"
           >
             <div className="px-4 py-6 space-y-2">
-              {/* Mobile Brand */}
               <div className="text-center pb-4 mb-2 border-b border-purple-500/20">
                 <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                   {siteConfig.name}
@@ -265,7 +250,6 @@ export const Header = () => {
                 </p>
               </div>
 
-              {/* Navigation Links - Mobile */}
               {updatedNavLinks.map((link) => (
                 <motion.a
                   key={link.title}
@@ -282,7 +266,6 @@ export const Header = () => {
                 </motion.a>
               ))}
 
-              {/* Mobile Footer - Social Icons only */}
               <div className="flex items-center justify-center pt-4 mt-2 border-t border-gray-800">
                 <div className="flex gap-4">
                   {SOCIALS.map((social) => (

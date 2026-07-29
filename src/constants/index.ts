@@ -18,7 +18,7 @@ export const siteConfig = {
   github: "https://github.com/Ajinkyakakade02",
   linkedin: "https://www.linkedin.com/in/ajinkya-kakade-981a55288/",
   leetcode: "https://leetcode.com/u/Ajinkya_kakade_02/",
-  resumePath: "/Ajinkya_Kakade_Resume.pdf",
+  resumePath: "https://drive.google.com/uc?export=download&id=1aRsLI9RwpMhQ578iZW5GlQNZrewkLQNy",
 } as const;
 
 // ==================== NAVIGATION ====================
@@ -160,34 +160,4 @@ export const FOOTER_DATA = [
   },
 ] as const;
 
-// ==================== SKILLS ====================
-export const FRONTEND_SKILL = [
-  { skill_name: "HTML",        image: "/skills/html.png",     width: 80, height: 80 },
-  { skill_name: "CSS",         image: "/skills/css.png",      width: 80, height: 80 },
-  { skill_name: "JavaScript",  image: "/skills/js.png",       width: 65, height: 65 },
-  { skill_name: "TypeScript",  image: "/skills/ts.png",       width: 80, height: 80 },
-  { skill_name: "React",       image: "/skills/react.png",    width: 80, height: 80 },
-  { skill_name: "Tailwind CSS",image: "/skills/tailwind.png", width: 80, height: 80 },
-] as const;
-
-export const BACKEND_SKILL = [
-  { skill_name: "Node.js",    image: "/skills/node.png",       width: 80, height: 80 },
-  { skill_name: "Spring Boot",image: "/skills/springboot.png", width: 80, height: 80 },
-  { skill_name: "MongoDB",    image: "/skills/mongodb.png",    width: 40, height: 40 },
-  { skill_name: "PostgreSQL", image: "/skills/postgresql.png", width: 80, height: 80 },
-  { skill_name: "MySQL",      image: "/skills/mysql.png",      width: 80, height: 80 },
-] as const;
-
-export const DEVOPS_SKILL = [
-  { skill_name: "Docker",   image: "/skills/docker.png",   width: 80, height: 80 },
-  { skill_name: "AWS",      image: "/skills/aws.png",      width: 80, height: 80 },
-  { skill_name: "Figma",    image: "/skills/figma.png",    width: 80, height: 80 },
-  { skill_name: "Firebase", image: "/skills/firebase.png", width: 80, height: 80 },
-] as const;
-
-// Legacy flat array (kept for backward compatibility)
-export const SKILL_DATA = [
-  ...FRONTEND_SKILL,
-  ...BACKEND_SKILL,
-  ...DEVOPS_SKILL,
-] as const;
+// ==================== SKILLS (REMOVED: Legacy arrays are no longer used) ====================

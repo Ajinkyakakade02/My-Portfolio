@@ -1,5 +1,5 @@
 // src/pages/GitHubPage.tsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { 
@@ -9,7 +9,9 @@ import {
   FaStar, 
   FaCodeBranch, 
   FaEye,
-  FaLanguage
+  FaLanguage,
+  FaCode,
+  FaUsers,
 } from "react-icons/fa";
 import { useTheme } from "@/hooks/useTheme";
 import { siteConfig } from "@/constants";
@@ -81,10 +83,17 @@ const GitHubPage = () => {
   };
 
   const stats = [
-    { value: repos.length, label: "Repositories" },
-    { value: repos.reduce((acc, repo) => acc + repo.stargazers_count, 0), label: "Total Stars" },
-    { value: repos.reduce((acc, repo) => acc + repo.forks_count, 0), label: "Total Forks" },
+    { value: repos.length, label: "Repositories", icon: FaCode },
+    { value: repos.reduce((acc, repo) => acc + repo.stargazers_count, 0), label: "Total Stars", icon: FaStar },
+    { value: repos.reduce((acc, repo) => acc + repo.forks_count, 0), label: "Total Forks", icon: FaCodeBranch },
   ];
+
+  // Card styling reused from About page
+  const cardClass = `rounded-2xl p-6 mb-6 border ${t(
+    theme,
+    "bg-white/5 border-purple-500/30",
+    "bg-white border-purple-200 shadow-sm"
+  )}`;
 
   return (
     <div className={`min-h-screen py-20 transition-colors duration-300 ${t(theme, "bg-[#030014]", "bg-gray-50")}`}>
@@ -95,7 +104,7 @@ const GitHubPage = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/", { state: { scrollTo: "view-my-work" } })}
             className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border text-sm font-medium transition-all ${t(
               theme,
               "bg-white/5 border-purple-500/30 text-purple-400 hover:bg-white/10",
@@ -107,60 +116,68 @@ const GitHubPage = () => {
           </motion.button>
         </div>
 
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-4 bg-white/5 border-purple-500/30"
-          >
-            <FaGithub className="text-purple-400" />
-            <span className="text-sm text-purple-400">GitHub Profile</span>
-          </motion.div>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent"
-          >
-            My GitHub Repositories
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className={`text-lg mb-8 ${t(theme, "text-gray-400", "text-gray-600")}`}
-          >
-            Explore my open-source contributions and projects
-          </motion.p>
-        </div>
-
-        {/* Stats Cards */}
+        {/* GitHub Profile Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          transition={{ duration: 0.5 }}
+          className={`${cardClass} relative overflow-hidden`}
         >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none" />
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-full bg-gradient-to-br from-purple-600 to-cyan-600">
+                <FaGithub className="text-3xl text-white" />
+              </div>
+              <div>
+                <h1 className={`text-3xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>
+                  {siteConfig.github.split("/").pop()}
+                </h1>
+                <p className={`text-sm ${t(theme, "text-gray-400", "text-gray-600")}`}>
+                  GitHub Profile • {repos.length} repositories
+                </p>
+              </div>
+            </div>
+            <motion.a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all ${t(
+                theme,
+                "bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border border-purple-500/30",
+                "bg-purple-100 text-purple-700 hover:bg-purple-200 border border-purple-200"
+              )}`}
+            >
+              <FaGithub />
+              <span>View Profile</span>
+              <FaExternalLinkAlt className="text-xs" />
+            </motion.a>
+          </div>
+        </motion.div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              className={`p-6 rounded-xl border text-center ${t(
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -4 }}
+              className={`p-6 rounded-2xl border text-center transition-all duration-300 ${t(
                 theme,
-                "bg-white/5 border-purple-500/20 hover:border-purple-500/40",
+                "bg-white/5 border-purple-500/30 hover:border-purple-500/60",
                 "bg-white border-purple-200 hover:border-purple-300 shadow-sm"
               )}`}
             >
-              <div className="text-4xl font-bold text-purple-500 mb-2">{stat.value}</div>
+              <stat.icon className={`text-3xl mx-auto mb-2 ${t(theme, "text-purple-400", "text-purple-600")}`} />
+              <div className={`text-4xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>{stat.value}</div>
               <div className={`text-sm ${t(theme, "text-gray-400", "text-gray-600")}`}>{stat.label}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Language Filter */}
         {languages.length > 1 && (
@@ -171,64 +188,28 @@ const GitHubPage = () => {
             className="flex flex-wrap justify-center gap-2 mb-8"
           >
             {languages.map((lang) => (
-              <button
+              <motion.button
                 key={lang}
                 onClick={() => setSelectedLanguage(lang)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
                   selectedLanguage === lang
-                    ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white"
+                    ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg"
                     : t(
                         theme,
-                        "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10",
-                        "bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200"
+                        "bg-white/5 border border-purple-500/30 text-gray-400 hover:text-white hover:bg-white/10",
+                        "bg-gray-100 border border-purple-200 text-gray-600 hover:text-gray-900 hover:bg-gray-200"
                       )
                 }`}
               >
                 {lang === "all" ? "All Languages" : lang}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
         )}
 
-        {/* GitHub Profile Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.25 }}
-          whileHover={{ scale: 1.02, y: -4 }}
-          onClick={() => window.open(siteConfig.github, "_blank")}
-          className={`cursor-pointer rounded-2xl p-8 mb-12 transition-all duration-300 border ${t(
-            theme,
-            "bg-white/5 border-purple-500/30 hover:border-purple-500/60",
-            "bg-white border-purple-300/30 hover:border-purple-400/60 shadow-sm"
-          )}`}
-        >
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-4">
-              <FaGithub className={`text-5xl ${t(theme, "text-purple-400", "text-purple-600")}`} />
-              <div>
-                <h2 className={`text-2xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>
-                  {siteConfig.github.split("/").pop()}
-                </h2>
-                <p className={`text-sm ${t(theme, "text-gray-400", "text-gray-600")}`}>
-                  View complete GitHub profile
-                </p>
-              </div>
-            </div>
-            <div
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold ${t(
-                theme,
-                "bg-purple-500/20 text-purple-400 hover:bg-purple-500/30",
-                "bg-purple-100 text-purple-700 hover:bg-purple-200"
-              )}`}
-            >
-              <FaExternalLinkAlt className="text-xs" />
-              <span>Visit Profile</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Repositories Grid */}
+        {/* Repository Cards */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
@@ -250,27 +231,25 @@ const GitHubPage = () => {
             </p>
           </div>
         ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredRepos.map((repo, index) => (
               <motion.div
                 key={repo.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.05 }}
+                transition={{ delay: 0.1 + index * 0.05 }}
                 whileHover={{ y: -6 }}
                 onClick={() => window.open(repo.html_url, "_blank")}
-                className={`group relative backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer h-full flex flex-col ${t(
+                className={`group relative rounded-2xl border backdrop-blur-sm p-6 transition-all duration-300 cursor-pointer ${t(
                   theme,
                   "bg-white/5 border-purple-500/30 hover:border-purple-500/60",
-                  "bg-white border-purple-300/30 hover:border-purple-400/60 shadow-sm"
+                  "bg-white border-purple-200 hover:border-purple-300 shadow-sm"
                 )}`}
               >
-                <div className="p-6 flex flex-col flex-1">
+                {/* Hover gradient border (like About page cards) */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 pointer-events-none" />
+                
+                <div className="relative z-10">
                   {/* Repository Header */}
                   <div className="flex items-start justify-between mb-3">
                     <h3 className={`text-xl font-bold group-hover:text-purple-400 transition-colors ${t(
@@ -288,12 +267,12 @@ const GitHubPage = () => {
                   </div>
 
                   {/* Description */}
-                  <p className={`text-sm mb-4 leading-relaxed flex-1 ${t(theme, "text-gray-400", "text-gray-600")}`}>
+                  <p className={`text-sm mb-4 leading-relaxed ${t(theme, "text-gray-400", "text-gray-600")}`}>
                     {repo.description || "No description provided"}
                   </p>
 
                   {/* Repository Stats */}
-                  <div className="flex flex-wrap gap-4 mb-4">
+                  <div className="flex flex-wrap gap-4 mb-3">
                     {repo.language && (
                       <div className="flex items-center gap-1">
                         <FaLanguage className={`text-xs ${t(theme, "text-gray-500", "text-gray-400")}`} />
@@ -328,11 +307,11 @@ const GitHubPage = () => {
                   </div>
                 </div>
 
-                {/* Bottom Border Effect */}
+                {/* Bottom accent line (like About page cards) */}
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         )}
 
         {/* GitHub Contribution Graph */}
@@ -340,7 +319,11 @@ const GitHubPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className={`mt-12 rounded-2xl p-4 border overflow-hidden ${t(theme, "bg-white/5 border-purple-500/20", "bg-white border-purple-200 shadow-sm")}`}
+          className={`mt-12 rounded-2xl p-4 border ${t(
+            theme,
+            "bg-white/5 border-purple-500/20",
+            "bg-white border-purple-200 shadow-sm"
+          )}`}
         >
           <h3 className={`text-lg font-semibold mb-3 ${t(theme, "text-purple-400", "text-purple-600")}`}>
             Contribution Activity

@@ -1,5 +1,4 @@
 // src/components/shared/ThemeToggle.tsx
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useTheme } from "@/hooks/useTheme";

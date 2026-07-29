@@ -1,8 +1,7 @@
 // src/components/layout/Footer.tsx
-import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/hooks/useTheme";
-import { FOOTER_DATA, siteConfig, NAV_LINKS } from "@/constants";
+import { FOOTER_DATA, siteConfig } from "@/constants";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { getImagePath } from "@/lib/paths";
@@ -45,12 +44,12 @@ export const Footer = () => {
     scrollToSection(sectionId);
   };
 
-  // Updated navigation links to match header
+  // Updated navigation links – added "Projects", removed "Experience"
   const updatedNavLinks = [
     { title: "Home", link: "#about-me" },
     { title: "Skills", link: "#skills" },
-    { title: "All about me", link: "#encryption" },
-    { title: "Experience", link: "#experience" },
+    // { title: "Projects", link: "#projects" },   // ✅ Added
+     { title: "All about me", link: "#view-my-work" },
     { title: "Contact", link: "#contact" },
   ];
 
@@ -70,7 +69,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          {/* Brand Section - Modern Glass Effect with Avatar */}
+          {/* Brand Section */}
           <div className="col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -80,7 +79,6 @@ export const Footer = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative">
-                  {/* Pulsing Glow Effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-md"
                     animate={{ 
@@ -132,7 +130,7 @@ export const Footer = () => {
             </motion.div>
           </div>
 
-          {/* Quick Links - Modern Styling */}
+          {/* Quick Links */}
           <div className="col-span-1">
             <h3
               className={`text-sm font-semibold uppercase tracking-wider mb-4 flex items-center gap-2 ${t(
@@ -172,7 +170,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Media - Modern Icons */}
+          {/* Social Media */}
           <div className="col-span-1">
             <h3
               className={`text-sm font-semibold uppercase tracking-wider mb-4 flex items-center gap-2 ${t(
@@ -210,7 +208,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Contact - Modern Card Style */}
+          {/* Contact */}
           <div className="col-span-1">
             <h3
               className={`text-sm font-semibold uppercase tracking-wider mb-4 flex items-center gap-2 ${t(
@@ -273,7 +271,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright Section - Modern Design */}
+        {/* Copyright Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -307,7 +305,6 @@ export const Footer = () => {
               </span>
             </div>
 
-            {/* Decorative Line */}
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
           </div>
         </motion.div>
