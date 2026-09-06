@@ -1,15 +1,30 @@
 // src/pages/HomePage.tsx
-import { useState, useRef, useEffect} from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+
 import {
-  FaJs, FaReact, FaArrowRight, FaGithub, FaLinkedin, FaDownload,
-  FaMapMarkerAlt, FaPhone,
-  FaEnvelope, FaPaperPlane, FaCheckCircle,
-  FaHtml5, FaCss3Alt, FaNodeJs, FaDocker, FaGitAlt, FaUser,
+  FaJs,
+  FaReact,
+  FaArrowRight,
+  FaGithub,
+  FaLinkedin,
+  FaDownload,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaPaperPlane,
+  FaCheckCircle,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaDocker,
+  FaGitAlt,
+  FaUser,
   FaFolderOpen,
   FaKey,
   FaJava,
@@ -17,6 +32,7 @@ import {
   FaServer,
   FaExternalLinkAlt,
 } from "react-icons/fa";
+
 import {
   SiLeetcode,
   SiTypescript,
@@ -32,259 +48,620 @@ import {
 import { useTheme } from "@/hooks/useTheme";
 import { getImagePath, getVideoPath } from "@/lib/paths";
 import { siteConfig, PROJECTS } from "@/constants";
-import { getAccentClasses, type AccentColor } from "@/lib/colorStyles";
+import {
+  getAccentClasses,
+  type AccentColor,
+} from "@/lib/colorStyles";
 
 // ==================== THEME HELPER ====================
-const t = (theme: string, dark: string, light: string) =>
-  theme === "dark" ? dark : light;
+
+const t = (
+  theme: string,
+  dark: string,
+  light: string
+) => (theme === "dark" ? dark : light);
 
 // ==================== HERO ====================
+
 const HeroContent = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const prefersReducedMotion = useReducedMotion();
   const { theme } = useTheme();
 
   return (
     <div className="min-h-screen flex items-center justify-center pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          {/* ==================================================
+              LEFT SIDE
+          ================================================== */}
 
           <motion.div
             ref={ref}
-            initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={
+              prefersReducedMotion
+                ? false
+                : { opacity: 0, x: -50 }
+            }
+            animate={
+              inView
+                ? { opacity: 1, x: 0 }
+                : {}
+            }
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
+
+            {/* Developer badge */}
+
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: -10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={
+                prefersReducedMotion
+                  ? false
+                  : { opacity: 0, y: -10 }
+              }
+              animate={
+                inView
+                  ? { opacity: 1, y: 0 }
+                  : {}
+              }
               transition={{ delay: 0.15 }}
-              className={`relative inline-flex items-center gap-2 px-5 py-2 rounded-full border mb-6 text-sm font-medium backdrop-blur-sm ${t(
-                theme,
-                "bg-white/[0.035] border-white/10",
-                "bg-black/[0.025] border-black/10"
-              )}`}
+              className={`
+                relative
+                inline-flex
+                items-center
+                gap-2
+                px-5
+                py-2
+                rounded-full
+                border
+                mb-6
+                text-sm
+                font-medium
+                backdrop-blur-sm
+
+                ${
+                  theme === "dark"
+                    ? "bg-white/[0.035] border-white/10 text-[#D8BC91]"
+                    : "bg-black/[0.02] border-black/10 text-[#7C5B2B]"
+                }
+              `}
             >
-              <span className="w-2 h-2 rounded-full bg-[#C9A66B] animate-pulse" />
-              <span className="text-[#D8BC91]">
-                Full Stack Developer | Spring Boot, React, Typescript, MySQL, MongoDB
+              <span
+                className="
+                  w-2
+                  h-2
+                  rounded-full
+                  bg-[#C9A66B]
+                  animate-pulse
+                  shrink-0
+                "
+              />
+
+              <span>
+                Full Stack Developer | Spring Boot, React,
+                TypeScript, MySQL, MongoDB
               </span>
             </motion.div>
 
+            {/* Main heading */}
+
             <motion.h1
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={
+                prefersReducedMotion
+                  ? false
+                  : { opacity: 0, y: 20 }
+              }
+              animate={
+                inView
+                  ? { opacity: 1, y: 0 }
+                  : {}
+              }
               transition={{ delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="
+                text-4xl
+                sm:text-5xl
+                md:text-6xl
+                lg:text-7xl
+                font-bold
+                mb-6
+                leading-[1.05]
+                tracking-tight
+              "
             >
-              <span className="text-[#F5F3EE]">
+              <span
+                className={`
+                  ${
+                    theme === "dark"
+                      ? "text-[#F5F3EE]"
+                      : "text-[#171717]"
+                  }
+                `}
+              >
                 Transforming Ideas
               </span>
+
               <br />
-              <span className={t(theme, "text-white", "text-gray-900")}>
+
+              <span
+                className={`
+                  ${
+                    theme === "dark"
+                      ? "text-[#A7A39A]"
+                      : "text-[#65615A]"
+                  }
+                `}
+              >
                 Into Digital Reality
               </span>
             </motion.h1>
 
+            {/* Description */}
+
             <motion.p
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={
+                prefersReducedMotion
+                  ? false
+                  : { opacity: 0, y: 20 }
+              }
+              animate={
+                inView
+                  ? { opacity: 1, y: 0 }
+                  : {}
+              }
               transition={{ delay: 0.3 }}
-              className={`text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed ${t(
-                theme,
-                "text-gray-300",
-                "text-gray-600"
-              )}`}
+              className={`
+                text-lg
+                mb-8
+                max-w-xl
+                mx-auto
+                lg:mx-0
+                leading-relaxed
+
+                ${
+                  theme === "dark"
+                    ? "text-[#A7A39A]"
+                    : "text-[#65615A]"
+                }
+              `}
             >
-              I'm <span className="font-semibold text-[#C9A66B]">Ajinkya Kakade</span>,
-              a passionate Full Stack Developer with expertise in React, Spring Boot, and cloud technologies.
-              I build end-to-end web applications that are scalable, secure, and user-friendly.
+              I'm{" "}
+              <span
+                className="
+                  font-semibold
+                  text-[#C9A66B]
+                "
+              >
+                Ajinkya Kakade
+              </span>
+              , a passionate Full Stack Developer
+              with expertise in React, Spring Boot,
+              and cloud technologies. I build end-to-end
+              web applications that are scalable, secure,
+              and user-friendly.
             </motion.p>
 
+            {/* ==================================================
+                BUTTONS
+            ================================================== */}
+
             <motion.div
-  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-  animate={inView ? { opacity: 1, y: 0 } : {}}
-  transition={{ delay: 0.65 }}
-  className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8"
->
-  {/* View My Work */}
-  <motion.button
-    whileHover={{ y: -2 }}
-    whileTap={{ scale: 0.98 }}
-    onClick={() => {
-      const section =
-        document.getElementById("view-my-work");
+              initial={
+                prefersReducedMotion
+                  ? false
+                  : { opacity: 0, y: 20 }
+              }
+              animate={
+                inView
+                  ? { opacity: 1, y: 0 }
+                  : {}
+              }
+              transition={{ delay: 0.65 }}
+              className="
+                flex
+                flex-wrap
+                gap-3
+                justify-center
+                lg:justify-start
+                mb-8
+              "
+            >
 
-      if (section) {
-        section.scrollIntoView({
-          behavior: prefersReducedMotion
-            ? "auto"
-            : "smooth",
-        });
-      }
-    }}
-    className="
-      group
-      inline-flex
-      h-12
-      items-center
-      justify-center
-      gap-2
-      rounded-full
-      bg-[#F5F3EE]
-      px-7
-      text-sm
-      font-semibold
-      text-[#0A0A0A]
-      transition-all
-      duration-300
-      hover:bg-[#C9A66B]
-      focus-visible:outline
-      focus-visible:outline-2
-      focus-visible:outline-offset-2
-      focus-visible:outline-[#C9A66B]
-    "
-  >
-    <span>View My Work</span>
+              {/* View My Work */}
 
-    <FaArrowRight
-      className="
-        text-xs
-        transition-transform
-        duration-200
-        group-hover:translate-x-1
-      "
-      aria-hidden="true"
-    />
-  </motion.button>
+              <motion.button
+                type="button"
+                whileHover={
+                  prefersReducedMotion
+                    ? undefined
+                    : { y: -2 }
+                }
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const section =
+                    document.getElementById(
+                      "view-my-work"
+                    );
 
-  {/* Get Resume */}
-  <motion.a
-    href={siteConfig.resumePath}
-    download
-    whileHover={{ y: -2 }}
-    whileTap={{ scale: 0.98 }}
-    className="
-      group
-      inline-flex
-      h-12
-      items-center
-      justify-center
-      gap-2
-      rounded-full
-      border
-      border-white/[0.12]
-      bg-white/[0.025]
-      px-7
-      text-sm
-      font-semibold
-      text-[#F5F3EE]
-      transition-all
-      duration-300
-      hover:border-[#C9A66B]/40
-      hover:bg-[#C9A66B]/[0.06]
-      hover:text-[#D8BC91]
-      focus-visible:outline
-      focus-visible:outline-2
-      focus-visible:outline-offset-2
-      focus-visible:outline-[#C9A66B]
-    "
-  >
-    <FaDownload
-      className="
-        text-xs
-        transition-transform
-        duration-200
-        group-hover:-translate-y-0.5
-      "
-      aria-hidden="true"
-    />
+                  if (section) {
+                    section.scrollIntoView({
+                      behavior:
+                        prefersReducedMotion
+                          ? "auto"
+                          : "smooth",
+                    });
+                  }
+                }}
+                className="
+                  group
+                  inline-flex
+                  h-12
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  bg-[#F5F3EE]
+                  px-7
+                  text-sm
+                  font-semibold
+                  text-[#0A0A0A]
+                  transition-all
+                  duration-300
+                  hover:bg-[#C9A66B]
+                  focus-visible:outline
+                  focus-visible:outline-2
+                  focus-visible:outline-offset-2
+                  focus-visible:outline-[#C9A66B]
+                "
+              >
+                <span>View My Work</span>
 
-    <span>Get Resume</span>
-  </motion.a>
-</motion.div>
+                <FaArrowRight
+                  className="
+                    text-xs
+                    transition-transform
+                    duration-200
+                    group-hover:translate-x-1
+                  "
+                  aria-hidden="true"
+                />
+              </motion.button>
+
+              {/* Get Resume */}
+
+              <motion.a
+                href={siteConfig.resumePath}
+                download
+                whileHover={
+                  prefersReducedMotion
+                    ? undefined
+                    : { y: -2 }
+                }
+                whileTap={{ scale: 0.98 }}
+                className="
+                  group
+                  inline-flex
+                  h-12
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-white/[0.12]
+                  bg-white/[0.025]
+                  px-7
+                  text-sm
+                  font-semibold
+                  text-[#F5F3EE]
+                  transition-all
+                  duration-300
+                  hover:border-[#C9A66B]/40
+                  hover:bg-[#C9A66B]/[0.06]
+                  hover:text-[#D8BC91]
+                  focus-visible:outline
+                  focus-visible:outline-2
+                  focus-visible:outline-offset-2
+                  focus-visible:outline-[#C9A66B]
+                "
+              >
+                <FaDownload
+                  className="
+                    text-xs
+                    transition-transform
+                    duration-200
+                    group-hover:-translate-y-0.5
+                  "
+                  aria-hidden="true"
+                />
+
+                <span>Get Resume</span>
+              </motion.a>
+
+            </motion.div>
+          </motion.div>
+
+          {/* ==================================================
+              RIGHT SIDE
+          ================================================== */}
 
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative flex justify-center"
+            initial={
+              prefersReducedMotion
+                ? false
+                : { opacity: 0, x: 50 }
+            }
+            animate={
+              inView
+                ? { opacity: 1, x: 0 }
+                : {}
+            }
+            transition={{
+              duration: 0.6,
+              delay: 0.3,
+            }}
+            className="
+              relative
+              flex
+              justify-center
+            "
           >
             <div className="relative w-full max-w-md">
+
               <img
                 src={getImagePath("/hero-bg.svg")}
                 alt=""
                 loading="eager"
                 decoding="async"
-                className="w-full h-auto opacity-80"
-                onError={(e) => { e.currentTarget.style.display = "none"; }}
+                className="
+                  w-full
+                  h-auto
+                  opacity-80
+                "
+                onError={(e) => {
+                  e.currentTarget.style.display =
+                    "none";
+                }}
               />
+
+              {/* Center glow */}
+
               <motion.div
                 animate={
                   prefersReducedMotion
                     ? {}
-                    : { scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }
+                    : {
+                        scale: [1, 1.2, 1],
+                        opacity: [
+                          0.15,
+                          0.35,
+                          0.15,
+                        ],
+                      }
                 }
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#C9A66B]/[0.07] rounded-full blur-3xl pointer-events-none"
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="
+                  pointer-events-none
+                  absolute
+                  top-1/2
+                  left-1/2
+                  h-96
+                  w-96
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  rounded-full
+                  bg-[#C9A66B]/[0.06]
+                  blur-3xl
+                "
               />
 
+              {/* Projects statistic */}
+
               <motion.div
-                animate={prefersReducedMotion ? {} : { y: [0, -12, 0], x: [0, 4, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
-                className={`absolute backdrop-blur-xl rounded-2xl px-6 py-4 border shadow-2xl flex items-center gap-3 ${t(
-                  theme,
-                  "bg-white/[0.06] border-white/10",
-                  "bg-white border-black/10"
-                )}`}
-                style={{ top: "10%", right: "-8%" }}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        y: [0, -12, 0],
+                        x: [0, 4, 0],
+                      }
+                }
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className={`
+                  absolute
+                  backdrop-blur-xl
+                  rounded-2xl
+                  px-6
+                  py-4
+                  border
+                  shadow-2xl
+                  flex
+                  items-center
+                  gap-3
+
+                  ${
+                    theme === "dark"
+                      ? "bg-white/[0.06] border-white/10"
+                      : "bg-white border-black/10"
+                  }
+                `}
+                style={{
+                  top: "10%",
+                  right: "-8%",
+                }}
               >
-                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.07]">
-                  <FaFolderOpen className="text-2xl" style={{ color: "#C9A66B" }} aria-hidden="true" />
+                <div className="
+                  p-2
+                  rounded-xl
+                  bg-[#C9A66B]/[0.07]
+                ">
+                  <FaFolderOpen
+                    className="
+                      text-2xl
+                      text-[#C9A66B]
+                    "
+                    aria-hidden="true"
+                  />
                 </div>
+
                 <div>
-                  <div className={`text-2xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>5+</div>
-                  <div className="text-xs font-medium text-[#C9A66B]">Projects Completed</div>
+                  <div
+                    className={`
+                      text-2xl
+                      font-bold
+                      ${
+                        theme === "dark"
+                          ? "text-[#F5F3EE]"
+                          : "text-[#171717]"
+                      }
+                    `}
+                  >
+                    5+
+                  </div>
+
+                  <div
+                    className="
+                      text-xs
+                      font-medium
+                      text-[#C9A66B]
+                    "
+                  >
+                    Projects Completed
+                  </div>
                 </div>
               </motion.div>
 
+              {/* LeetCode statistic */}
+
               <motion.div
-                animate={prefersReducedMotion ? {} : { y: [0, 12, 0], x: [0, -4, 0] }}
-                transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                className={`absolute backdrop-blur-xl rounded-2xl px-6 py-4 border shadow-2xl flex items-center gap-3 ${t(
-                  theme,
-                  "bg-white/[0.06] border-white/10",
-                  "bg-white border-black/10"
-                )}`}
-                style={{ bottom: "15%", left: "-8%" }}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        y: [0, 12, 0],
+                        x: [0, -4, 0],
+                      }
+                }
+                transition={{
+                  duration: 3.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.3,
+                }}
+                className={`
+                  absolute
+                  backdrop-blur-xl
+                  rounded-2xl
+                  px-6
+                  py-4
+                  border
+                  shadow-2xl
+                  flex
+                  items-center
+                  gap-3
+
+                  ${
+                    theme === "dark"
+                      ? "bg-white/[0.06] border-white/10"
+                      : "bg-white border-black/10"
+                  }
+                `}
+                style={{
+                  bottom: "15%",
+                  left: "-8%",
+                }}
               >
-                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.05]">
-                  <SiLeetcode className="text-2xl" style={{ color: "#f89f1c" }} aria-hidden="true" />
+                <div className="
+                  p-2
+                  rounded-xl
+                  bg-[#C9A66B]/[0.05]
+                ">
+                  <SiLeetcode
+                    className="
+                      text-2xl
+                    "
+                    style={{
+                      color: "#f89f1c",
+                    }}
+                    aria-hidden="true"
+                  />
                 </div>
+
                 <div>
-                  <div className={`text-2xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>200+</div>
-                  <div className="text-xs font-medium text-[#A7A39A]">LeetCode Problems</div>
+                  <div
+                    className={`
+                      text-2xl
+                      font-bold
+                      ${
+                        theme === "dark"
+                          ? "text-[#F5F3EE]"
+                          : "text-[#171717]"
+                      }
+                    `}
+                  >
+                    200+
+                  </div>
+
+                  <div
+                    className="
+                      text-xs
+                      font-medium
+                      text-[#A7A39A]
+                    "
+                  >
+                    LeetCode Problems
+                  </div>
                 </div>
               </motion.div>
+
             </div>
           </motion.div>
+
         </div>
       </div>
     </div>
   );
 };
 
-const Hero = () => {
-  const [videoError, setVideoError] = useState(false);
-  const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
+// ==================== HERO BACKGROUND ====================
 
-  const showVideo = !videoError && !prefersReducedMotion && theme === "dark";
+const Hero = () => {
+  const [videoError, setVideoError] =
+    useState(false);
+
+  const { theme } = useTheme();
+
+  const prefersReducedMotion =
+    useReducedMotion();
+
+  const showVideo =
+    !videoError &&
+    !prefersReducedMotion &&
+    theme === "dark";
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div
+      className="
+        relative
+        min-h-screen
+        w-full
+        overflow-hidden
+      "
+    >
       <div className="absolute inset-0">
+
         {showVideo ? (
           <>
             <video
@@ -294,29 +671,78 @@ const Hero = () => {
               playsInline
               preload="none"
               aria-hidden="true"
-              className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+              className="
+                absolute
+                left-1/2
+                top-1/2
+                min-h-full
+                min-w-full
+                h-auto
+                w-auto
+                object-cover
+              "
               style={{
-                transform: "translate(-50%, -50%) scaleY(-1)",
-                filter: "brightness(0.45) contrast(1.3) saturate(1.2)",
+                transform:
+                  "translate(-50%, -50%) scaleY(-1)",
+                filter:
+                  "brightness(0.45) contrast(1.3) saturate(0.9)",
               }}
-              onError={() => setVideoError(true)}
+              onError={() =>
+                setVideoError(true)
+              }
             >
-              <source src={getVideoPath("/videos/blackhole.webm")} type="video/webm" />
-              <source src={getVideoPath("/videos/blackhole.mp4")} type="video/mp4" />
+              <source
+                src={getVideoPath(
+                  "/videos/blackhole.webm"
+                )}
+                type="video/webm"
+              />
+
+              <source
+                src={getVideoPath(
+                  "/videos/blackhole.mp4"
+                )}
+                type="video/mp4"
+              />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.5)_100%)]" />
+
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-b
+                from-black/55
+                via-black/45
+                to-black/70
+              "
+            />
+
+            <div
+              className="
+                absolute
+                inset-0
+                bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.55)_100%)]
+              "
+            />
           </>
         ) : (
           <div
-            className={`absolute inset-0 bg-gradient-to-br ${t(
-              theme,
-              "from-[#121212] via-[#0A0A0A] to-[#0A0A0A]",
-              "from-[#F5F4EF] via-[#FFFFFF] to-[#EEECE6]"
-            )}`}
+            className={`
+              absolute
+              inset-0
+              bg-gradient-to-br
+
+              ${
+                theme === "dark"
+                  ? "from-[#121212] via-[#0A0A0A] to-[#0A0A0A]"
+                  : "from-[#F5F4EF] via-[#FFFFFF] to-[#EEECE6]"
+              }
+            `}
           />
         )}
+
       </div>
+
       <div className="relative z-10">
         <HeroContent />
       </div>
