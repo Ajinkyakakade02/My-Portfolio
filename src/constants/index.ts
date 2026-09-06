@@ -60,7 +60,7 @@ export const PROJECTS = [
     description:
       "AI-powered content moderation system that automatically detects and filters inappropriate content in real-time.",
     image: "/projects/content-mod-banner.webp", // ✅ updated
-    link: "https://content-mod-ai.vercel.app/",
+    link: "https://chat-nova02.vercel.app/",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["AI/ML", "React", "FastAPI", "TensorFlow"],
     icon: "🤖",
