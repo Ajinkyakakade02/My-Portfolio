@@ -790,6 +790,10 @@ const Skills = () => {
   const secondRow = technologies.slice(7, 13);
   const thirdRow = technologies.slice(13, 18);
 
+  // ============================================================
+  // Technology Item
+  // ============================================================
+
   const TechItem = ({
     tech,
   }: {
@@ -803,34 +807,83 @@ const Skills = () => {
           prefersReducedMotion
             ? undefined
             : {
-                y: -4,
-                scale: 1.04,
+                y: -3,
+                scale: 1.03,
               }
         }
-        className={`group flex shrink-0 items-center gap-3 rounded-full border px-5 py-3 backdrop-blur-md transition-all duration-300 ${
-          theme === "dark"
-            ? "border-white/10 bg-white/[0.025] hover:border-[#C9A66B]/30 hover:bg-[#C9A66B]/[0.035]"
-            : "border-black/10 bg-white/70 hover:border-[#9A743B]/30 hover:bg-[#9A743B]/[0.05]"
-        }`}
+        className={`
+          group
+          flex
+          shrink-0
+          items-center
+          gap-3
+          rounded-xl
+          border
+          px-4
+          py-3
+          backdrop-blur-md
+          transition-all
+          duration-300
+
+          ${
+            theme === "dark"
+              ? `
+                border-white/[0.08]
+                bg-white/[0.025]
+                hover:border-[#C9A66B]/30
+                hover:bg-[#C9A66B]/[0.035]
+              `
+              : `
+                border-black/[0.08]
+                bg-white/80
+                hover:border-[#9A743B]/30
+                hover:bg-[#9A743B]/[0.04]
+              `
+          }
+        `}
       >
         <Icon
-          className="text-xl transition-transform duration-300 group-hover:scale-110"
-          style={{ color: tech.color }}
+          className="
+            text-lg
+            transition-transform
+            duration-300
+            group-hover:scale-110
+          "
+          style={{
+            color: tech.color,
+          }}
           aria-hidden="true"
         />
 
         <span
-          className={`whitespace-nowrap text-sm font-medium tracking-wide ${
-            theme === "dark"
-              ? "text-white/70 group-hover:text-white"
-              : "text-gray-700 group-hover:text-gray-900"
-          }`}
+          className={`
+            whitespace-nowrap
+            text-sm
+            font-medium
+            tracking-wide
+
+            ${
+              theme === "dark"
+                ? `
+                  text-white/70
+                  group-hover:text-white
+                `
+                : `
+                  text-[#65615A]
+                  group-hover:text-[#171717]
+                `
+            }
+          `}
         >
           {tech.name}
         </span>
       </motion.div>
     );
   };
+
+  // ============================================================
+  // Marquee Row
+  // ============================================================
 
   const MarqueeRow = ({
     items,
@@ -841,19 +894,24 @@ const Skills = () => {
     reverse?: boolean;
     duration?: number;
   }) => {
-    const repeated = [...items, ...items, ...items];
+    const repeated = [
+      ...items,
+      ...items,
+      ...items,
+      ...items,
+    ];
 
     return (
       <div className="relative overflow-hidden py-2">
         <motion.div
-          className="flex w-max gap-4"
+          className="flex w-max gap-3 sm:gap-4"
           animate={
             prefersReducedMotion
               ? undefined
               : {
                   x: reverse
-                    ? ["-33.333%", "0%"]
-                    : ["0%", "-33.333%"],
+                    ? ["-25%", "0%"]
+                    : ["0%", "-25%"],
                 }
           }
           transition={
@@ -868,108 +926,383 @@ const Skills = () => {
                 }
           }
         >
-          {repeated.map((tech, index) => (
-            <TechItem
-              key={`${tech.name}-${index}`}
-              tech={tech}
-            />
-          ))}
+          {repeated.map(
+            (tech, index) => (
+              <TechItem
+                key={`${tech.name}-${index}`}
+                tech={tech}
+              />
+            )
+          )}
         </motion.div>
       </div>
     );
   };
 
+  // ============================================================
+  // Return
+  // ============================================================
+
   return (
     <section
       id="skills"
-      className="relative overflow-hidden py-24 sm:py-28"
+      className="
+        relative
+        overflow-hidden
+        py-24
+        sm:py-28
+      "
     >
-      {/* Existing portfolio background */}
+      {/* ======================================================
+          SECTION BACKGROUND
+      ======================================================= */}
+
       <div className="absolute inset-0 -z-10">
+
+        {/* Main background */}
+
         <div
-          className={`absolute inset-0 ${
-            theme === "dark"
-              ? "bg-gradient-to-b from-[#C9A66B]/[0.025] via-black to-black"
-              : "bg-gradient-to-b from-[#9A743B]/[0.025] via-[#F5F4EF] to-[#F1EFE9]"
-          }`}
+          className={`
+            absolute
+            inset-0
+
+            ${
+              theme === "dark"
+                ? `
+                  bg-gradient-to-b
+                  from-[#0A0A0A]
+                  via-[#0A0A0A]
+                  to-[#0A0A0A]
+                `
+                : `
+                  bg-gradient-to-b
+                  from-[#F5F4EF]
+                  via-[#F5F4EF]
+                  to-[#F1EFE9]
+                `
+            }
+          `}
         />
 
-        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A66B]/[0.06] blur-[120px]" />
+        {/* Warm center glow */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            h-96
+            w-96
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-[#C9A66B]/[0.055]
+            blur-[130px]
+          "
+        />
       </div>
 
-      {/* Heading */}
-      <div className="relative z-10 mx-auto mb-14 max-w-4xl px-4 text-center">
+      {/* ======================================================
+          HEADING
+      ======================================================= */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          mb-14
+          max-w-4xl
+          px-4
+          text-center
+        "
+      >
         <motion.div
           ref={ref}
           initial={
             prefersReducedMotion
               ? false
-              : { opacity: 0, y: 20 }
+              : {
+                  opacity: 0,
+                  y: 20,
+                }
           }
           animate={
             inView
-              ? { opacity: 1, y: 0 }
+              ? {
+                  opacity: 1,
+                  y: 0,
+                }
               : {}
           }
-          transition={{ duration: 0.6 }}
+          transition={{
+            duration: 0.6,
+          }}
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#C9A66B]">
+          <p
+            className="
+              mb-3
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.3em]
+              text-[#C9A66B]
+            "
+          >
             Technologies
           </p>
 
-          <h2 className="bg-gradient-to-r from-[#F5F3EE] via-[#E5D3B3] to-[#C9A66B] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+          <h2
+            className="
+              bg-gradient-to-r
+              from-[#F5F3EE]
+              via-[#E5D3B3]
+              to-[#C9A66B]
+              bg-clip-text
+              text-4xl
+              font-bold
+              text-transparent
+              sm:text-5xl
+            "
+          >
             My Tech Stack
           </h2>
 
           <p
-            className={`mx-auto mt-4 max-w-2xl text-base leading-7 sm:text-lg ${
-              theme === "dark"
-                ? "text-gray-400"
-                : "text-gray-600"
-            }`}
+            className={`
+              mx-auto
+              mt-4
+              max-w-2xl
+              text-base
+              leading-7
+              sm:text-lg
+
+              ${
+                theme === "dark"
+                  ? "text-[#8F8B83]"
+                  : "text-[#65615A]"
+              }
+            `}
           >
-            The technologies I use to build scalable,
-            secure, and modern applications.
+            The technologies I use to build
+            scalable, secure, and modern
+            applications.
           </p>
         </motion.div>
       </div>
 
-      {/* Moving tech stack */}
-      <div className="relative z-10 space-y-4">
-        <MarqueeRow
-          items={firstRow}
-          duration={26}
-        />
+      {/* ======================================================
+          TECH STACK BOX
+      ======================================================= */}
 
-        <MarqueeRow
-          items={secondRow}
-          reverse
-          duration={30}
-        />
+      <motion.div
+        initial={
+          prefersReducedMotion
+            ? false
+            : {
+                opacity: 0,
+                y: 25,
+              }
+        }
+        animate={
+          inView
+            ? {
+                opacity: 1,
+                y: 0,
+              }
+            : {}
+        }
+        transition={{
+          delay: 0.15,
+          duration: 0.6,
+        }}
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-6xl
+          px-4
+        "
+      >
+        <div
+          className={`
+            relative
+            overflow-hidden
+            rounded-3xl
+            border
+            p-4
+            sm:p-6
+            lg:p-8
 
-        <MarqueeRow
-          items={thirdRow}
-          duration={27}
-        />
-      </div>
+            ${
+              theme === "dark"
+                ? `
+                  border-white/[0.08]
+                  bg-white/[0.025]
+                  shadow-[0_20px_60px_rgba(0,0,0,0.22)]
+                `
+                : `
+                  border-black/[0.08]
+                  bg-white/80
+                  shadow-[0_20px_60px_rgba(30,25,15,0.07)]
+                `
+            }
+          `}
+        >
 
-      {/* Left fade */}
-      <div
-        className={`pointer-events-none absolute inset-y-0 left-0 z-20 w-20 bg-gradient-to-r ${
-          theme === "dark"
-            ? "from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent"
-            : "from-white via-white/80 to-transparent"
-        }`}
-      />
+          {/* Inner glow */}
 
-      {/* Right fade */}
-      <div
-        className={`pointer-events-none absolute inset-y-0 right-0 z-20 w-20 bg-gradient-to-l ${
-          theme === "dark"
-            ? "from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent"
-            : "from-white via-white/80 to-transparent"
-        }`}
-      />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-1/2
+              h-80
+              w-80
+              -translate-x-1/2
+              -translate-y-1/2
+              rounded-full
+              bg-[#C9A66B]/[0.045]
+              blur-[120px]
+            "
+          />
+
+          {/* Top subtle line */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-0
+              h-px
+              w-2/3
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#C9A66B]/30
+              to-transparent
+            "
+          />
+
+          {/* ==================================================
+              MOVING TECHNOLOGY ROWS
+          ================================================== */}
+
+          <div
+            className="
+              relative
+              z-10
+              space-y-3
+              sm:space-y-4
+            "
+          >
+            {/* Row 1 */}
+
+            <MarqueeRow
+              items={firstRow}
+              duration={26}
+            />
+
+            {/* Row 2 */}
+
+            <MarqueeRow
+              items={secondRow}
+              reverse
+              duration={30}
+            />
+
+            {/* Row 3 */}
+
+            <MarqueeRow
+              items={thirdRow}
+              duration={27}
+            />
+          </div>
+
+          {/* ==================================================
+              LEFT FADE
+          ================================================== */}
+
+          <div
+            className={`
+              pointer-events-none
+              absolute
+              inset-y-0
+              left-0
+              z-20
+              w-12
+              sm:w-20
+              bg-gradient-to-r
+
+              ${
+                theme === "dark"
+                  ? `
+                    from-[#0A0A0A]
+                    via-[#0A0A0A]/90
+                    to-transparent
+                  `
+                  : `
+                    from-[#F5F4EF]
+                    via-[#F5F4EF]/90
+                    to-transparent
+                  `
+              }
+            `}
+          />
+
+          {/* ==================================================
+              RIGHT FADE
+          ================================================== */}
+
+          <div
+            className={`
+              pointer-events-none
+              absolute
+              inset-y-0
+              right-0
+              z-20
+              w-12
+              sm:w-20
+              bg-gradient-to-l
+
+              ${
+                theme === "dark"
+                  ? `
+                    from-[#0A0A0A]
+                    via-[#0A0A0A]/90
+                    to-transparent
+                  `
+                  : `
+                    from-[#F5F4EF]
+                    via-[#F5F4EF]/90
+                    to-transparent
+                  `
+              }
+            `}
+          />
+
+          {/* Bottom subtle line */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              bottom-0
+              left-1/2
+              h-px
+              w-2/3
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#C9A66B]/20
+              to-transparent
+            "
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };
