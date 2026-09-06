@@ -344,30 +344,30 @@ const HeroContent = () => {
                 }
                 whileTap={{ scale: 0.98 }}
                 className="
-                  group
-                  inline-flex
-                  h-12
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-white/[0.12]
-                  bg-white/[0.025]
-                  px-7
-                  text-sm
-                  font-semibold
-                  text-[#F5F3EE]
-                  transition-all
-                  duration-300
-                  hover:border-[#C9A66B]/40
-                  hover:bg-[#C9A66B]/[0.06]
-                  hover:text-[#D8BC91]
-                  focus-visible:outline
-                  focus-visible:outline-2
-                  focus-visible:outline-offset-2
-                  focus-visible:outline-[#C9A66B]
-                "
+  group
+  inline-flex
+  h-12
+  items-center
+  justify-center
+  gap-2
+  rounded-full
+  border
+  border-white/[0.12]
+  bg-[#0A0A0A]
+  px-7
+  text-sm
+  font-semibold
+  text-[#F5F3EE]
+  transition-all
+  duration-300
+  hover:border-[#C9A66B]/40
+  hover:bg-[#171717]
+  hover:text-[#D8BC91]
+  focus-visible:outline
+  focus-visible:outline-2
+  focus-visible:outline-offset-2
+  focus-visible:outline-[#C9A66B]
+"
               >
                 <FaDownload
                   className="
