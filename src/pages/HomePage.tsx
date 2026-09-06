@@ -103,23 +103,24 @@ const HeroContent = () => {
             </motion.p>
 
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.65 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8"
-            >
-<div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
-
+  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+  animate={inView ? { opacity: 1, y: 0 } : {}}
+  transition={{ delay: 0.65 }}
+  className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8"
+>
   {/* View My Work */}
   <motion.button
     whileHover={{ y: -2 }}
     whileTap={{ scale: 0.98 }}
     onClick={() => {
-      const section = document.getElementById("view-my-work");
+      const section =
+        document.getElementById("view-my-work");
 
       if (section) {
         section.scrollIntoView({
-          behavior: prefersReducedMotion ? "auto" : "smooth",
+          behavior: prefersReducedMotion
+            ? "auto"
+            : "smooth",
         });
       }
     }}
@@ -157,7 +158,6 @@ const HeroContent = () => {
       aria-hidden="true"
     />
   </motion.button>
-
 
   {/* Get Resume */}
   <motion.a
@@ -203,8 +203,7 @@ const HeroContent = () => {
 
     <span>Get Resume</span>
   </motion.a>
-
-</div>
+</motion.div>
 
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, x: 50 }}
