@@ -22,7 +22,6 @@ import {
   SiTypescript,
   SiTailwindcss,
   SiSpringboot,
-  SiSpring,
   SiMongodb,
   SiMysql,
   SiSpringsecurity,
@@ -34,7 +33,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { getImagePath, getVideoPath } from "@/lib/paths";
 import { siteConfig, PROJECTS } from "@/constants";
 import { getAccentClasses, type AccentColor } from "@/lib/colorStyles";
-import TechStackMarquee from "../components/shared/TechStackMarquee";
 
 // ==================== THEME HELPER ====================
 const t = (theme: string, dark: string, light: string) =>
@@ -64,12 +62,12 @@ const HeroContent = () => {
               transition={{ delay: 0.15 }}
               className={`relative inline-flex items-center gap-2 px-5 py-2 rounded-full border mb-6 text-sm font-medium backdrop-blur-sm ${t(
                 theme,
-                "bg-white/5 border-purple-500/30",
-                "bg-black/5 border-purple-400/40"
+                "bg-white/[0.035] border-white/10",
+                "bg-black/[0.025] border-black/10"
               )}`}
             >
-              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 animate-pulse" />
-              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="w-2 h-2 rounded-full bg-[#C9A66B] animate-pulse" />
+              <span className="text-[#D8BC91]">
                 Full Stack Developer | Spring Boot, React, Typescript, MySQL, MongoDB
               </span>
             </motion.div>
@@ -80,7 +78,7 @@ const HeroContent = () => {
               transition={{ delay: 0.2 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             >
-              <span className="bg-gradient-to-r from-purple-500 via-purple-400 to-cyan-500 bg-clip-text text-transparent">
+              <span className="text-[#F5F3EE]">
                 Transforming Ideas
               </span>
               <br />
@@ -99,7 +97,7 @@ const HeroContent = () => {
                 "text-gray-600"
               )}`}
             >
-              I'm <span className="font-semibold text-purple-400">Ajinkya Kakade</span>,
+              I'm <span className="font-semibold text-[#C9A66B]">Ajinkya Kakade</span>,
               a passionate Full Stack Developer with expertise in React, Spring Boot, and cloud technologies.
               I build end-to-end web applications that are scalable, secure, and user-friendly.
             </motion.p>
@@ -119,10 +117,10 @@ const HeroContent = () => {
                     section.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
                   }
                 }}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B]"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-md group-hover:blur-lg transition-all" />
+                <div className="absolute inset-0 bg-[#F5F3EE] opacity-95 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-[#C9A66B]/10 blur-md group-hover:bg-[#C9A66B]/15 transition-all" />
                 <span className="relative z-10 text-sm font-semibold text-white flex items-center gap-2">
                   View My Work
                   <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" aria-hidden="true" />
@@ -134,10 +132,10 @@ const HeroContent = () => {
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden border border-purple-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden border border-[#C9A66B]/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B]"
               >
-                <div className="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="relative z-10 text-sm font-semibold text-purple-300 flex items-center gap-2">
+                <div className="absolute inset-0 bg-[#C9A66B]/[0.06] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10 text-sm font-semibold text-[#D8BC91] flex items-center gap-2">
                   <FaDownload className="text-sm" aria-hidden="true" />
                   Get Resume
                 </span>
@@ -167,7 +165,7 @@ const HeroContent = () => {
                     : { scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }
                 }
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#C9A66B]/[0.07] rounded-full blur-3xl pointer-events-none"
               />
 
               <motion.div
@@ -175,17 +173,17 @@ const HeroContent = () => {
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
                 className={`absolute backdrop-blur-xl rounded-2xl px-6 py-4 border shadow-2xl flex items-center gap-3 ${t(
                   theme,
-                  "bg-white/10 border-purple-500/30",
-                  "bg-white border-purple-300/50"
+                  "bg-white/[0.06] border-white/10",
+                  "bg-white border-black/10"
                 )}`}
                 style={{ top: "10%", right: "-8%" }}
               >
-                <div className="p-2 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20">
-                  <FaFolderOpen className="text-2xl" style={{ color: "#a855f7" }} aria-hidden="true" />
+                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.07]">
+                  <FaFolderOpen className="text-2xl" style={{ color: "#C9A66B" }} aria-hidden="true" />
                 </div>
                 <div>
                   <div className={`text-2xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>5+</div>
-                  <div className="text-xs font-medium text-purple-400">Projects Completed</div>
+                  <div className="text-xs font-medium text-[#C9A66B]">Projects Completed</div>
                 </div>
               </motion.div>
 
@@ -194,17 +192,17 @@ const HeroContent = () => {
                 transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                 className={`absolute backdrop-blur-xl rounded-2xl px-6 py-4 border shadow-2xl flex items-center gap-3 ${t(
                   theme,
-                  "bg-white/10 border-cyan-500/30",
-                  "bg-white border-cyan-300/50"
+                  "bg-white/[0.06] border-white/10",
+                  "bg-white border-black/10"
                 )}`}
                 style={{ bottom: "15%", left: "-8%" }}
               >
-                <div className="p-2 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
+                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.05]">
                   <SiLeetcode className="text-2xl" style={{ color: "#f89f1c" }} aria-hidden="true" />
                 </div>
                 <div>
                   <div className={`text-2xl font-bold ${t(theme, "text-white", "text-gray-900")}`}>200+</div>
-                  <div className="text-xs font-medium text-cyan-400">LeetCode Problems</div>
+                  <div className="text-xs font-medium text-[#A7A39A]">LeetCode Problems</div>
                 </div>
               </motion.div>
             </div>
@@ -251,8 +249,8 @@ const Hero = () => {
           <div
             className={`absolute inset-0 bg-gradient-to-br ${t(
               theme,
-              "from-purple-900 via-black to-black",
-              "from-purple-100 via-white to-cyan-50"
+              "from-[#121212] via-[#0A0A0A] to-[#0A0A0A]",
+              "from-[#F5F4EF] via-[#FFFFFF] to-[#EEECE6]"
             )}`}
           />
         )}
@@ -319,8 +317,8 @@ const Skills = () => {
         }
         className={`group flex shrink-0 items-center gap-3 rounded-full border px-5 py-3 backdrop-blur-md transition-all duration-300 ${
           theme === "dark"
-            ? "border-white/10 bg-white/[0.035] hover:border-purple-400/40 hover:bg-purple-500/[0.08]"
-            : "border-purple-200 bg-white/70 hover:border-purple-300 hover:bg-purple-50"
+            ? "border-white/10 bg-white/[0.025] hover:border-[#C9A66B]/30 hover:bg-[#C9A66B]/[0.035]"
+            : "border-black/10 bg-white/70 hover:border-[#9A743B]/30 hover:bg-[#9A743B]/[0.05]"
         }`}
       >
         <Icon
@@ -399,12 +397,12 @@ const Skills = () => {
         <div
           className={`absolute inset-0 ${
             theme === "dark"
-              ? "bg-gradient-to-b from-purple-950/20 via-black to-black"
-              : "bg-gradient-to-b from-purple-100/40 via-white to-gray-100"
+              ? "bg-gradient-to-b from-[#C9A66B]/[0.025] via-black to-black"
+              : "bg-gradient-to-b from-[#9A743B]/[0.025] via-[#F5F4EF] to-[#F1EFE9]"
           }`}
         />
 
-        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A66B]/[0.06] blur-[120px]" />
       </div>
 
       {/* Heading */}
@@ -423,11 +421,11 @@ const Skills = () => {
           }
           transition={{ duration: 0.6 }}
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-purple-400">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#C9A66B]">
             Technologies
           </p>
 
-          <h2 className="bg-gradient-to-r from-purple-500 via-purple-400 to-cyan-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+          <h2 className="bg-gradient-to-r from-[#F5F3EE] via-[#E5D3B3] to-[#C9A66B] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
             My Tech Stack
           </h2>
 
@@ -467,7 +465,7 @@ const Skills = () => {
       <div
         className={`pointer-events-none absolute inset-y-0 left-0 z-20 w-20 bg-gradient-to-r ${
           theme === "dark"
-            ? "from-[#030014] via-[#030014]/80 to-transparent"
+            ? "from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent"
             : "from-white via-white/80 to-transparent"
         }`}
       />
@@ -476,7 +474,7 @@ const Skills = () => {
       <div
         className={`pointer-events-none absolute inset-y-0 right-0 z-20 w-20 bg-gradient-to-l ${
           theme === "dark"
-            ? "from-[#030014] via-[#030014]/80 to-transparent"
+            ? "from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent"
             : "from-white via-white/80 to-transparent"
         }`}
       />
@@ -495,8 +493,8 @@ const ProjectsSection = () => {
       <div
         className={`absolute inset-0 bg-gradient-to-b ${t(
           theme,
-          "from-transparent via-purple-900/10 to-transparent",
-          "from-transparent via-purple-400/10 to-transparent"
+          "from-transparent via-[#C9A66B]/[0.025] to-transparent",
+          "from-transparent via-[#9A743B]/[0.025] to-transparent"
         )}`}
       />
 
@@ -507,7 +505,7 @@ const ProjectsSection = () => {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#C9A66B] to-[#D8BC91] bg-clip-text text-transparent"
           >
             My Projects
           </motion.h2>
@@ -544,9 +542,9 @@ const ProjectsSection = () => {
                   isLive ? "cursor-pointer" : "cursor-default"
                 } ${t(
                   theme,
-                  "bg-white/5 border-purple-500/30 hover:border-purple-500/60",
-                  "bg-white border-purple-300/30 hover:border-purple-400/60 shadow-sm"
-                )} ${isLive ? "focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400" : ""}`}
+                  "bg-white/[0.035] border-white/10 hover:border-[#C9A66B]/30",
+                  "bg-white border-black/10 hover:border-[#9A743B]/30 shadow-sm"
+                )} ${isLive ? "focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B]" : ""}`}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -580,8 +578,8 @@ const ProjectsSection = () => {
                   <h3
                     className={`text-xl font-bold mb-2 ${t(
                       theme,
-                      "text-white group-hover:text-purple-400",
-                      "text-gray-900 group-hover:text-purple-600"
+                      "text-white group-hover:text-[#C9A66B]",
+                      "text-[#171717] group-hover:text-[#9A743B]"
                     )} transition-colors`}
                   >
                     {project.title}
@@ -595,8 +593,8 @@ const ProjectsSection = () => {
                         key={tech}
                         className={`text-xs px-2 py-1 rounded-full border ${t(
                           theme,
-                          "bg-purple-500/20 text-purple-300 border-purple-500/30",
-                          "bg-purple-100 text-purple-700 border-purple-200"
+                          "bg-[#C9A66B]/[0.06] text-[#D8BC91] border-[#C9A66B]/20",
+                          "bg-[#9A743B]/[0.05] text-[#7C5B2B] border-[#9A743B]/20"
                         )}`}
                       >
                         {tech}
@@ -608,10 +606,10 @@ const ProjectsSection = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 rounded ${t(
+                      className={`inline-flex items-center gap-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] rounded ${t(
                         theme,
-                        "text-purple-400 hover:text-purple-300",
-                        "text-purple-600 hover:text-purple-500"
+                        "text-[#C9A66B] hover:text-[#D8BC91]",
+                        "text-[#9A743B] hover:text-[#7C5B2B]"
                       )}`}
                       whileHover={{ x: 4 }}
                       onClick={(e) => e.stopPropagation()}
@@ -625,7 +623,7 @@ const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${project.title} on GitHub`}
-                        className={`transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 rounded ${t(
+                        className={`transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] rounded ${t(
                           theme,
                           "text-gray-400 hover:text-white",
                           "text-gray-500 hover:text-gray-900"
@@ -639,7 +637,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C9A66B] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </motion.div>
             );
           })}
@@ -661,21 +659,21 @@ const ViewMyWork = () => {
       title: "About Me",
       description: "View my resume, tech stack, and achievements",
       icon: <FaUser />,
-      accent: "purple" as AccentColor,
+      accent: "primary" as AccentColor,
       onClick: () => navigate("/about-me"),
     },
     {
       title: "My Projects",
       description: "Explore all my completed projects with live links",
       icon: <FaFolderOpen />,
-      accent: "cyan" as AccentColor,
+      accent: "accent" as AccentColor,
       onClick: () => navigate("/projects"),
     },
     {
       title: "GitHub Profile",
       description: "Visit my GitHub profile and see my open-source work",
       icon: <FaGithub />,
-      accent: "purple" as AccentColor,
+      accent: "primary" as AccentColor,
       onClick: () => navigate("/github"),
     },
   ];
@@ -685,8 +683,8 @@ const ViewMyWork = () => {
       <div
         className={`absolute inset-0 bg-gradient-to-b ${t(
           theme,
-          "from-transparent via-purple-900/10 to-transparent",
-          "from-transparent via-purple-400/10 to-transparent"
+          "from-transparent via-[#C9A66B]/[0.025] to-transparent",
+          "from-transparent via-[#9A743B]/[0.025] to-transparent"
         )}`}
       />
 
@@ -697,7 +695,7 @@ const ViewMyWork = () => {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#C9A66B] to-[#D8BC91] bg-clip-text text-transparent"
           >
             View My Work
           </motion.h2>
@@ -736,7 +734,7 @@ const ViewMyWork = () => {
                     card.onClick();
                   }
                 }}
-                className={`group relative backdrop-blur-md rounded-2xl p-6 cursor-pointer border transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 ${t(
+                className={`group relative backdrop-blur-md rounded-2xl p-6 cursor-pointer border transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] ${t(
                   theme,
                   "bg-white/5",
                   "bg-white shadow-sm"
@@ -745,8 +743,8 @@ const ViewMyWork = () => {
                 <div
                   className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r ${t(
                     theme,
-                    card.accent === "purple" ? "from-purple-500/10 to-cyan-500/10" : "from-cyan-500/10 to-purple-500/10",
-                    card.accent === "purple" ? "from-purple-400/10 to-cyan-400/10" : "from-cyan-400/10 to-purple-400/10"
+                    card.accent === "primary" ? "from-[#C9A66B]/[0.06] to-transparent" : "from-[#C9A66B]/[0.035] to-transparent",
+                    card.accent === "primary" ? "from-[#C9A66B]/[0.05] to-transparent" : "from-[#9A743B]/[0.04] to-transparent"
                   )}`}
                 />
 
@@ -754,8 +752,8 @@ const ViewMyWork = () => {
                   <div
                     className={`inline-flex p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform ${t(
                       theme,
-                      card.accent === "purple" ? "bg-purple-500/20" : "bg-cyan-500/20",
-                      card.accent === "purple" ? "bg-purple-100" : "bg-cyan-100"
+                      card.accent === "primary" ? "bg-white/[0.05]" : "bg-[#C9A66B]/[0.06]",
+                      card.accent === "primary" ? "bg-black/[0.025]" : "bg-[#9A743B]/[0.05]"
                     )}`}
                   >
                     <div className={`text-4xl ${accent.text}`} aria-hidden="true">
@@ -782,7 +780,7 @@ const ViewMyWork = () => {
 
                 <div
                   className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r ${
-                    card.accent === "purple" ? "from-purple-500 to-cyan-500" : "from-cyan-500 to-purple-500"
+                    "from-[#C9A66B] to-transparent"
                   }`}
                 />
               </motion.div>
@@ -843,10 +841,10 @@ const Contact = () => {
     }
   };
 
-  const inputClass = `w-full px-4 py-3 rounded-xl border outline-none text-sm transition-all duration-200 focus:ring-2 focus:ring-purple-500/50 ${t(
+  const inputClass = `w-full px-4 py-3 rounded-xl border outline-none text-sm transition-all duration-200 focus:ring-2 focus:ring-[#C9A66B]/20 ${t(
     theme,
-    "bg-white/5 border-purple-500/20 text-white placeholder-gray-500 focus:border-purple-500/60",
-    "bg-gray-50 border-purple-200 text-gray-900 placeholder-gray-400 focus:border-purple-400"
+    "bg-white/[0.025] border-white/10 text-[#F5F3EE] placeholder-[#706D67] focus:border-[#C9A66B]/45",
+    "bg-white/80 border-black/10 text-[#171717] placeholder-[#918D84] focus:border-[#9A743B]/45"
   )}`;
 
   return (
@@ -854,8 +852,8 @@ const Contact = () => {
       <div
         className={`absolute inset-0 bg-gradient-to-b ${t(
           theme,
-          "from-transparent via-purple-900/10 to-transparent",
-          "from-transparent via-purple-100/50 to-transparent"
+          "from-transparent via-[#C9A66B]/[0.025] to-transparent",
+          "from-transparent via-[#9A743B]/[0.025] to-transparent"
         )}`}
       />
 
@@ -865,7 +863,7 @@ const Contact = () => {
             ref={ref}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#C9A66B] to-[#D8BC91] bg-clip-text text-transparent"
           >
             Get In Touch
           </motion.h2>
@@ -889,7 +887,7 @@ const Contact = () => {
             className="lg:col-span-2 flex flex-col gap-6 h-full"
           >
             {/* Contact Info Card */}
-            <div className={`rounded-2xl p-6 border flex-1 ${t(theme, "bg-white/5 border-purple-500/20", "bg-white border-purple-200 shadow-sm")}`}>
+            <div className={`rounded-2xl p-6 border flex-1 ${t(theme, "bg-white/[0.025] border-white/10", "bg-white border-black/10 shadow-sm")}`}>
               <h3 className={`text-xl font-bold mb-4 ${t(theme, "text-white", "text-gray-900")}`}>Contact Info</h3>
               <div className="space-y-4">
                 {[
@@ -901,14 +899,14 @@ const Contact = () => {
                     <a
                       key={label}
                       href={href}
-                      className={`flex items-start gap-3 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 rounded ${t(
+                      className={`flex items-start gap-3 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] rounded ${t(
                         theme,
-                        "text-gray-400 hover:text-purple-400",
-                        "text-gray-600 hover:text-purple-600"
+                        "text-gray-400 hover:text-[#C9A66B]",
+                        "text-[#65615A] hover:text-[#9A743B]"
                       )}`}
                     >
-                      <div className={`mt-0.5 p-2 rounded-lg ${t(theme, "bg-purple-500/10", "bg-purple-50")}`}>
-                        <Icon className={`text-sm ${t(theme, "text-purple-400", "text-purple-600")}`} aria-hidden="true" />
+                      <div className={`mt-0.5 p-2 rounded-lg ${t(theme, "bg-[#C9A66B]/[0.06]", "bg-[#9A743B]/[0.05]")}`}>
+                        <Icon className={`text-sm ${t(theme, "text-[#C9A66B]", "text-[#9A743B]")}`} aria-hidden="true" />
                       </div>
                       <div>
                         <p className="text-xs opacity-60">{label}</p>
@@ -917,8 +915,8 @@ const Contact = () => {
                     </a>
                   ) : (
                     <div key={label} className={`flex items-start gap-3 ${t(theme, "text-gray-400", "text-gray-600")}`}>
-                      <div className={`mt-0.5 p-2 rounded-lg ${t(theme, "bg-purple-500/10", "bg-purple-50")}`}>
-                        <Icon className={`text-sm ${t(theme, "text-purple-400", "text-purple-600")}`} aria-hidden="true" />
+                      <div className={`mt-0.5 p-2 rounded-lg ${t(theme, "bg-[#C9A66B]/[0.06]", "bg-[#9A743B]/[0.05]")}`}>
+                        <Icon className={`text-sm ${t(theme, "text-[#C9A66B]", "text-[#9A743B]")}`} aria-hidden="true" />
                       </div>
                       <div>
                         <p className="text-xs opacity-60">{label}</p>
@@ -931,7 +929,7 @@ const Contact = () => {
             </div>
 
             {/* Social Card */}
-            <div className={`rounded-2xl p-6 border flex-1 ${t(theme, "bg-white/5 border-purple-500/20", "bg-white border-purple-200 shadow-sm")}`}>
+            <div className={`rounded-2xl p-6 border flex-1 ${t(theme, "bg-white/[0.025] border-white/10", "bg-white border-black/10 shadow-sm")}`}>
               <h3 className={`text-lg font-bold mb-4 ${t(theme, "text-white", "text-gray-900")}`}>Check out my</h3>
               <div className="flex gap-3">
                 {[
@@ -946,10 +944,10 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     aria-label={label}
                     whileHover={{ y: -3, scale: 1.1 }}
-                    className={`p-3 rounded-xl border transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 ${t(
+                    className={`p-3 rounded-xl border transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] ${t(
                       theme,
-                      "bg-white/5 border-purple-500/20 text-gray-400 hover:text-white hover:border-purple-500/50",
-                      "bg-gray-50 border-purple-200 text-gray-500 hover:text-gray-900 hover:border-purple-300"
+                      "bg-white/[0.025] border-white/10 text-[#A7A39A] hover:text-[#F5F3EE] hover:border-[#C9A66B]/30",
+                      "bg-black/[0.015] border-black/10 text-[#77716A] hover:text-[#171717] hover:border-[#9A743B]/30"
                     )}`}
                   >
                     <Icon className="text-lg" />
@@ -966,7 +964,7 @@ const Contact = () => {
             transition={{ delay: 0.3 }}
             className="lg:col-span-3 h-full"
           >
-            <div className={`rounded-2xl p-8 border h-full ${t(theme, "bg-white/5 border-purple-500/20", "bg-white border-purple-200 shadow-sm")}`}>
+            <div className={`rounded-2xl p-8 border h-full ${t(theme, "bg-white/[0.025] border-white/10", "bg-white border-black/10 shadow-sm")}`}>
               <AnimatePresence mode="wait">
                 {status === "sent" ? (
                   <motion.div
@@ -985,7 +983,7 @@ const Contact = () => {
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
-                      className="mt-4 text-sm text-purple-400 hover:text-purple-300 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400 rounded"
+                      className="mt-4 text-sm text-[#C9A66B] hover:text-[#D8BC91] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B] rounded"
                     >
                       Send another message
                     </button>
@@ -1076,7 +1074,7 @@ const Contact = () => {
                       disabled={status === "sending"}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-600 py-3.5 rounded-xl font-semibold text-white shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#F5F3EE] py-3.5 rounded-full font-semibold text-[#0A0A0A] shadow-lg hover:bg-[#C9A66B] transition-all disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A66B]"
                     >
                       {status === "sending" ? (
                         <>
@@ -1131,7 +1129,7 @@ const ScrollToTop = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={() => window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" })}
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 flex items-center justify-center text-white shadow-lg hover:shadow-purple-500/30 transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-300"
+          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-[#F5F3EE] flex items-center justify-center text-[#0A0A0A] shadow-lg hover:bg-[#C9A66B] transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A66B]"
           aria-label="Scroll to top"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -1165,7 +1163,7 @@ const HomePage = () => {
   }, [location]);
 
   return (
-    <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${t(theme, "bg-[#030014]", "bg-white")}`}>
+    <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${t(theme, "bg-[#0A0A0A] text-[#F5F3EE]", "bg-[#F5F4EF] text-[#171717]")}`}>
       <main>
         <section id="about-me"><Hero /></section>
         <section id="skills"><Skills /></section>
