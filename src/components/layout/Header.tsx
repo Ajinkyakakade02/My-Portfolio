@@ -42,7 +42,7 @@ export const Header = () => {
   ];
 
   // ============================================================
-  // Navigate + scroll
+  // Navigate and scroll
   // ============================================================
 
   const navigateAndScroll = (sectionId: string) => {
@@ -50,8 +50,7 @@ export const Header = () => {
       navigate("/");
 
       setTimeout(() => {
-        const element =
-          document.getElementById(sectionId);
+        const element = document.getElementById(sectionId);
 
         if (element) {
           const offset = 80;
@@ -71,8 +70,7 @@ export const Header = () => {
         }
       }, 100);
     } else {
-      const element =
-        document.getElementById(sectionId);
+      const element = document.getElementById(sectionId);
 
       if (element) {
         const offset = 80;
@@ -109,7 +107,7 @@ export const Header = () => {
   };
 
   // ============================================================
-  // Scroll detection + active section
+  // Scroll + active section
   // ============================================================
 
   useEffect(() => {
@@ -126,8 +124,9 @@ export const Header = () => {
       let currentSection = "about-me";
 
       for (const link of navLinks) {
-        const element =
-          document.getElementById(link.sectionId);
+        const element = document.getElementById(
+          link.sectionId
+        );
 
         if (!element) continue;
 
@@ -145,11 +144,9 @@ export const Header = () => {
 
     handleScroll();
 
-    window.addEventListener(
-      "scroll",
-      handleScroll,
-      { passive: true }
-    );
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () =>
       window.removeEventListener(
@@ -200,9 +197,9 @@ export const Header = () => {
         }}
         className={`
           fixed
-          top-0
           left-0
           right-0
+          top-0
           z-50
           px-4
           sm:px-6
@@ -213,11 +210,11 @@ export const Header = () => {
           ${
             scrolled
               ? `
-                bg-[#030014]/75
+                bg-[#0A0A0A]/82
                 backdrop-blur-xl
                 border-b
                 border-white/[0.08]
-                shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+                shadow-[0_10px_35px_rgba(0,0,0,0.20)]
               `
               : `
                 bg-transparent
@@ -238,25 +235,21 @@ export const Header = () => {
           "
         >
           {/* ====================================================
-              LEFT - Logo / Name
+              LEFT — Logo + Name
           ===================================================== */}
 
           <motion.a
             href="#"
             onClick={handleLogoClick}
-            whileHover={{
-              y: -1,
-            }}
-            whileTap={{
-              scale: 0.98,
-            }}
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.98 }}
             className="
               flex
-              items-center
-              gap-3
               shrink-0
               cursor-pointer
               select-none
+              items-center
+              gap-3
             "
           >
             {/* Logo */}
@@ -271,22 +264,16 @@ export const Header = () => {
                 justify-center
               "
             >
-              {/* Glow */}
-
               <div
                 className="
                   absolute
                   inset-0
                   rounded-full
-                  bg-gradient-to-r
-                  from-purple-500
-                  to-cyan-500
-                  opacity-40
-                  blur-md
+                  bg-[#C9A66B]
+                  opacity-15
+                  blur-lg
                 "
               />
-
-              {/* Logo container */}
 
               <div
                 className="
@@ -296,8 +283,8 @@ export const Header = () => {
                   overflow-hidden
                   rounded-full
                   border
-                  border-white/10
-                  bg-[#0d0b18]
+                  border-white/[0.10]
+                  bg-[#141414]
                 "
               >
                 <img
@@ -322,12 +309,10 @@ export const Header = () => {
                       )
                     ) {
                       const div =
-                        document.createElement(
-                          "div"
-                        );
+                        document.createElement("div");
 
                       div.className =
-                        "header-initials flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-cyan-600 text-[10px] font-bold text-white";
+                        "header-initials flex h-full w-full items-center justify-center rounded-full bg-[#C9A66B] text-[10px] font-bold text-[#0A0A0A]";
 
                       div.textContent = "AK";
 
@@ -346,7 +331,7 @@ export const Header = () => {
                   text-sm
                   font-semibold
                   tracking-tight
-                  text-white
+                  text-[#F5F3EE]
                 "
               >
                 {siteConfig.name}
@@ -357,9 +342,9 @@ export const Header = () => {
                   mt-0.5
                   text-[10px]
                   font-medium
-                  tracking-[0.08em]
-                  text-white/35
                   uppercase
+                  tracking-[0.08em]
+                  text-[#706D67]
                 "
               >
                 {siteConfig.role}
@@ -368,7 +353,7 @@ export const Header = () => {
           </motion.a>
 
           {/* ====================================================
-              CENTER - Desktop Navigation
+              CENTER — Navigation
           ===================================================== */}
 
           <div
@@ -377,8 +362,7 @@ export const Header = () => {
               left-1/2
               hidden
               -translate-x-1/2
-              items-center
-              md:flex
+              md:block
             "
           >
             <div
@@ -386,19 +370,12 @@ export const Header = () => {
                 flex
                 items-center
                 gap-1
-                rounded-full
-                border
-                border-white/[0.06]
-                bg-white/[0.025]
-                p-1
-                backdrop-blur-md
               "
             >
               {navLinks.map((link) => {
                 const isActive =
                   location.pathname === "/" &&
-                  activeSection ===
-                    link.sectionId;
+                  activeSection === link.sectionId;
 
                 return (
                   <motion.a
@@ -410,9 +387,9 @@ export const Header = () => {
                         link.sectionId
                       )
                     }
+                    whileTap={{ scale: 0.97 }}
                     className={`
                       relative
-                      rounded-full
                       px-4
                       py-2
                       text-[13px]
@@ -422,36 +399,34 @@ export const Header = () => {
 
                       ${
                         isActive
-                          ? "text-white"
-                          : "text-white/45 hover:text-white/85"
+                          ? "text-[#F5F3EE]"
+                          : "text-[#8B887F] hover:text-[#F5F3EE]"
                       }
                     `}
-                    whileTap={{
-                      scale: 0.96,
-                    }}
                   >
+                    {link.title}
+
+                    {/* Minimal active underline */}
+
                     {isActive && (
                       <motion.span
-                        layoutId="headerActivePill"
+                        layoutId="header-active-line"
                         transition={{
                           type: "spring",
-                          stiffness: 380,
-                          damping: 30,
+                          stiffness: 450,
+                          damping: 32,
                         }}
                         className="
                           absolute
-                          inset-0
-                          rounded-full
-                          border
-                          border-purple-400/20
-                          bg-white/[0.08]
+                          bottom-0.5
+                          left-1/2
+                          h-px
+                          w-5
+                          -translate-x-1/2
+                          bg-[#C9A66B]
                         "
                       />
                     )}
-
-                    <span className="relative z-10">
-                      {link.title}
-                    </span>
                   </motion.a>
                 );
               })}
@@ -459,13 +434,20 @@ export const Header = () => {
           </div>
 
           {/* ====================================================
-              RIGHT - Socials + Mobile button
+              RIGHT — Social Links + Mobile
           ===================================================== */}
 
           <div className="flex items-center gap-2">
-            {/* Social icons */}
+            {/* Social links */}
 
-            <div className="hidden items-center gap-1 md:flex">
+            <div
+              className="
+                hidden
+                items-center
+                gap-0.5
+                md:flex
+              "
+            >
               {SOCIALS.map((social) => (
                 <motion.a
                   key={social.name}
@@ -475,7 +457,7 @@ export const Header = () => {
                   aria-label={social.name}
                   whileHover={{
                     y: -2,
-                    scale: 1.08,
+                    scale: 1.06,
                   }}
                   whileTap={{
                     scale: 0.94,
@@ -487,11 +469,11 @@ export const Header = () => {
                     items-center
                     justify-center
                     rounded-full
-                    text-white/40
+                    text-[#706D67]
                     transition-all
                     duration-200
-                    hover:bg-white/[0.06]
-                    hover:text-purple-300
+                    hover:bg-white/[0.04]
+                    hover:text-[#C9A66B]
                   "
                 >
                   <social.icon className="h-4 w-4" />
@@ -499,7 +481,7 @@ export const Header = () => {
               ))}
             </div>
 
-            {/* Mobile menu */}
+            {/* Mobile menu button */}
 
             <motion.button
               type="button"
@@ -508,9 +490,7 @@ export const Header = () => {
                   !isMobileMenuOpen
                 )
               }
-              whileTap={{
-                scale: 0.92,
-              }}
+              whileTap={{ scale: 0.92 }}
               aria-label={
                 isMobileMenuOpen
                   ? "Close menu"
@@ -528,10 +508,11 @@ export const Header = () => {
                 rounded-full
                 border
                 border-white/[0.08]
-                bg-white/[0.035]
-                text-white/70
+                bg-white/[0.025]
+                text-[#A7A39A]
                 transition-colors
-                hover:bg-white/[0.08]
+                hover:bg-white/[0.06]
+                hover:text-[#F5F3EE]
                 md:hidden
               "
             >
@@ -604,14 +585,12 @@ export const Header = () => {
                   rounded-2xl
                   border
                   border-white/[0.08]
-                  bg-[#080810]/90
+                  bg-[#111111]/95
                   p-2
-                  shadow-2xl
+                  shadow-[0_20px_50px_rgba(0,0,0,0.30)]
                   backdrop-blur-2xl
                 "
               >
-                {/* Mobile links */}
-
                 <div className="space-y-1">
                   {navLinks.map((link) => {
                     const isActive =
@@ -640,28 +619,44 @@ export const Header = () => {
                           text-sm
                           font-medium
                           transition-colors
+                          duration-200
 
                           ${
                             isActive
                               ? `
-                                bg-purple-500/10
-                                text-purple-300
+                                bg-white/[0.05]
+                                text-[#F5F3EE]
                               `
                               : `
-                                text-white/60
-                                hover:bg-white/[0.04]
-                                hover:text-white
+                                text-[#969188]
+                                hover:bg-white/[0.035]
+                                hover:text-[#F5F3EE]
                               `
                           }
                         `}
                       >
-                        {link.title}
+                        <div className="flex items-center justify-between">
+                          <span>
+                            {link.title}
+                          </span>
+
+                          {isActive && (
+                            <span
+                              className="
+                                h-1.5
+                                w-1.5
+                                rounded-full
+                                bg-[#C9A66B]
+                              "
+                            />
+                          )}
+                        </div>
                       </motion.a>
                     );
                   })}
                 </div>
 
-                {/* Mobile socials */}
+                {/* Mobile social links */}
 
                 <div
                   className="
@@ -669,7 +664,7 @@ export const Header = () => {
                     flex
                     items-center
                     justify-center
-                    gap-2
+                    gap-1
                     border-t
                     border-white/[0.06]
                     pt-3
@@ -692,10 +687,10 @@ export const Header = () => {
                         items-center
                         justify-center
                         rounded-full
-                        text-white/45
+                        text-[#706D67]
                         transition-colors
-                        hover:bg-white/[0.05]
-                        hover:text-purple-300
+                        hover:bg-white/[0.04]
+                        hover:text-[#C9A66B]
                       "
                     >
                       <social.icon className="h-4 w-4" />
