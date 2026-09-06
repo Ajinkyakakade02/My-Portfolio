@@ -5,10 +5,12 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "@/pages/AboutPage";
 import ProjectsPage from "@/pages/ProjectsPage";  // <-- DELETED
 import GitHubPage from "@/pages/GitHubPage";
+import CursorCat from "@/components/common/CursorCat";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { StarsCanvas } from "./components/shared/StarsCanvas";
 import { useTheme } from "./hooks/useTheme";
+
 
 // Debug component to log route changes
 const RouteDebugger = () => {
