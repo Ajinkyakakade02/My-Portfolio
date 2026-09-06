@@ -34,6 +34,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { getImagePath, getVideoPath } from "@/lib/paths";
 import { siteConfig, PROJECTS } from "@/constants";
 import { getAccentClasses, type AccentColor } from "@/lib/colorStyles";
+import TechStackMarquee from "../components/shared/TechStackMarquee";
 
 // ==================== THEME HELPER ====================
 const t = (theme: string, dark: string, light: string) =>
@@ -264,152 +265,224 @@ const Hero = () => {
 };
 
 // ==================== SKILLS ====================
+
 const Skills = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [videoError, setVideoError] = useState(true);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
 
-  const frontendSkills = [
-    { name: "HTML5", icon: FaHtml5, color: "#e34c26" },
-    { name: "CSS3", icon: FaCss3Alt, color: "#264de4" },
-    { name: "JavaScript", icon: FaJs, color: "#f7df1e" },
-    { name: "React", icon: FaReact, color: "#61dafb" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06b6d4" },
-    
-  ];
-
-  const backendSkills = [
-    { name: "Java", icon: FaJava, color: "#007396" },
+  const technologies = [
+    { name: "Java", icon: FaJava, color: "#ED8B00" },
+    { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+    { name: "Spring Security", icon: SiSpringsecurity, color: "#6DB33F" },
+    { name: "React", icon: FaReact, color: "#61DAFB" },
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
     { name: "Python", icon: FaPython, color: "#3776AB" },
-    { name: "Spring", icon: SiSpring, color: "#6db33f" },
-    { name: "Spring Boot", icon: SiSpringboot, color: "#6db33f" },
-    { name: "Spring Security", icon: SiSpringsecurity, color: "#6db33f" },
-    { name: "REST APIs", icon: FaServer, color: "#9ca3af" },
-  ];
-
-  const databaseSkills = [
-    { name: "MySQL", icon: SiMysql, color: "#4479a1" },
+    { name: "MySQL", icon: SiMysql, color: "#4479A1" },
     { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
-    { name: "MongoDB", icon: SiMongodb, color: "#47a248" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
     { name: "Redis", icon: SiRedis, color: "#DC382D" },
-    { name: "Git", icon: FaGitAlt, color: "#f05032" },
-    { name: "Docker", icon: FaDocker, color: "#2496ed" },
+    { name: "Docker", icon: FaDocker, color: "#2496ED" },
+    { name: "Git", icon: FaGitAlt, color: "#F05032" },
+    { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+    { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+    { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
+    { name: "REST APIs", icon: FaServer, color: "#A78BFA" },
   ];
 
-  const sections: { title: string; skills: typeof frontendSkills; accent: AccentColor }[] = [
-    { title: "Frontend", skills: frontendSkills, accent: "purple" },
-    { title: "Backend", skills: backendSkills, accent: "cyan" },
-    { title: "Database & DevOps", skills: databaseSkills, accent: "green" },
-  ];
+  const firstRow = technologies.slice(0, 7);
+  const secondRow = technologies.slice(7, 13);
+  const thirdRow = technologies.slice(13, 18);
+
+  const TechItem = ({
+    tech,
+  }: {
+    tech: (typeof technologies)[number];
+  }) => {
+    const Icon = tech.icon;
+
+    return (
+      <motion.div
+        whileHover={
+          prefersReducedMotion
+            ? undefined
+            : {
+                y: -4,
+                scale: 1.04,
+              }
+        }
+        className={`group flex shrink-0 items-center gap-3 rounded-full border px-5 py-3 backdrop-blur-md transition-all duration-300 ${
+          theme === "dark"
+            ? "border-white/10 bg-white/[0.035] hover:border-purple-400/40 hover:bg-purple-500/[0.08]"
+            : "border-purple-200 bg-white/70 hover:border-purple-300 hover:bg-purple-50"
+        }`}
+      >
+        <Icon
+          className="text-xl transition-transform duration-300 group-hover:scale-110"
+          style={{ color: tech.color }}
+          aria-hidden="true"
+        />
+
+        <span
+          className={`whitespace-nowrap text-sm font-medium tracking-wide ${
+            theme === "dark"
+              ? "text-white/70 group-hover:text-white"
+              : "text-gray-700 group-hover:text-gray-900"
+          }`}
+        >
+          {tech.name}
+        </span>
+      </motion.div>
+    );
+  };
+
+  const MarqueeRow = ({
+    items,
+    reverse = false,
+    duration = 28,
+  }: {
+    items: typeof technologies;
+    reverse?: boolean;
+    duration?: number;
+  }) => {
+    const repeated = [...items, ...items, ...items];
+
+    return (
+      <div className="relative overflow-hidden py-2">
+        <motion.div
+          className="flex w-max gap-4"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: reverse
+                    ? ["-33.333%", "0%"]
+                    : ["0%", "-33.333%"],
+                }
+          }
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: {
+                    duration,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                }
+          }
+        >
+          {repeated.map((tech, index) => (
+            <TechItem
+              key={`${tech.name}-${index}`}
+              tech={tech}
+            />
+          ))}
+        </motion.div>
+      </div>
+    );
+  };
 
   return (
-    <section id="skills" className="relative flex flex-col items-center gap-10 py-20 min-h-screen overflow-hidden">
-      <div className="absolute inset-0 w-full h-full -z-10">
-        {!videoError && theme === "dark" && !prefersReducedMotion ? (
-          <>
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="none"
-              aria-hidden="true"
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              style={{ filter: "brightness(0.4) contrast(1.2) saturate(1.1)" }}
-              onError={() => setVideoError(true)}
-            >
-              <source src={getVideoPath("/videos/skills-bg.webm")} type="video/webm" />
-            </video>
-            <div className="absolute inset-0 bg-black/70" />
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-cyan-900/20" />
-          </>
-        ) : (
-          <div
-            className={`absolute inset-0 ${t(
-              theme,
-              "bg-gradient-to-b from-purple-900/30 via-black to-black",
-              "bg-gradient-to-b from-purple-200/50 via-gray-100 to-gray-200"
-            )}`}
-          />
-        )}
+    <section
+      id="skills"
+      className="relative overflow-hidden py-24 sm:py-28"
+    >
+      {/* Existing portfolio background */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className={`absolute inset-0 ${
+            theme === "dark"
+              ? "bg-gradient-to-b from-purple-950/20 via-black to-black"
+              : "bg-gradient-to-b from-purple-100/40 via-white to-gray-100"
+          }`}
+        />
+
+        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[120px]" />
       </div>
 
-      <div className="text-center max-w-4xl mx-auto px-4 z-10">
-        <motion.h2
+      {/* Heading */}
+      <div className="relative z-10 mx-auto mb-14 max-w-4xl px-4 text-center">
+        <motion.div
           ref={ref}
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent"
+          initial={
+            prefersReducedMotion
+              ? false
+              : { opacity: 0, y: 20 }
+          }
+          animate={
+            inView
+              ? { opacity: 1, y: 0 }
+              : {}
+          }
+          transition={{ duration: 0.6 }}
         >
-          My Tech Stack
-        </motion.h2>
-        <motion.p
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className={`text-lg mb-12 ${t(theme, "text-gray-300", "text-gray-600")}`}
-        >
-          Technologies I work with to build amazing digital experiences
-        </motion.p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-purple-400">
+            Technologies
+          </p>
+
+          <h2 className="bg-gradient-to-r from-purple-500 via-purple-400 to-cyan-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+            My Tech Stack
+          </h2>
+
+          <p
+            className={`mx-auto mt-4 max-w-2xl text-base leading-7 sm:text-lg ${
+              theme === "dark"
+                ? "text-gray-400"
+                : "text-gray-600"
+            }`}
+          >
+            The technologies I use to build scalable,
+            secure, and modern applications.
+          </p>
+        </motion.div>
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {sections.map((section, idx) => {
-            const accent = getAccentClasses(section.accent, theme);
-            return (
-              <motion.div
-                key={section.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
-                className={`rounded-2xl border backdrop-blur-sm p-6 transition-all duration-300 ${t(
-                  theme,
-                  "bg-white/5",
-                  "bg-white shadow-sm"
-                )} ${accent.cardBorder} ${accent.cardBorderHover}`}
-              >
-                <h3 className={`text-2xl font-semibold mb-6 text-center ${accent.text}`}>
-                  {section.title}
-                </h3>
+      {/* Moving tech stack */}
+      <div className="relative z-10 space-y-4">
+        <MarqueeRow
+          items={firstRow}
+          duration={26}
+        />
 
-                <div className="flex flex-row justify-center flex-wrap gap-6">
-                  {section.skills.map((skill, idx2) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 + idx2 * 0.04 }}
-                      whileHover={{ scale: 1.15, y: -4 }}
-                      className="relative group flex flex-col items-center"
-                    >
-                      <div
-                        className={`backdrop-blur-sm rounded-xl p-4 border transition-all duration-300 ${t(
-                          theme,
-                          "bg-white/5 border-purple-500/30 hover:border-purple-500/60",
-                          "bg-black/5 border-purple-300/30 hover:border-purple-400/60"
-                        )}`}
-                      >
-                        <skill.icon className="text-5xl" style={{ color: skill.color }} aria-hidden="true" />
-                      </div>
-                      <span className={`text-xs mt-2 text-center ${t(theme, "text-gray-400", "text-gray-600")}`}>
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+        <MarqueeRow
+          items={secondRow}
+          reverse
+          duration={30}
+        />
+
+        <MarqueeRow
+          items={thirdRow}
+          duration={27}
+        />
       </div>
+
+      {/* Left fade */}
+      <div
+        className={`pointer-events-none absolute inset-y-0 left-0 z-20 w-20 bg-gradient-to-r ${
+          theme === "dark"
+            ? "from-[#030014] via-[#030014]/80 to-transparent"
+            : "from-white via-white/80 to-transparent"
+        }`}
+      />
+
+      {/* Right fade */}
+      <div
+        className={`pointer-events-none absolute inset-y-0 right-0 z-20 w-20 bg-gradient-to-l ${
+          theme === "dark"
+            ? "from-[#030014] via-[#030014]/80 to-transparent"
+            : "from-white via-white/80 to-transparent"
+        }`}
+      />
     </section>
   );
 };
-
 // ==================== PROJECTS SECTION (kept but not rendered on homepage) ====================
 // You can keep or delete this component – it's not used in the main return.
 const ProjectsSection = () => {
