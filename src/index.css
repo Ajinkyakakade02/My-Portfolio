@@ -26,6 +26,10 @@
   html {
     scroll-behavior: smooth;
     background: #0a0a0a;
+
+    /* Firefox scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #2a2a2a #0a0a0a;
   }
 
   body {
@@ -68,10 +72,18 @@
     background: rgba(201, 166, 107, 0.25);
     color: #f5f3ee;
   }
+}
 
-  /* ============================================================
-   Scrollbar — minimal editorial style
+/* ============================================================
+   Scrollbar
    ============================================================ */
+
+/*
+  Minimal scrollbar inspired by the restrained
+  editorial style of the reference portfolio.
+*/
+
+/* Chrome / Edge / Safari */
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -84,26 +96,12 @@
 
 ::-webkit-scrollbar-thumb {
   background: #2a2a2a;
-  border-radius: 999px;
   border: none;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3a;
-}
-
-/* Light mode */
-
-.light ::-webkit-scrollbar-track {
-  background: #f5f4ef;
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: #c8c6c0;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-  background: #aaa79f;
 }
 
 /* Firefox */
@@ -113,60 +111,50 @@ html {
   scrollbar-color: #2a2a2a #0a0a0a;
 }
 
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
+
 .light {
+  background: #f5f4ef;
+
   scrollbar-color: #c8c6c0 #f5f4ef;
 }
 
-  /* ==========================================================
-     Light Theme Base
-     ========================================================== */
+.light body {
+  color: #171717;
 
-  .light body {
-    color: #171717;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(154, 116, 59, 0.035),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(0, 0, 0, 0.018),
+      transparent 30%
+    ),
+    #f5f4ef;
+}
 
-    background:
-      radial-gradient(
-        circle at 15% 15%,
-        rgba(154, 116, 59, 0.035),
-        transparent 28%
-      ),
-      radial-gradient(
-        circle at 85% 80%,
-        rgba(0, 0, 0, 0.018),
-        transparent 30%
-      ),
-      #f5f4ef;
-  }
+/* Chrome / Edge / Safari — Light */
 
-  .light html {
-    background: #f5f4ef;
-  }
+.light::-webkit-scrollbar-track {
+  background: #f5f4ef;
+}
 
-  /* ==========================================================
-     Light Theme Scrollbar
-     ========================================================== */
+.light::-webkit-scrollbar-thumb {
+  background: #c8c6c0;
+}
 
-  .light ::-webkit-scrollbar-track {
-    background: #f5f4ef;
-  }
+.light::-webkit-scrollbar-thumb:hover {
+  background: #aaa79f;
+}
 
-  .light ::-webkit-scrollbar-thumb {
-    background: #c9c5bc;
-    border-color: #f5f4ef;
-  }
-
-  .light ::-webkit-scrollbar-thumb:hover {
-    background: #9a743b;
-  }
-
-  /* ==========================================================
-     Light Theme Selection
-     ========================================================== */
-
-  .light ::selection {
-    background: rgba(154, 116, 59, 0.18);
-    color: #171717;
-  }
+.light ::selection {
+  background: rgba(154, 116, 59, 0.18);
+  color: #171717;
 }
 
 /* ============================================================
@@ -341,10 +329,12 @@ html {
   }
 
   .input:focus {
-    border-color: rgba(201, 166, 107, 0.45);
+    border-color:
+      rgba(201, 166, 107, 0.45);
 
     box-shadow:
-      0 0 0 3px rgba(201, 166, 107, 0.08);
+      0 0 0 3px
+      rgba(201, 166, 107, 0.08);
   }
 
   /* ==========================================================
@@ -386,7 +376,17 @@ html {
 
   .warm-glow {
     box-shadow:
-      0 0 40px rgba(201, 166, 107, 0.08);
+      0 0 40px
+      rgba(201, 166, 107, 0.08);
+  }
+
+  /* ==========================================================
+     Subtle Divider
+     ========================================================== */
+
+  .subtle-divider {
+    border-color:
+      rgba(255, 255, 255, 0.07);
   }
 
   /* ==========================================================
@@ -410,19 +410,23 @@ html {
 .light .glass-effect {
   background: rgba(255, 255, 255, 0.72);
 
-  border-color: rgba(0, 0, 0, 0.07);
+  border-color:
+    rgba(0, 0, 0, 0.07);
 
   box-shadow:
-    0 12px 40px rgba(30, 25, 15, 0.06);
+    0 12px 40px
+    rgba(30, 25, 15, 0.06);
 }
 
 .light .card {
   background: #ffffff;
 
-  border-color: rgba(0, 0, 0, 0.07);
+  border-color:
+    rgba(0, 0, 0, 0.07);
 
   box-shadow:
-    0 12px 40px rgba(30, 25, 15, 0.06);
+    0 12px 40px
+    rgba(30, 25, 15, 0.06);
 }
 
 .light .card:hover {
@@ -435,7 +439,8 @@ html {
 .light .input {
   background: rgba(255, 255, 255, 0.8);
 
-  border-color: rgba(0, 0, 0, 0.09);
+  border-color:
+    rgba(0, 0, 0, 0.09);
 
   color: #171717;
 }
@@ -445,14 +450,17 @@ html {
 }
 
 .light .input:hover {
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color:
+    rgba(0, 0, 0, 0.15);
 }
 
 .light .input:focus {
-  border-color: rgba(154, 116, 59, 0.45);
+  border-color:
+    rgba(154, 116, 59, 0.45);
 
   box-shadow:
-    0 0 0 3px rgba(154, 116, 59, 0.07);
+    0 0 0 3px
+    rgba(154, 116, 59, 0.07);
 }
 
 .light .button-primary {
@@ -468,7 +476,8 @@ html {
 .light .button-secondary {
   background: rgba(0, 0, 0, 0.015);
 
-  border-color: rgba(0, 0, 0, 0.09);
+  border-color:
+    rgba(0, 0, 0, 0.09);
 
   color: #171717;
 }
@@ -476,7 +485,8 @@ html {
 .light .button-secondary:hover {
   background: rgba(0, 0, 0, 0.035);
 
-  border-color: rgba(154, 116, 59, 0.35);
+  border-color:
+    rgba(154, 116, 59, 0.35);
 
   color: #9a743b;
 }
