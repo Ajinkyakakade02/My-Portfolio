@@ -71,53 +71,6 @@
 }
 
 /* ============================================================
-   Custom Scrollbar (Grey)
-   ============================================================ */
-
-/* WebKit browsers (Chrome, Edge, Safari) */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;       /* dark track */
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888888;        /* grey thumb */
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #aaaaaa;        /* lighter grey on hover */
-}
-
-/* Firefox */
-* {
-  scrollbar-color: #888888 #1a1a1a;
-  scrollbar-width: thin;
-}
-
-/* Light theme overrides */
-.light ::-webkit-scrollbar-track {
-  background: #e0e0e0;        /* light track */
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: #999999;        /* grey thumb (slightly darker for contrast) */
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-  background: #bbbbbb;
-}
-
-.light * {
-  scrollbar-color: #999999 #e0e0e0;
-}
-
-/* ============================================================
    Light Theme
    ============================================================ */
 
@@ -400,7 +353,8 @@
 .light .glass-effect {
   background: rgba(255, 255, 255, 0.72);
 
-  border-color: rgba(0, 0, 0, 0.07);
+  border-color:
+    rgba(0, 0, 0, 0.07);
 
   box-shadow:
     0 12px 40px
@@ -410,7 +364,8 @@
 .light .card {
   background: #ffffff;
 
-  border-color: rgba(0, 0, 0, 0.07);
+  border-color:
+    rgba(0, 0, 0, 0.07);
 
   box-shadow:
     0 12px 40px
