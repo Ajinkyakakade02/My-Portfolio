@@ -1,4 +1,5 @@
 // src/components/layout/Header.tsx
+
 import { useState, useEffect, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -9,282 +10,703 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about-me");
   const [scrolled, setScrolled] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Updated navigation links – added "Projects", removed "Experience"
-  const updatedNavLinks = [
-    { title: "Home", link: "#about-me", path: "/" },
-    { title: "Skills", link: "#skills", path: "/" },
-    // { title: "Projects", link: "#projects", path: "/" },   // ✅ Added
-        { title: "All about me", link: "#view-my-work", path: "/" },
-    { title: "Contact", link: "#contact", path: "/" },
+  // ============================================================
+  // Navigation
+  // ============================================================
+
+  const navLinks = [
+    {
+      title: "Home",
+      link: "#about-me",
+      sectionId: "about-me",
+    },
+    {
+      title: "Skills",
+      link: "#skills",
+      sectionId: "skills",
+    },
+    {
+      title: "Projects",
+      link: "#view-my-work",
+      sectionId: "view-my-work",
+    },
+    {
+      title: "Contact",
+      link: "#contact",
+      sectionId: "contact",
+    },
   ];
 
-  // Function to navigate and scroll to section
+  // ============================================================
+  // Navigate + scroll
+  // ============================================================
+
   const navigateAndScroll = (sectionId: string) => {
     if (location.pathname !== "/") {
       navigate("/");
+
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
+        const element =
+          document.getElementById(sectionId);
+
         if (element) {
           const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+          const elementPosition =
+            element.getBoundingClientRect().top;
+
+          const offsetPosition =
+            elementPosition +
+            window.pageYOffset -
+            offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         }
       }, 100);
     } else {
-      const element = document.getElementById(sectionId);
+      const element =
+        document.getElementById(sectionId);
+
       if (element) {
         const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+        const elementPosition =
+          element.getBoundingClientRect().top;
+
+        const offsetPosition =
+          elementPosition +
+          window.pageYOffset -
+          offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
       }
     }
   };
 
-  const handleNavClick = (e: MouseEvent, _link: string, sectionId: string) => {
+  // ============================================================
+  // Navigation click
+  // ============================================================
+
+  const handleNavClick = (
+    e: MouseEvent,
+    sectionId: string
+  ) => {
     e.preventDefault();
+
     navigateAndScroll(sectionId);
+
     setIsMobileMenuOpen(false);
   };
 
-  // Update active section based on scroll position (only on home page)
+  // ============================================================
+  // Scroll detection + active section
+  // ============================================================
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScroll = window.scrollY;
 
-      if (location.pathname === "/") {
-        const sectionIds = updatedNavLinks.map((l) => l.link.replace("#", ""));
-        for (let i = sectionIds.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sectionIds[i]);
-          if (el && window.scrollY >= el.offsetTop - 120) {
-            setActiveSection(sectionIds[i]);
-            break;
-          }
-        }
-      } else {
+      setScrolled(currentScroll > 24);
+
+      if (location.pathname !== "/") {
         setActiveSection("");
+        return;
       }
+
+      let currentSection = "about-me";
+
+      for (const link of navLinks) {
+        const element =
+          document.getElementById(link.sectionId);
+
+        if (!element) continue;
+
+        const top =
+          element.getBoundingClientRect().top +
+          window.scrollY;
+
+        if (currentScroll >= top - 140) {
+          currentSection = link.sectionId;
+        }
+      }
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+
+    window.addEventListener(
+      "scroll",
+      handleScroll,
+      { passive: true }
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
   }, [location.pathname]);
 
-  // Handle logo click to go home
-  const handleLogoClick = (e: React.MouseEvent) => {
+  // ============================================================
+  // Logo click
+  // ============================================================
+
+  const handleLogoClick = (
+    e: React.MouseEvent
+  ) => {
     e.preventDefault();
+
     if (location.pathname !== "/") {
       navigate("/");
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
+
     setIsMobileMenuOpen(false);
   };
 
-  return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#030014]/95 backdrop-blur-xl shadow-2xl border-b border-purple-500/30"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+  // ============================================================
+  // Render
+  // ============================================================
 
-          {/* Left Side - Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
-            {updatedNavLinks.map((link, index) => {
-              const isActive = location.pathname === "/" && activeSection === link.link.replace("#", "");
-              return (
-                <motion.a
-                  key={link.title}
-                  href={link.link}
-                  onClick={(e) => handleNavClick(e, link.link, link.link.replace("#", ""))}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "text-white"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-xl border border-purple-500/30"
-                      transition={{ type: "spring", duration: 0.5 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.title}</span>
-                </motion.a>
-              );
-            })}
+  return (
+    <>
+      <motion.nav
+        initial={{
+          y: -20,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className={`
+          fixed
+          top-0
+          left-0
+          right-0
+          z-50
+          px-4
+          sm:px-6
+          lg:px-8
+          transition-all
+          duration-300
+
+          ${
+            scrolled
+              ? `
+                bg-[#030014]/75
+                backdrop-blur-xl
+                border-b
+                border-white/[0.08]
+                shadow-[0_8px_30px_rgba(0,0,0,0.15)]
+              `
+              : `
+                bg-transparent
+                border-b
+                border-transparent
+              `
+          }
+        `}
+      >
+        <div
+          className="
+            mx-auto
+            flex
+            h-[72px]
+            max-w-6xl
+            items-center
+            justify-between
+          "
+        >
+          {/* ====================================================
+              LEFT - Logo / Name
+          ===================================================== */}
+
+          <motion.a
+            href="#"
+            onClick={handleLogoClick}
+            whileHover={{
+              y: -1,
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
+            className="
+              flex
+              items-center
+              gap-3
+              shrink-0
+              cursor-pointer
+              select-none
+            "
+          >
+            {/* Logo */}
+
+            <div
+              className="
+                relative
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+              "
+            >
+              {/* Glow */}
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  rounded-full
+                  bg-gradient-to-r
+                  from-purple-500
+                  to-cyan-500
+                  opacity-40
+                  blur-md
+                "
+              />
+
+              {/* Logo container */}
+
+              <div
+                className="
+                  relative
+                  h-8
+                  w-8
+                  overflow-hidden
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-[#0d0b18]
+                "
+              >
+                <img
+                  src={getImagePath("/logo.png")}
+                  alt={siteConfig.name}
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                  "
+                  onError={(e) => {
+                    e.currentTarget.style.display =
+                      "none";
+
+                    const parent =
+                      e.currentTarget.parentElement;
+
+                    if (
+                      parent &&
+                      !parent.querySelector(
+                        ".header-initials"
+                      )
+                    ) {
+                      const div =
+                        document.createElement(
+                          "div"
+                        );
+
+                      div.className =
+                        "header-initials flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-cyan-600 text-[10px] font-bold text-white";
+
+                      div.textContent = "AK";
+
+                      parent.appendChild(div);
+                    }
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Name */}
+
+            <div className="hidden sm:block">
+              <div
+                className="
+                  text-sm
+                  font-semibold
+                  tracking-tight
+                  text-white
+                "
+              >
+                {siteConfig.name}
+              </div>
+
+              <div
+                className="
+                  mt-0.5
+                  text-[10px]
+                  font-medium
+                  tracking-[0.08em]
+                  text-white/35
+                  uppercase
+                "
+              >
+                {siteConfig.role}
+              </div>
+            </div>
+          </motion.a>
+
+          {/* ====================================================
+              CENTER - Desktop Navigation
+          ===================================================== */}
+
+          <div
+            className="
+              absolute
+              left-1/2
+              hidden
+              -translate-x-1/2
+              items-center
+              md:flex
+            "
+          >
+            <div
+              className="
+                flex
+                items-center
+                gap-1
+                rounded-full
+                border
+                border-white/[0.06]
+                bg-white/[0.025]
+                p-1
+                backdrop-blur-md
+              "
+            >
+              {navLinks.map((link) => {
+                const isActive =
+                  location.pathname === "/" &&
+                  activeSection ===
+                    link.sectionId;
+
+                return (
+                  <motion.a
+                    key={link.title}
+                    href={link.link}
+                    onClick={(e) =>
+                      handleNavClick(
+                        e,
+                        link.sectionId
+                      )
+                    }
+                    className={`
+                      relative
+                      rounded-full
+                      px-4
+                      py-2
+                      text-[13px]
+                      font-medium
+                      transition-colors
+                      duration-200
+
+                      ${
+                        isActive
+                          ? "text-white"
+                          : "text-white/45 hover:text-white/85"
+                      }
+                    `}
+                    whileTap={{
+                      scale: 0.96,
+                    }}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="headerActivePill"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                        className="
+                          absolute
+                          inset-0
+                          rounded-full
+                          border
+                          border-purple-400/20
+                          bg-white/[0.08]
+                        "
+                      />
+                    )}
+
+                    <span className="relative z-10">
+                      {link.title}
+                    </span>
+                  </motion.a>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Right Side - Logo + Name + Social */}
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2">
-              {SOCIALS.map((social, index) => (
+          {/* ====================================================
+              RIGHT - Socials + Mobile button
+          ===================================================== */}
+
+          <div className="flex items-center gap-2">
+            {/* Social icons */}
+
+            <div className="hidden items-center gap-1 md:flex">
+              {SOCIALS.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 + index * 0.05 }}
-                  className="p-2 rounded-lg transition-all duration-300 text-gray-400 hover:text-purple-400 hover:bg-purple-500/10"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{
+                    y: -2,
+                    scale: 1.08,
+                  }}
+                  whileTap={{
+                    scale: 0.94,
+                  }}
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    items-center
+                    justify-center
+                    rounded-full
+                    text-white/40
+                    transition-all
+                    duration-200
+                    hover:bg-white/[0.06]
+                    hover:text-purple-300
+                  "
                 >
                   <social.icon className="h-4 w-4" />
                 </motion.a>
               ))}
             </div>
 
-            <div className="flex items-center gap-3">
-              <motion.a
-                href="#"
-                onClick={handleLogoClick}
-                className="relative group cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            {/* Mobile menu */}
+
+            <motion.button
+              type="button"
+              onClick={() =>
+                setIsMobileMenuOpen(
+                  !isMobileMenuOpen
+                )
+              }
+              whileTap={{
+                scale: 0.92,
+              }}
+              aria-label={
+                isMobileMenuOpen
+                  ? "Close menu"
+                  : "Open menu"
+              }
+              aria-expanded={
+                isMobileMenuOpen
+              }
+              className="
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-white/[0.08]
+                bg-white/[0.035]
+                text-white/70
+                transition-colors
+                hover:bg-white/[0.08]
+                md:hidden
+              "
+            >
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="1.8"
               >
-                <div className="relative w-10 h-10">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      opacity: [0.5, 0.8, 0.5]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
                   />
-                  <div className="absolute inset-[2px] bg-gradient-to-br from-purple-600 to-cyan-600 rounded-full" />
-                  <img
-                    src={getImagePath("/logo.png")}
-                    alt={siteConfig.name}
-                    className="relative w-full h-full object-contain rounded-full z-10"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                      const parent = e.currentTarget.parentElement;
-                      if (parent && !parent.querySelector(".initials")) {
-                        const div = document.createElement("div");
-                        div.className =
-                          "initials relative w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-cyan-600 flex items-center justify-center text-white font-bold text-sm z-10";
-                        div.textContent = "AK";
-                        parent.appendChild(div);
-                      }
-                    }}
-                  />
-                </div>
-              </motion.a>
-
-              <div className="flex flex-col">
-                <motion.span
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="font-bold text-lg tracking-tight bg-gradient-to-r from-purple-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent"
-                >
-                  {siteConfig.name.split(" ")[0]}
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.25 }}
-                  className="text-[10px] font-mono text-gray-500 text-right"
-                >
-                  {siteConfig.role}
-                </motion.span>
-              </div>
-            </div>
+                ) : (
+                  <>
+                    <path
+                      strokeLinecap="round"
+                      d="M4 7h16"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      d="M4 12h16"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      d="M4 17h16"
+                    />
+                  </>
+                )}
+              </svg>
+            </motion.button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden p-2 rounded-xl transition-all duration-300 text-white hover:bg-white/10"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </motion.button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden border-t backdrop-blur-2xl bg-[#030014]/98 border-purple-500/20"
-          >
-            <div className="px-4 py-6 space-y-2">
-              <div className="text-center pb-4 mb-2 border-b border-purple-500/20">
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  {siteConfig.name}
-                </span>
-                <p className="text-xs mt-1 text-gray-500">
-                  {siteConfig.role}
-                </p>
-              </div>
+        {/* ======================================================
+            MOBILE MENU
+        ======================================================= */}
 
-              {updatedNavLinks.map((link) => (
-                <motion.a
-                  key={link.title}
-                  href={link.link}
-                  onClick={(e) => handleNavClick(e, link.link, link.link.replace("#", ""))}
-                  whileTap={{ scale: 0.98 }}
-                  className={`block px-4 py-3 rounded-xl transition-all duration-300 text-sm font-medium ${
-                    location.pathname === "/" && activeSection === link.link.replace("#", "")
-                      ? "bg-purple-500/20 text-purple-400"
-                      : "text-gray-300 hover:bg-white/5"
-                  }`}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: -8,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -8,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
+              className="
+                mx-auto
+                max-w-6xl
+                pb-4
+                md:hidden
+              "
+            >
+              <div
+                className="
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  border-white/[0.08]
+                  bg-[#080810]/90
+                  p-2
+                  shadow-2xl
+                  backdrop-blur-2xl
+                "
+              >
+                {/* Mobile links */}
+
+                <div className="space-y-1">
+                  {navLinks.map((link) => {
+                    const isActive =
+                      location.pathname === "/" &&
+                      activeSection ===
+                        link.sectionId;
+
+                    return (
+                      <motion.a
+                        key={link.title}
+                        href={link.link}
+                        onClick={(e) =>
+                          handleNavClick(
+                            e,
+                            link.sectionId
+                          )
+                        }
+                        whileTap={{
+                          scale: 0.98,
+                        }}
+                        className={`
+                          block
+                          rounded-xl
+                          px-4
+                          py-3
+                          text-sm
+                          font-medium
+                          transition-colors
+
+                          ${
+                            isActive
+                              ? `
+                                bg-purple-500/10
+                                text-purple-300
+                              `
+                              : `
+                                text-white/60
+                                hover:bg-white/[0.04]
+                                hover:text-white
+                              `
+                          }
+                        `}
+                      >
+                        {link.title}
+                      </motion.a>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile socials */}
+
+                <div
+                  className="
+                    mt-2
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    border-t
+                    border-white/[0.06]
+                    pt-3
+                  "
                 >
-                  {link.title}
-                </motion.a>
-              ))}
-
-              <div className="flex items-center justify-center pt-4 mt-2 border-t border-gray-800">
-                <div className="flex gap-4">
                   {SOCIALS.map((social) => (
-                    <a
+                    <motion.a
                       key={social.name}
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors p-2 rounded-lg text-gray-400 hover:text-purple-400 hover:bg-white/5"
+                      aria-label={social.name}
+                      whileTap={{
+                        scale: 0.9,
+                      }}
+                      className="
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        text-white/45
+                        transition-colors
+                        hover:bg-white/[0.05]
+                        hover:text-purple-300
+                      "
                     >
-                      <social.icon className="h-5 w-5" />
-                    </a>
+                      <social.icon className="h-4 w-4" />
+                    </motion.a>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </>
   );
 };
