@@ -60,7 +60,7 @@ export const PROJECTS = [
     description:
       "AI-powered content moderation system that automatically detects and filters inappropriate content in real-time.",
     image: "/projects/content-mod-banner.webp", // ✅ updated
-    link: "https://chat-nova02.vercel.app/",
+    link: "https://content-mod-ai.vercel.app",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["AI/ML", "React", "FastAPI", "TensorFlow"],
     icon: "🤖",
@@ -71,7 +71,7 @@ export const PROJECTS = [
     description:
       "Instant messaging app with group chats, file sharing, emoji reactions, and real-time notifications.",
     image: "/projects/project-3.webp",   // unchanged (placeholder)
-    link: "https://github.com/Ajinkyakakade02",
+    link: "https://chat-nova02.vercel.app",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["WebSocket", "React", "TypeScript", "Spring Boot"],
     icon: "💬",
