@@ -1,82 +1,428 @@
 /* src/index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Theme transition styles */
+/* ============================================================
+   Global Theme Transition
+   ============================================================ */
+
 .theme-transition,
 .theme-transition * {
-  transition: background-color 0.3s ease-in-out,
-              border-color 0.3s ease-in-out,
-              color 0.3s ease-in-out,
-              fill 0.3s ease-in-out,
-              stroke 0.3s ease-in-out !important;
+  transition:
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out,
+    color 0.3s ease-in-out,
+    fill 0.3s ease-in-out,
+    stroke 0.3s ease-in-out !important;
 }
+
+/* ============================================================
+   Base
+   ============================================================ */
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: #0a0a0a;
   }
-  
+
   body {
-    @apply bg-white dark:bg-[#030014] text-gray-900 dark:text-white;
+    margin: 0;
+
     overflow-x: hidden;
+
+    color: #f5f3ee;
+
+    background:
+      radial-gradient(
+        circle at 15% 15%,
+        rgba(201, 166, 107, 0.025),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at 85% 80%,
+        rgba(255, 255, 255, 0.018),
+        transparent 30%
+      ),
+      #0a0a0a;
+
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Custom scrollbar - Dark mode */
+
+  /* ==========================================================
+     Selection
+     ========================================================== */
+
+  ::selection {
+    background: rgba(201, 166, 107, 0.25);
+    color: #f5f3ee;
+  }
+
+  /* ==========================================================
+     Scrollbar
+     ========================================================== */
+
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
   }
-  
+
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-[#030014];
+    background: #0a0a0a;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-    @apply bg-purple-400 dark:bg-purple-600 rounded-full;
+    background: #34322e;
+    border-radius: 999px;
+
+    border: 1px solid #0a0a0a;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-purple-500 dark:bg-purple-500;
+    background: #c9a66b;
+  }
+
+  /* ==========================================================
+     Light theme
+     ========================================================== */
+
+  .light body {
+    color: #171717;
+
+    background:
+      radial-gradient(
+        circle at 15% 15%,
+        rgba(154, 116, 59, 0.035),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at 85% 80%,
+        rgba(0, 0, 0, 0.018),
+        transparent 30%
+      ),
+      #f5f4ef;
+  }
+
+  .light ::-webkit-scrollbar-track {
+    background: #f5f4ef;
+  }
+
+  .light ::-webkit-scrollbar-thumb {
+    background: #c9c5bc;
+
+    border-color: #f5f4ef;
+  }
+
+  .light ::-webkit-scrollbar-thumb:hover {
+    background: #9a743b;
+  }
+
+  .light ::selection {
+    background: rgba(154, 116, 59, 0.18);
+    color: #171717;
   }
 }
 
+/* ============================================================
+   Reusable Components
+   ============================================================ */
+
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-  
+
+  /* ==========================================================
+     Typography
+     ========================================================== */
+
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent;
+    @apply bg-clip-text text-transparent;
+    background-image:
+      linear-gradient(
+        90deg,
+        #f5f3ee 0%,
+        #d8bc91 100%
+      );
   }
-  
+
+  .accent-text {
+    color: #c9a66b;
+  }
+
+  .muted-text {
+    color: #a7a39a;
+  }
+
+  /* ==========================================================
+     Glass
+     ========================================================== */
+
   .glass-effect {
-    @apply bg-white/80 dark:bg-[#03001427] backdrop-blur-md shadow-lg;
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.12);
   }
-  
+
+  /* ==========================================================
+     Primary Button
+     ========================================================== */
+
   .button-primary {
-    @apply px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold hover:opacity-90 transition-opacity;
+    @apply inline-flex items-center justify-center
+      rounded-full
+      px-6
+      py-3
+      font-semibold
+      transition-all
+      duration-300;
+
+    background: #f5f3ee;
+    color: #0a0a0a;
+
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.12);
   }
-  
+
+  .button-primary:hover {
+    background: #c9a66b;
+    color: #0a0a0a;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ==========================================================
+     Secondary Button
+     ========================================================== */
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center
+      rounded-full
+      border
+      px-6
+      py-3
+      font-semibold
+      transition-all
+      duration-300;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border-color: rgba(255, 255, 255, 0.09);
+
+    color: #f5f3ee;
+  }
+
+  .button-secondary:hover {
+    background: rgba(255, 255, 255, 0.055);
+
+    border-color: rgba(201, 166, 107, 0.35);
+
+    color: #d8bc91;
+
+    transform: translateY(-1px);
+  }
+
+  /* ==========================================================
+     Cards
+     ========================================================== */
+
   .card {
-    @apply bg-white dark:bg-[#0a0a1f] border border-gray-200 dark:border-[#2A0E61] rounded-lg shadow-lg;
+    @apply rounded-2xl border transition-all duration-300;
+
+    background: #141414;
+
+    border-color: rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .card:hover {
+    background: #181818;
+
+    border-color: rgba(201, 166, 107, 0.22);
+  }
+
+  /* ==========================================================
+     Input
+     ========================================================== */
+
+  .input {
+    @apply w-full
+      rounded-xl
+      border
+      px-4
+      py-3
+      outline-none
+      transition-all
+      duration-200;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    color: #f5f3ee;
+  }
+
+  .input::placeholder {
+    color: #706d67;
+  }
+
+  .input:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .input:focus {
+    border-color: rgba(201, 166, 107, 0.45);
+
+    box-shadow:
+      0 0 0 3px rgba(201, 166, 107, 0.08);
   }
 }
+
+/* ============================================================
+   Utilities
+   ============================================================ */
 
 @layer utilities {
   .animation-delay-200 {
     animation-delay: 200ms;
   }
-  
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
-  
+
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.2);
   }
+
+  /* ==========================================================
+     Warm Glow
+     ========================================================== */
+
+  .warm-glow {
+    box-shadow:
+      0 0 40px rgba(201, 166, 107, 0.08);
+  }
+
+  /* ==========================================================
+     Subtle Divider
+     ========================================================== */
+
+  .subtle-divider {
+    border-color:
+      rgba(255, 255, 255, 0.07);
+  }
+
+  /* ==========================================================
+     Hide Scrollbar
+     ========================================================== */
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Light Theme Component Overrides
+   ============================================================ */
+
+.light .glass-effect {
+  background: rgba(255, 255, 255, 0.72);
+
+  border-color: rgba(0, 0, 0, 0.07);
+
+  box-shadow:
+    0 12px 40px rgba(30, 25, 15, 0.06);
+}
+
+.light .card {
+  background: #ffffff;
+
+  border-color: rgba(0, 0, 0, 0.07);
+
+  box-shadow:
+    0 12px 40px rgba(30, 25, 15, 0.06);
+}
+
+.light .card:hover {
+  background: #faf9f5;
+
+  border-color: rgba(154, 116, 59, 0.22);
+}
+
+.light .input {
+  background: rgba(255, 255, 255, 0.8);
+
+  border-color: rgba(0, 0, 0, 0.09);
+
+  color: #171717;
+}
+
+.light .input::placeholder {
+  color: #918d84;
+}
+
+.light .input:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.light .input:focus {
+  border-color: rgba(154, 116, 59, 0.45);
+
+  box-shadow:
+    0 0 0 3px rgba(154, 116, 59, 0.07);
+}
+
+.light .button-secondary {
+  background: rgba(0, 0, 0, 0.015);
+
+  border-color: rgba(0, 0, 0, 0.09);
+
+  color: #171717;
+}
+
+.light .button-secondary:hover {
+  background: rgba(0, 0, 0, 0.035);
+
+  border-color: rgba(154, 116, 59, 0.35);
+
+  color: #9a743b;
+}
+
+.light .subtle-divider {
+  border-color:
+    rgba(0, 0, 0, 0.07);
 }
