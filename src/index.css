@@ -30,7 +30,6 @@
 
   body {
     margin: 0;
-
     overflow-x: hidden;
 
     color: #f5f3ee;
@@ -84,9 +83,8 @@
 
   ::-webkit-scrollbar-thumb {
     background: #34322e;
-    border-radius: 999px;
-
     border: 1px solid #0a0a0a;
+    border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -94,7 +92,7 @@
   }
 
   /* ==========================================================
-     Light theme
+     Light Theme Base
      ========================================================== */
 
   .light body {
@@ -114,19 +112,30 @@
       #f5f4ef;
   }
 
+  .light html {
+    background: #f5f4ef;
+  }
+
+  /* ==========================================================
+     Light Theme Scrollbar
+     ========================================================== */
+
   .light ::-webkit-scrollbar-track {
     background: #f5f4ef;
   }
 
   .light ::-webkit-scrollbar-thumb {
     background: #c9c5bc;
-
     border-color: #f5f4ef;
   }
 
   .light ::-webkit-scrollbar-thumb:hover {
     background: #9a743b;
   }
+
+  /* ==========================================================
+     Light Theme Selection
+     ========================================================== */
 
   .light ::selection {
     background: rgba(154, 116, 59, 0.18);
@@ -139,6 +148,10 @@
    ============================================================ */
 
 @layer components {
+  /* ==========================================================
+     Section Container
+     ========================================================== */
+
   .section-container {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
@@ -149,6 +162,7 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
+
     background-image:
       linear-gradient(
         90deg,
@@ -166,7 +180,7 @@
   }
 
   /* ==========================================================
-     Glass
+     Glass Effect
      ========================================================== */
 
   .glass-effect {
@@ -186,7 +200,9 @@
      ========================================================== */
 
   .button-primary {
-    @apply inline-flex items-center justify-center
+    @apply inline-flex
+      items-center
+      justify-center
       rounded-full
       px-6
       py-3
@@ -216,7 +232,9 @@
      ========================================================== */
 
   .button-secondary {
-    @apply inline-flex items-center justify-center
+    @apply inline-flex
+      items-center
+      justify-center
       rounded-full
       border
       px-6
@@ -247,7 +265,10 @@
      ========================================================== */
 
   .card {
-    @apply rounded-2xl border transition-all duration-300;
+    @apply rounded-2xl
+      border
+      transition-all
+      duration-300;
 
     background: #141414;
 
@@ -260,7 +281,8 @@
   .card:hover {
     background: #181818;
 
-    border-color: rgba(201, 166, 107, 0.22);
+    border-color:
+      rgba(201, 166, 107, 0.22);
   }
 
   /* ==========================================================
@@ -298,6 +320,15 @@
     box-shadow:
       0 0 0 3px rgba(201, 166, 107, 0.08);
   }
+
+  /* ==========================================================
+     Dividers
+     ========================================================== */
+
+  .subtle-divider {
+    border-color:
+      rgba(255, 255, 255, 0.07);
+  }
 }
 
 /* ============================================================
@@ -330,15 +361,6 @@
   .warm-glow {
     box-shadow:
       0 0 40px rgba(201, 166, 107, 0.08);
-  }
-
-  /* ==========================================================
-     Subtle Divider
-     ========================================================== */
-
-  .subtle-divider {
-    border-color:
-      rgba(255, 255, 255, 0.07);
   }
 
   /* ==========================================================
@@ -380,7 +402,8 @@
 .light .card:hover {
   background: #faf9f5;
 
-  border-color: rgba(154, 116, 59, 0.22);
+  border-color:
+    rgba(154, 116, 59, 0.22);
 }
 
 .light .input {
@@ -406,6 +429,16 @@
     0 0 0 3px rgba(154, 116, 59, 0.07);
 }
 
+.light .button-primary {
+  background: #171717;
+  color: #f5f3ee;
+}
+
+.light .button-primary:hover {
+  background: #9a743b;
+  color: #ffffff;
+}
+
 .light .button-secondary {
   background: rgba(0, 0, 0, 0.015);
 
@@ -425,4 +458,54 @@
 .light .subtle-divider {
   border-color:
     rgba(0, 0, 0, 0.07);
+}
+
+.light .gradient-text {
+  background-image:
+    linear-gradient(
+      90deg,
+      #171717 0%,
+      #9a743b 100%
+    );
+}
+
+.light .accent-text {
+  color: #9a743b;
+}
+
+.light .muted-text {
+  color: #65615a;
+}
+
+/* ============================================================
+   Accessibility / Focus
+   ============================================================ */
+
+:focus-visible {
+  outline:
+    2px solid #c9a66b;
+  outline-offset: 2px;
+}
+
+.light :focus-visible {
+  outline-color: #9a743b;
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
