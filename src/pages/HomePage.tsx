@@ -1517,311 +1517,484 @@ const Skills = () => {
 };
 
 // ============================================================
-// PROJECTS SECTION
+// PROJECTS SHOWCASE
 // ============================================================
 
 const ProjectsSection = () => {
-  const [ref, inView] =
-    useInView({
-      triggerOnce: true,
-      threshold: 0.1,
-    });
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   const { theme } = useTheme();
 
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
       id="projects"
       className="
         relative
-        py-20
-        px-4
         overflow-hidden
+        py-28
+        sm:py-32
       "
     >
-      <div
-        className={`
-          absolute
-          inset-0
-          bg-gradient-to-b
-
-          ${t(
-            theme,
-            `
-              from-transparent
-              via-[#C9A66B]/[0.025]
-              to-transparent
-            `,
-            `
-              from-transparent
-              via-[#9A743B]/[0.025]
-              to-transparent
-            `
-          )}
-        `}
-      />
+      {/* ======================================================
+          BACKGROUND
+      ======================================================= */}
 
       <div
         className="
-          max-w-7xl
-          mx-auto
-          relative
-          z-10
+          pointer-events-none
+          absolute
+          inset-0
         "
       >
-        {/* Heading */}
+        <div
+          className="
+            absolute
+            left-1/2
+            top-[30%]
+            h-[600px]
+            w-[600px]
+            -translate-x-1/2
+            rounded-full
+            bg-[#C9A66B]/[0.025]
+            blur-[150px]
+          "
+        />
 
         <div
           className="
-            text-center
-            mb-12
+            absolute
+            inset-x-0
+            top-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-[#C9A66B]/20
+            to-transparent
+          "
+        />
+      </div>
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-7xl
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
+        {/* ==================================================
+            SECTION HEADER
+        ================================================== */}
+
+        <motion.div
+          ref={ref}
+          initial={
+            prefersReducedMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 30,
+                }
+          }
+          animate={
+            inView
+              ? {
+                  opacity: 1,
+                  y: 0,
+                }
+              : {}
+          }
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
+          className="
+            mb-20
+            max-w-4xl
           "
         >
-          <motion.h2
-            ref={ref}
-            initial={
-              prefersReducedMotion
-                ? false
-                : {
-                    opacity: 0,
-                    y: 20,
-                  }
-            }
-            animate={
-              inView
-                ? {
-                    opacity: 1,
-                    y: 0,
-                  }
-                : {}
-            }
-            transition={{
-              duration: 0.5,
-            }}
+          <div
             className="
-              text-4xl
-              sm:text-5xl
-              font-bold
-              bg-gradient-to-r
-              from-[#C9A66B]
-              to-[#D8BC91]
-              bg-clip-text
-              text-transparent
+              mb-5
+              flex
+              items-center
+              gap-4
             "
           >
-            My Projects
-          </motion.h2>
+            <span
+              className="
+                h-px
+                w-10
+                bg-[#C9A66B]
+              "
+            />
 
-          <motion.p
-            initial={
-              prefersReducedMotion
-                ? false
-                : {
-                    opacity: 0,
-                    y: 20,
-                  }
-            }
-            animate={
-              inView
-                ? {
-                    opacity: 1,
-                    y: 0,
-                  }
-                : {}
-            }
-            transition={{
-              delay: 0.2,
-            }}
-            className={`
-              text-lg
-              max-w-2xl
-              mx-auto
+            <span
+              className="
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.35em]
+                text-[#C9A66B]
+              "
+            >
+              Selected Work
+            </span>
+          </div>
 
-              ${t(
-                theme,
-                "text-gray-400",
-                "text-gray-600"
-              )}
-            `}
+          <div
+            className="
+              flex
+              flex-col
+              gap-6
+              lg:flex-row
+              lg:items-end
+              lg:justify-between
+            "
           >
-            Click on any project to visit
-            the live website
-          </motion.p>
-        </div>
+            <h2
+              className="
+                text-5xl
+                font-bold
+                leading-[0.95]
+                tracking-tight
+                sm:text-6xl
+                lg:text-7xl
+              "
+            >
+              <span
+                className={
+                  theme === "dark"
+                    ? "text-[#F5F3EE]"
+                    : "text-[#171717]"
+                }
+              >
+                Project
+              </span>
 
-        {/* Project Grid */}
+              <br />
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-2
-            gap-6
-          "
-        >
-          {PROJECTS.map(
-            (project, index) => {
-              const isLive =
-                (project.link as string) !==
-                "#";
+              <span
+                className="
+                  text-[#C9A66B]
+                "
+              >
+                Showcase
+              </span>
+            </h2>
 
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={
-                    prefersReducedMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          y: 30,
-                        }
-                  }
-                  animate={
-                    inView
-                      ? {
-                          opacity: 1,
-                          y: 0,
-                        }
-                      : {}
-                  }
-                  transition={{
-                    delay:
-                      0.1 +
-                      index * 0.1,
-                  }}
-                  whileHover={{
-                    y: -6,
-                  }}
-                  role={
-                    isLive
-                      ? "link"
-                      : undefined
-                  }
-                  tabIndex={
-                    isLive
-                      ? 0
-                      : undefined
-                  }
-                  onClick={() =>
-                    isLive &&
-                    window.open(
-                      project.link,
-                      "_blank",
-                      "noopener,noreferrer"
-                    )
-                  }
-                  onKeyDown={(e) => {
-                    if (
-                      isLive &&
-                      (e.key ===
-                        "Enter" ||
-                        e.key ===
-                          " ")
-                    ) {
-                      e.preventDefault();
+            <p
+              className={`
+                max-w-md
+                text-base
+                leading-7
+                lg:pb-1
 
-                      window.open(
-                        project.link,
-                        "_blank",
-                        "noopener,noreferrer"
-                      );
-                    }
-                  }}
-                  className={`
-                    group
-                    relative
-                    backdrop-blur-md
-                    rounded-2xl
-                    overflow-hidden
-                    border
-                    transition-all
-                    duration-300
-                    h-full
+                ${
+                  theme === "dark"
+                    ? "text-[#8F8B83]"
+                    : "text-[#65615A]"
+                }
+              `}
+            >
+              A selection of applications I have
+              designed and built across full-stack
+              development, real-time systems, and
+              AI-powered experiences.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* ==================================================
+            PROJECTS
+        ================================================== */}
+
+        <div className="space-y-28 sm:space-y-36">
+          {PROJECTS.map((project, index) => {
+            const isLive =
+              (project.link as string) !== "#";
+
+            const projectNumber =
+              String(index + 1).padStart(2, "0");
+
+            return (
+              <motion.article
+                key={project.id}
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 60,
+                      }
+                }
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.12,
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                }}
+                className="
+                  group
+                  relative
+                "
+              >
+                {/* ==================================================
+                    PROJECT NUMBER + LINE
+                ================================================== */}
+
+                <div
+                  className="
+                    mb-6
+                    flex
+                    items-center
+                    gap-4
+                  "
+                >
+                  <span
+                    className="
+                      font-mono
+                      text-sm
+                      font-medium
+                      tracking-[0.2em]
+                      text-[#C9A66B]
+                    "
+                  >
+                    {projectNumber}
+                  </span>
+
+                  <div
+                    className={`
+                      h-px
+                      flex-1
+
+                      ${
+                        theme === "dark"
+                          ? "bg-white/[0.08]"
+                          : "bg-black/[0.08]"
+                      }
+                    `}
+                  />
+
+                  <span
+                    className={`
+                      text-[10px]
+                      font-medium
+                      uppercase
+                      tracking-[0.25em]
+
+                      ${
+                        theme === "dark"
+                          ? "text-white/30"
+                          : "text-black/30"
+                      }
+                    `}
+                  >
+                    Featured Project
+                  </span>
+                </div>
+
+                {/* ==================================================
+                    PROJECT TITLE
+                ================================================== */}
+
+                <div
+                  className="
+                    mb-8
                     flex
                     flex-col
+                    gap-4
+                    lg:flex-row
+                    lg:items-end
+                    lg:justify-between
+                  "
+                >
+                  <div>
+                    <h3
+                      className={`
+                        text-3xl
+                        font-bold
+                        tracking-tight
+                        transition-colors
+                        duration-300
+                        sm:text-4xl
+                        lg:text-5xl
+
+                        ${
+                          theme === "dark"
+                            ? `
+                              text-[#F5F3EE]
+                              group-hover:text-[#D8BC91]
+                            `
+                            : `
+                              text-[#171717]
+                              group-hover:text-[#9A743B]
+                            `
+                        }
+                      `}
+                    >
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-2
+                        text-sm
+                        uppercase
+                        tracking-[0.18em]
+                        text-[#C9A66B]
+                      "
+                    >
+                      {project.technologies
+                        .slice(0, 3)
+                        .join(" · ")}
+                    </p>
+                  </div>
+
+                  {/* Project Icon */}
+
+                  <div
+                    className={`
+                      hidden
+                      h-12
+                      w-12
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      text-xl
+                      transition-all
+                      duration-300
+                      lg:flex
+
+                      ${
+                        theme === "dark"
+                          ? `
+                            border-white/10
+                            bg-white/[0.025]
+                            text-[#C9A66B]
+                            group-hover:border-[#C9A66B]/30
+                            group-hover:bg-[#C9A66B]/[0.05]
+                          `
+                          : `
+                            border-black/10
+                            bg-white
+                            text-[#9A743B]
+                            group-hover:border-[#9A743B]/30
+                            group-hover:bg-[#9A743B]/[0.04]
+                          `
+                      }
+                    `}
+                  >
+                    {project.icon}
+                  </div>
+                </div>
+
+                {/* ==================================================
+                    LARGE PROJECT VISUAL
+                ================================================== */}
+
+                <div
+                  className={`
+                    relative
+                    overflow-hidden
+                    rounded-3xl
+                    border
 
                     ${
-                      isLive
-                        ? "cursor-pointer"
-                        : "cursor-default"
-                    }
-
-                    ${t(
-                      theme,
-                      `
-                        bg-white/[0.035]
-                        border-white/10
-                        hover:border-[#C9A66B]/30
-                      `,
-                      `
-                        bg-white
-                        border-black/10
-                        hover:border-[#9A743B]/30
-                        shadow-sm
-                      `
-                    )}
-
-                    ${
-                      isLive
+                      theme === "dark"
                         ? `
-                          focus-visible:outline
-                          focus-visible:outline-2
-                          focus-visible:outline-[#C9A66B]
+                          border-white/[0.08]
+                          bg-[#111111]
                         `
-                        : ""
+                        : `
+                          border-black/[0.08]
+                          bg-white
+                        `
                     }
                   `}
                 >
-                  {/* Image */}
+                  {/* Top Gold Line */}
 
                   <div
                     className="
+                      absolute
+                      left-1/2
+                      top-0
+                      z-20
+                      h-px
+                      w-1/3
+                      -translate-x-1/2
+                      bg-gradient-to-r
+                      from-transparent
+                      via-[#C9A66B]/60
+                      to-transparent
+                    "
+                  />
+
+                  <motion.div
+                    whileHover={
+                      prefersReducedMotion
+                        ? undefined
+                        : {
+                            scale: 1.025,
+                          }
+                    }
+                    transition={{
+                      duration: 0.7,
+                      ease: "easeOut",
+                    }}
+                    className="
                       relative
-                      h-48
+                      aspect-[16/8]
                       overflow-hidden
+                      sm:aspect-[16/7]
                     "
                   >
                     <img
                       src={getImagePath(
                         project.image
                       )}
-                      alt={
-                        project.title
-                      }
+                      alt={project.title}
                       loading="lazy"
                       decoding="async"
                       className="
-                        w-full
                         h-full
+                        w-full
                         object-cover
-                        group-hover:scale-110
-                        transition-transform
-                        duration-500
                       "
-                      onError={(
-                        e
-                      ) => {
+                      onError={(e) => {
                         const target =
                           e.currentTarget;
 
-                        target.onerror =
-                          null;
+                        target.onerror = null;
 
                         target.src =
                           `data:image/svg+xml,${encodeURIComponent(
                             `
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="400"
-                                height="200"
+                                width="1200"
+                                height="600"
                               >
                                 <rect
                                   width="100%"
                                   height="100%"
-                                  fill="#141414"
+                                  fill="#111111"
                                 />
 
                                 <text
@@ -1829,7 +2002,7 @@ const ProjectsSection = () => {
                                   y="50%"
                                   fill="#C9A66B"
                                   font-family="sans-serif"
-                                  font-size="20"
+                                  font-size="42"
                                   text-anchor="middle"
                                   dominant-baseline="middle"
                                 >
@@ -1841,118 +2014,162 @@ const ProjectsSection = () => {
                       }}
                     />
 
+                    {/* Image Overlay */}
+
                     <div
                       className="
+                        pointer-events-none
                         absolute
                         inset-0
                         bg-gradient-to-t
-                        from-black/80
-                        via-transparent
+                        from-black/60
+                        via-black/10
                         to-transparent
                       "
                     />
 
+                    {/* Project Icon */}
+
                     <div
                       className="
                         absolute
-                        bottom-4
-                        left-4
-                        text-4xl
+                        bottom-5
+                        left-5
+                        flex
+                        h-12
+                        w-12
+                        items-center
+                        justify-center
+                        rounded-xl
+                        border
+                        border-white/15
+                        bg-black/40
+                        text-xl
+                        text-[#D8BC91]
+                        backdrop-blur-md
+                        sm:bottom-7
+                        sm:left-7
                       "
                     >
                       {project.icon}
                     </div>
 
+                    {/* View Button */}
+
                     {isLive && (
-                      <div
+                      <a
+                        href={
+                          project.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) =>
+                          e.stopPropagation()
+                        }
                         className="
                           absolute
-                          top-3
-                          right-3
-                          bg-black/50
-                          backdrop-blur-sm
-                          rounded-full
-                          w-8
-                          h-8
-                          flex
+                          right-5
+                          top-5
+                          inline-flex
+                          h-11
                           items-center
-                          justify-center
+                          gap-2
+                          rounded-full
+                          border
+                          border-white/15
+                          bg-black/40
+                          px-5
+                          text-xs
+                          font-semibold
+                          text-white
                           opacity-0
+                          backdrop-blur-md
+                          transition-all
+                          duration-300
                           group-hover:opacity-100
-                          transition-opacity
+                          hover:border-[#C9A66B]/50
+                          hover:bg-black/60
+                          sm:right-7
+                          sm:top-7
                         "
                       >
+                        <span>
+                          Visit Project
+                        </span>
+
                         <FaExternalLinkAlt
-                          className="
-                            text-white
-                            text-xs
-                          "
+                          className="text-[10px]"
                           aria-hidden="true"
                         />
-                      </div>
+                      </a>
                     )}
-                  </div>
+                  </motion.div>
+                </div>
 
-                  {/* Content */}
+                {/* ==================================================
+                    PROJECT INFORMATION
+                ================================================== */}
+
+                <div
+                  className="
+                    mt-7
+                    grid
+                    grid-cols-1
+                    gap-8
+                    lg:grid-cols-12
+                  "
+                >
+                  {/* Description */}
 
                   <div
                     className="
-                      p-6
-                      flex
-                      flex-col
-                      flex-1
+                      lg:col-span-7
                     "
                   >
-                    <h3
-                      className={`
-                        text-xl
-                        font-bold
-                        mb-2
-                        transition-colors
-
-                        ${t(
-                          theme,
-                          `
-                            text-white
-                            group-hover:text-[#C9A66B]
-                          `,
-                          `
-                            text-[#171717]
-                            group-hover:text-[#9A743B]
-                          `
-                        )}
-                      `}
-                    >
-                      {project.title}
-                    </h3>
-
                     <p
                       className={`
-                        text-sm
-                        mb-4
-                        leading-relaxed
-                        flex-1
+                        max-w-3xl
+                        text-base
+                        leading-7
+                        sm:text-lg
+                        sm:leading-8
 
-                        ${t(
-                          theme,
-                          "text-gray-400",
-                          "text-gray-600"
-                        )}
+                        ${
+                          theme === "dark"
+                            ? "text-[#96928A]"
+                            : "text-[#65615A]"
+                        }
                       `}
                     >
-                      {
-                        project.description
-                      }
+                      {project.description}
                     </p>
+                  </div>
 
-                    {/* Technologies */}
+                  {/* Technologies */}
+
+                  <div
+                    className="
+                      lg:col-span-5
+                    "
+                  >
+                    <div
+                      className="
+                        mb-3
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.25em]
+                        text-[#C9A66B]
+                      "
+                    >
+                      Built With
+                    </div>
 
                     <div
                       className="
                         flex
                         flex-wrap
                         gap-2
-                        mb-4
                       "
                     >
                       {project.technologies.map(
@@ -1960,25 +2177,32 @@ const ProjectsSection = () => {
                           <span
                             key={tech}
                             className={`
-                              text-xs
-                              px-2
-                              py-1
                               rounded-full
                               border
+                              px-3
+                              py-1.5
+                              text-xs
+                              font-medium
+                              transition-colors
+                              duration-300
 
-                              ${t(
-                                theme,
-                                `
-                                  bg-[#C9A66B]/[0.06]
-                                  text-[#D8BC91]
-                                  border-[#C9A66B]/20
-                                `,
-                                `
-                                  bg-[#9A743B]/[0.05]
-                                  text-[#7C5B2B]
-                                  border-[#9A743B]/20
-                                `
-                              )}
+                              ${
+                                theme === "dark"
+                                  ? `
+                                    border-white/10
+                                    bg-white/[0.025]
+                                    text-white/60
+                                    group-hover:border-[#C9A66B]/20
+                                    group-hover:text-[#D8BC91]
+                                  `
+                                  : `
+                                    border-black/10
+                                    bg-black/[0.015]
+                                    text-[#65615A]
+                                    group-hover:border-[#9A743B]/20
+                                    group-hover:text-[#7C5B2B]
+                                  `
+                              }
                             `}
                           >
                             {tech}
@@ -1986,139 +2210,129 @@ const ProjectsSection = () => {
                         )
                       )}
                     </div>
+                  </div>
+                </div>
 
-                    {/* Links */}
+                {/* ==================================================
+                    PROJECT LINKS
+                ================================================== */}
 
-                    <div
+                <div
+                  className="
+                    mt-8
+                    flex
+                    flex-wrap
+                    items-center
+                    gap-6
+                  "
+                >
+                  {isLive && (
+                    <motion.a
+                      href={
+                        project.link
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={
+                        prefersReducedMotion
+                          ? undefined
+                          : {
+                              x: 4,
+                            }
+                      }
                       className="
-                        flex
+                        group/link
+                        inline-flex
                         items-center
-                        justify-between
-                        mt-auto
+                        gap-3
+                        text-sm
+                        font-semibold
+                        text-[#C9A66B]
                       "
                     >
+                      <span>
+                        View Live Project
+                      </span>
+
+                      <FaArrowRight
+                        className="
+                          text-xs
+                          transition-transform
+                          duration-200
+                          group-hover/link:translate-x-1
+                        "
+                        aria-hidden="true"
+                      />
+                    </motion.a>
+                  )}
+
+                  {project.github &&
+                    (project.github as string) !==
+                      "#" && (
                       <motion.a
                         href={
-                          project.link
+                          project.github
                         }
                         target="_blank"
                         rel="noopener noreferrer"
+                        whileHover={
+                          prefersReducedMotion
+                            ? undefined
+                            : {
+                                x: 4,
+                              }
+                        }
                         className={`
                           inline-flex
                           items-center
                           gap-2
                           text-sm
                           font-medium
-                          transition-colors
-                          rounded
-                          focus-visible:outline
-                          focus-visible:outline-2
-                          focus-visible:outline-[#C9A66B]
 
-                          ${t(
-                            theme,
-                            `
-                              text-[#C9A66B]
-                              hover:text-[#D8BC91]
-                            `,
-                            `
-                              text-[#9A743B]
-                              hover:text-[#7C5B2B]
-                            `
-                          )}
+                          ${
+                            theme === "dark"
+                              ? "text-white/40 hover:text-white/80"
+                              : "text-black/40 hover:text-black/80"
+                          }
                         `}
-                        whileHover={{
-                          x: 4,
-                        }}
-                        onClick={(e) =>
-                          e.stopPropagation()
-                        }
                       >
-                        <span>
-                          View Project
-                        </span>
-
-                        <FaArrowRight
-                          className="
-                            text-xs
-                          "
+                        <FaGithub
+                          className="text-base"
                           aria-hidden="true"
                         />
+
+                        <span>
+                          Source Code
+                        </span>
                       </motion.a>
+                    )}
+                </div>
 
-                      {project.github &&
-                        (project.github as string) !==
-                          "#" && (
-                          <motion.a
-                            href={
-                              project.github
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${project.title} on GitHub`}
-                            className={`
-                              transition-colors
-                              rounded
-                              focus-visible:outline
-                              focus-visible:outline-2
-                              focus-visible:outline-[#C9A66B]
+                {/* ==================================================
+                    DIVIDER
+                ================================================== */}
 
-                              ${t(
-                                theme,
-                                `
-                                  text-gray-400
-                                  hover:text-white
-                                `,
-                                `
-                                  text-gray-500
-                                  hover:text-gray-900
-                                `
-                              )}
-                            `}
-                            whileHover={{
-                              scale: 1.15,
-                            }}
-                            onClick={(e) =>
-                              e.stopPropagation()
-                            }
-                          >
-                            <FaGithub
-                              className="
-                                text-lg
-                              "
-                            />
-                          </motion.a>
-                        )}
-                    </div>
-                  </div>
-
-                  {/* Hover Line */}
-
+                {index <
+                  PROJECTS.length - 1 && (
                   <div
                     className="
-                      absolute
-                      bottom-0
-                      left-0
-                      right-0
-                      h-0.5
-                      bg-[#C9A66B]
-                      scale-x-0
-                      group-hover:scale-x-100
-                      transition-transform
-                      duration-300
-                      origin-left
+                      mt-16
+                      h-px
+                      bg-gradient-to-r
+                      from-[#C9A66B]/20
+                      via-white/[0.06]
+                      to-transparent
                     "
                   />
-                </motion.div>
-              );
-            }
-          )}
+                )}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
-
 // ============================================================
 // VIEW MY WORK
 // ============================================================
