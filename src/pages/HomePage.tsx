@@ -371,7 +371,7 @@ const HeroContent = () => {
                 onClick={() => {
                   const section =
                     document.getElementById(
-                      "view-my-work"
+                      "projects"
                     );
 
                   if (section) {
@@ -896,6 +896,7 @@ const Skills = () => {
   });
 
   const { theme } = useTheme();
+
   const prefersReducedMotion =
     useReducedMotion();
 
@@ -1528,7 +1529,8 @@ const ProjectsSection = () => {
 
   const { theme } = useTheme();
 
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion =
+    useReducedMotion();
 
   return (
     <section
@@ -2333,6 +2335,7 @@ const ProjectsSection = () => {
     </section>
   );
 };
+
 // ============================================================
 // VIEW MY WORK
 // ============================================================
@@ -4206,8 +4209,11 @@ const HomePage = () => {
           <Skills />
         </section>
 
-        {/* Projects section is intentionally
-            not rendered on homepage */}
+        {/* Projects */}
+
+        <ProjectsSection />
+
+        {/* View My Work */}
 
         <section id="view-my-work">
           <ViewMyWork />
