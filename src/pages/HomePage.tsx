@@ -109,23 +109,26 @@ const HeroContent = () => {
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8"
             >
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  const section = document.getElementById("view-my-work");
-                  if (section) {
-                    section.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
-                  }
-                }}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B]"
-              >
-                <div className="absolute inset-0 bg-[#F5F3EE] opacity-95 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0 bg-[#C9A66B]/10 blur-md group-hover:bg-[#C9A66B]/15 transition-all" />
-                <span className="relative z-10 text-sm font-semibold text-white flex items-center gap-2">
-                  View My Work
-                  <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" aria-hidden="true" />
-                </span>
-              </motion.button>
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => {
+    const section = document.getElementById("view-my-work");
+    if (section) {
+      section.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+    }
+  }}
+  className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-400"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity" />
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-md group-hover:blur-lg transition-all" />
+
+  <span className="relative z-10 text-sm font-semibold text-white flex items-center gap-2">
+    View My Work
+    <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" aria-hidden="true" />
+  </span>
+</motion.button>
 
               <motion.a
                 href={siteConfig.resumePath}
