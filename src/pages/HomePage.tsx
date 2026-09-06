@@ -108,68 +108,103 @@ const HeroContent = () => {
               transition={{ delay: 0.65 }}
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8"
             >
-<motion.button
-  whileHover={{ scale: 1.03, y: -1 }}
-  whileTap={{ scale: 0.97 }}
-  onClick={() => {
-    const section = document.getElementById("view-my-work");
+<div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
 
-    if (section) {
-      section.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-      });
-    }
-  }}
-  className="
-    group
-    inline-flex
-    items-center
-    gap-2
-    rounded-full
-    bg-[#F5F3EE]
-    px-8
-    py-4
-    text-sm
-    font-semibold
-    text-[#0A0A0A]
-    transition-all
-    duration-300
-    hover:bg-[#C9A66B]
-    focus-visible:outline
-    focus-visible:outline-2
-    focus-visible:outline-offset-2
-    focus-visible:outline-[#C9A66B]
-  "
->
-  <span className="flex items-center gap-2">
-    View My Work
+  {/* View My Work */}
+  <motion.button
+    whileHover={{ y: -2 }}
+    whileTap={{ scale: 0.98 }}
+    onClick={() => {
+      const section = document.getElementById("view-my-work");
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+      }
+    }}
+    className="
+      group
+      inline-flex
+      h-12
+      items-center
+      justify-center
+      gap-2
+      rounded-full
+      bg-[#F5F3EE]
+      px-7
+      text-sm
+      font-semibold
+      text-[#0A0A0A]
+      transition-all
+      duration-300
+      hover:bg-[#C9A66B]
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-offset-2
+      focus-visible:outline-[#C9A66B]
+    "
+  >
+    <span>View My Work</span>
+
     <FaArrowRight
       className="
-        text-sm
+        text-xs
         transition-transform
         duration-200
         group-hover:translate-x-1
       "
       aria-hidden="true"
     />
-  </span>
-</motion.button>
+  </motion.button>
 
-              <motion.a
-                href={siteConfig.resumePath}
-                download
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl overflow-hidden border border-[#C9A66B]/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C9A66B]"
-              >
-                <div className="absolute inset-0 bg-[#C9A66B]/[0.06] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="relative z-10 text-sm font-semibold text-[#D8BC91] flex items-center gap-2">
-                  <FaDownload className="text-sm" aria-hidden="true" />
-                  Get Resume
-                </span>
-              </motion.a>
-            </motion.div>
-          </motion.div>
+
+  {/* Get Resume */}
+  <motion.a
+    href={siteConfig.resumePath}
+    download
+    whileHover={{ y: -2 }}
+    whileTap={{ scale: 0.98 }}
+    className="
+      group
+      inline-flex
+      h-12
+      items-center
+      justify-center
+      gap-2
+      rounded-full
+      border
+      border-white/[0.12]
+      bg-white/[0.025]
+      px-7
+      text-sm
+      font-semibold
+      text-[#F5F3EE]
+      transition-all
+      duration-300
+      hover:border-[#C9A66B]/40
+      hover:bg-[#C9A66B]/[0.06]
+      hover:text-[#D8BC91]
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-offset-2
+      focus-visible:outline-[#C9A66B]
+    "
+  >
+    <FaDownload
+      className="
+        text-xs
+        transition-transform
+        duration-200
+        group-hover:-translate-y-0.5
+      "
+      aria-hidden="true"
+    />
+
+    <span>Get Resume</span>
+  </motion.a>
+
+</div>
 
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, x: 50 }}
