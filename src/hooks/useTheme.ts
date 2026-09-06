@@ -17,12 +17,6 @@ interface UseThemeOptions {
   persistKey?: string;
 }
 
-interface ThemeChangeEvent extends CustomEvent {
-  detail: {
-    theme: Theme;
-  };
-}
-
 interface UseThemeReturn {
   theme: Theme;
   toggleTheme: () => void;
@@ -47,20 +41,19 @@ export const useTheme = (
   } = options;
 
   const [theme, setThemeState] =
-    useState<Theme>(defaultTheme);
+    useState<Theme>("dark");
 
   const [isTransitioning, setIsTransitioning] =
     useState(false);
 
-  // ==========================================================
-  // Apply theme to document
-  // ==========================================================
+  // ============================================================
+  // Apply theme
+  // ============================================================
 
   const applyTheme = useCallback(
     (
       newTheme: Theme,
-      transition: ThemeTransition = "smooth",
-      shouldDispatch = true
+      transition: ThemeTransition = "smooth"
     ) => {
       const shouldTransition =
         enableTransition &&
@@ -82,7 +75,10 @@ export const useTheme = (
         }, transitionDuration);
       }
 
-      // Update html classes
+      /*
+       * Dark mode is the default and preferred
+       * appearance of the portfolio.
+       */
 
       if (newTheme === "dark") {
         document.documentElement.classList.add(
@@ -102,24 +98,18 @@ export const useTheme = (
         );
       }
 
-      // Save theme
-
       localStorage.setItem(
         persistKey,
         newTheme
       );
 
-      // Notify all useTheme() instances
-
-      if (shouldDispatch) {
-        window.dispatchEvent(
-          new CustomEvent("themeChange", {
-            detail: {
-              theme: newTheme,
-            },
-          })
-        );
-      }
+      window.dispatchEvent(
+        new CustomEvent("themeChange", {
+          detail: {
+            theme: newTheme,
+          },
+        })
+      );
     },
     [
       enableTransition,
@@ -128,57 +118,47 @@ export const useTheme = (
     ]
   );
 
-  // ==========================================================
-  // Initial theme
-  // ==========================================================
+  // ============================================================
+  // Initialize theme
+  // ============================================================
 
   useEffect(() => {
-    const storedTheme =
-      localStorage.getItem(
-        persistKey
-      ) as Theme | null;
+    /*
+     * Force dark mode.
+     *
+     * We intentionally do not follow the user's
+     * system/browser color preference because the
+     * portfolio is now dark-only.
+     */
 
-    let initialTheme: Theme;
+    setThemeState("dark");
 
-    if (
-      storedTheme === "light" ||
-      storedTheme === "dark"
-    ) {
-      initialTheme = storedTheme;
-    } else if (
-      window.matchMedia &&
-      window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches
-    ) {
-      initialTheme = "dark";
-    } else {
-      initialTheme = defaultTheme;
-    }
-
-    setThemeState(initialTheme);
-
-    applyTheme(
-      initialTheme,
-      "instant",
-      false
+    document.documentElement.classList.add(
+      "dark"
     );
-  }, [
-    defaultTheme,
-    persistKey,
-    applyTheme,
-  ]);
 
-  // ==========================================================
-  // Listen for theme changes from other components
-  // ==========================================================
+    document.documentElement.classList.remove(
+      "light"
+    );
+
+    localStorage.setItem(
+      persistKey,
+      "dark"
+    );
+  }, [persistKey]);
+
+  // ============================================================
+  // Listen for theme events
+  // ============================================================
 
   useEffect(() => {
     const handleThemeChange = (
       event: Event
     ) => {
       const customEvent =
-        event as ThemeChangeEvent;
+        event as CustomEvent<{
+          theme: Theme;
+        }>;
 
       const newTheme =
         customEvent.detail?.theme;
@@ -189,8 +169,6 @@ export const useTheme = (
       ) {
         return;
       }
-
-      // Update this component's local state
 
       setThemeState(newTheme);
     };
@@ -208,9 +186,9 @@ export const useTheme = (
     };
   }, []);
 
-  // ==========================================================
+  // ============================================================
   // Set theme
-  // ==========================================================
+  // ============================================================
 
   const setTheme = useCallback(
     (
@@ -225,16 +203,18 @@ export const useTheme = (
 
       applyTheme(
         newTheme,
-        transition,
-        true
+        transition
       );
     },
     [theme, applyTheme]
   );
 
-  // ==========================================================
+  // ============================================================
   // Toggle theme
-  // ==========================================================
+  //
+  // Kept for compatibility with any other component
+  // that may still call toggleTheme().
+  // ============================================================
 
   const toggleTheme = useCallback(() => {
     const newTheme =
@@ -248,64 +228,9 @@ export const useTheme = (
     );
   }, [theme, setTheme]);
 
-  // ==========================================================
-  // System preference changes
-  // ==========================================================
-
-  useEffect(() => {
-    const mediaQuery =
-      window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-
-    const handleSystemThemeChange = (
-      event: MediaQueryListEvent
-    ) => {
-      // Only follow system preference when
-      // user has not manually selected a theme.
-
-      const storedTheme =
-        localStorage.getItem(
-          persistKey
-        );
-
-      if (storedTheme) {
-        return;
-      }
-
-      const newTheme: Theme =
-        event.matches
-          ? "dark"
-          : "light";
-
-      setThemeState(newTheme);
-
-      applyTheme(
-        newTheme,
-        "instant",
-        true
-      );
-    };
-
-    mediaQuery.addEventListener(
-      "change",
-      handleSystemThemeChange
-    );
-
-    return () => {
-      mediaQuery.removeEventListener(
-        "change",
-        handleSystemThemeChange
-      );
-    };
-  }, [
-    applyTheme,
-    persistKey,
-  ]);
-
-  // ==========================================================
+  // ============================================================
   // Available themes
-  // ==========================================================
+  // ============================================================
 
   const availableThemes =
     useMemo(
@@ -317,9 +242,9 @@ export const useTheme = (
       []
     );
 
-  // ==========================================================
+  // ============================================================
   // Return
-  // ==========================================================
+  // ============================================================
 
   return {
     theme,
