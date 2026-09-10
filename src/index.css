@@ -488,3 +488,29 @@
     scroll-behavior: auto !important;
   }
 }
+
+   .cursor-cat {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 64px;
+  height: 64px;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 99999;
+
+  will-change: transform;
+
+  image-rendering: pixelated;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-cat {
+    display: none;
+  }
+}
