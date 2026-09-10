@@ -79,7 +79,6 @@ const HeroContent = () => {
   });
 
   const prefersReducedMotion = useReducedMotion();
-
   const { theme } = useTheme();
 
   return (
@@ -567,9 +566,7 @@ const HeroContent = () => {
                 "
               />
 
-              {/* ==================================================
-                  PROJECTS STATISTIC
-              ================================================== */}
+              {/* Projects Statistic */}
 
               <motion.div
                 animate={
@@ -658,9 +655,7 @@ const HeroContent = () => {
                 </div>
               </motion.div>
 
-              {/* ==================================================
-                  LEETCODE STATISTIC
-              ================================================== */}
+              {/* LeetCode Statistic */}
 
               <motion.div
                 animate={
@@ -1482,7 +1477,6 @@ const ProjectsSection = () => {
   });
 
   const { theme } = useTheme();
-
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -1693,10 +1687,7 @@ const ProjectsSection = () => {
                   duration: 0.8,
                   ease: "easeOut",
                 }}
-                className="
-                  group
-                  relative
-                "
+                className="group relative"
               >
                 {/* Project Number + Line */}
 
@@ -1724,7 +1715,6 @@ const ProjectsSection = () => {
                     className={`
                       h-px
                       flex-1
-
                       ${
                         theme === "dark"
                           ? "bg-white/[0.08]"
@@ -1905,9 +1895,7 @@ const ProjectsSection = () => {
                     "
                   >
                     <img
-                      src={getImagePath(
-                        project.image
-                      )}
+                      src={getImagePath(project.image)}
                       alt={project.title}
                       loading="lazy"
                       decoding="async"
@@ -1917,8 +1905,7 @@ const ProjectsSection = () => {
                         object-cover
                       "
                       onError={(e) => {
-                        const target =
-                          e.currentTarget;
+                        const target = e.currentTarget;
 
                         target.onerror = null;
 
@@ -2258,9 +2245,7 @@ const ViewMyWork = () => {
   });
 
   const { theme } = useTheme();
-
   const prefersReducedMotion = useReducedMotion();
-
   const navigate = useNavigate();
 
   const cards = [
@@ -2682,7 +2667,6 @@ const Contact = () => {
   });
 
   const { theme } = useTheme();
-
   const prefersReducedMotion = useReducedMotion();
 
   const [form, setForm] = useState({
@@ -2723,6 +2707,8 @@ const Contact = () => {
   ) => {
     e.preventDefault();
 
+    // Required fields
+
     if (
       !form.name.trim() ||
       !form.email.trim() ||
@@ -2734,7 +2720,7 @@ const Contact = () => {
       return;
     }
 
-    // Honeypot
+    // Honeypot anti-spam field
 
     if (honeypotRef.current?.value) {
       setStatus("sent");
@@ -2752,46 +2738,78 @@ const Contact = () => {
     setStatus("sending");
 
     try {
+      // --------------------------------------------------------
+      // Basin endpoint
+      // --------------------------------------------------------
+
       const endpoint =
         import.meta.env.VITE_BASIN_ENDPOINT;
 
       if (!endpoint) {
         throw new Error(
-          "VITE_BASIN_ENDPOINT is not configured. Add it to your Vercel environment variables and redeploy."
+          "VITE_BASIN_ENDPOINT is not configured. Add it to Vercel Environment Variables and redeploy."
         );
       }
 
-      const response = await fetch(
-        endpoint,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: form.name,
-            email: form.email,
-            subject:
-              form.subject ||
-              "Portfolio Contact",
-            message: form.message,
-          }),
-        }
-      );
+      // --------------------------------------------------------
+      // Send form to Basin
+      // --------------------------------------------------------
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject:
+            form.subject.trim() ||
+            "Portfolio Contact",
+          message: form.message.trim(),
+        }),
+      });
+
+      // --------------------------------------------------------
+      // Handle failed HTTP response
+      // --------------------------------------------------------
 
       if (!response.ok) {
-        const errorData =
-          await response
-            .json()
-            .catch(() => null);
+        let errorMessage =
+          `Form submission failed with status ${response.status}.`;
 
-        throw new Error(
-          errorData?.error ||
-            `Form submission failed with status ${response.status}`
-        );
+        try {
+          const errorData =
+            await response.json();
+
+          if (errorData?.error) {
+            errorMessage =
+              errorData.error;
+          } else if (
+            errorData?.errors?.length
+          ) {
+            errorMessage =
+              errorData.errors
+                .map(
+                  (item: {
+                    message?: string;
+                  }) =>
+                    item.message
+                )
+                .filter(Boolean)
+                .join(", ");
+          }
+        } catch {
+          // Basin may return a non-JSON error response.
+        }
+
+        throw new Error(errorMessage);
       }
+
+      // --------------------------------------------------------
+      // Success
+      // --------------------------------------------------------
 
       setStatus("sent");
 
@@ -3439,6 +3457,7 @@ const Contact = () => {
                     </p>
 
                     <button
+                      type="button"
                       onClick={() =>
                         setStatus("idle")
                       }
@@ -3808,6 +3827,7 @@ const ScrollToTop = () => {
     <AnimatePresence>
       {visible && (
         <motion.button
+          type="button"
           initial={{
             opacity: 0,
             scale: 0.8,
@@ -3856,18 +3876,14 @@ const ScrollToTop = () => {
             className="w-4 h-4"
             fill="none"
             stroke="currentColor"
+            strokeWidth={2}
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
-              d="
-                M5 15
-                l7-7
-                7 7
-              "
+              d="M5 15l7-7 7 7"
             />
           </svg>
         </motion.button>
@@ -3882,7 +3898,6 @@ const ScrollToTop = () => {
 
 const HomePage = () => {
   const { theme } = useTheme();
-
   const location = useLocation();
 
   // ==========================================================
