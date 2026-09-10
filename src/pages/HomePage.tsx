@@ -2707,7 +2707,9 @@ const Contact = () => {
   ) => {
     e.preventDefault();
 
-    // Required fields
+    // ----------------------------------------------------------
+    // Validate required fields
+    // ----------------------------------------------------------
 
     if (
       !form.name.trim() ||
@@ -2720,7 +2722,9 @@ const Contact = () => {
       return;
     }
 
-    // Honeypot anti-spam field
+    // ----------------------------------------------------------
+    // Honeypot anti-spam protection
+    // ----------------------------------------------------------
 
     if (honeypotRef.current?.value) {
       setStatus("sent");
@@ -2739,20 +2743,20 @@ const Contact = () => {
 
     try {
       // --------------------------------------------------------
-      // Basin endpoint
+      // Formspree endpoint
       // --------------------------------------------------------
 
       const endpoint =
-        import.meta.env.VITE_BASIN_ENDPOINT;
+        import.meta.env.VITE_FORMSPREE_ENDPOINT;
 
       if (!endpoint) {
         throw new Error(
-          "VITE_BASIN_ENDPOINT is not configured. Add it to Vercel Environment Variables and redeploy."
+          "VITE_FORMSPREE_ENDPOINT is not configured. Add the Formspree endpoint to your Vercel environment variables and redeploy."
         );
       }
 
       // --------------------------------------------------------
-      // Send form to Basin
+      // Submit form to Formspree
       // --------------------------------------------------------
 
       const response = await fetch(endpoint, {
@@ -2766,13 +2770,19 @@ const Contact = () => {
           email: form.email.trim(),
           subject:
             form.subject.trim() ||
-            "Portfolio Contact",
+            "New Portfolio Contact",
           message: form.message.trim(),
+
+          // Formspree special fields
+          _replyto: form.email.trim(),
+          _subject:
+            form.subject.trim() ||
+            "New Portfolio Contact",
         }),
       });
 
       // --------------------------------------------------------
-      // Handle failed HTTP response
+      // Handle Formspree response
       // --------------------------------------------------------
 
       if (!response.ok) {
@@ -2787,7 +2797,8 @@ const Contact = () => {
             errorMessage =
               errorData.error;
           } else if (
-            errorData?.errors?.length
+            Array.isArray(errorData?.errors) &&
+            errorData.errors.length > 0
           ) {
             errorMessage =
               errorData.errors
@@ -2801,14 +2812,14 @@ const Contact = () => {
                 .join(", ");
           }
         } catch {
-          // Basin may return a non-JSON error response.
+          // Response may not contain JSON.
         }
 
         throw new Error(errorMessage);
       }
 
       // --------------------------------------------------------
-      // Success
+      // Successful submission
       // --------------------------------------------------------
 
       setStatus("sent");
@@ -2831,7 +2842,7 @@ const Contact = () => {
       );
 
       console.error(
-        "Basin Form Error:",
+        "Formspree Form Error:",
         error
       );
     }
