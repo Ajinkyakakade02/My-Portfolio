@@ -11,7 +11,6 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 
 import {
@@ -2885,31 +2884,31 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      await emailjs.send(
-        import.meta.env
-          .VITE_EMAILJS_SERVICE_ID ||
-          "YOUR_SERVICE_ID",
-        import.meta.env
-          .VITE_EMAILJS_TEMPLATE_ID ||
-          "YOUR_TEMPLATE_ID",
-        {
-          from_name:
-            form.name,
-          to_name:
-            siteConfig.name,
-          from_email:
-            form.email,
-          to_email:
-            siteConfig.email,
-          subject:
-            form.subject,
-          message:
-            form.message,
+      const endpoint =
+        import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+        "https://formspree.io/f/YOUR_FORM_ID";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        import.meta.env
-          .VITE_EMAILJS_PUBLIC_KEY ||
-          "YOUR_PUBLIC_KEY"
-      );
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject || "Portfolio Contact",
+          message: form.message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(
+          errorData?.error ||
+            `Form submission failed with status ${response.status}`
+        );
+      }
 
       setStatus("sent");
 
@@ -2931,7 +2930,7 @@ const Contact = () => {
       );
 
       console.error(
-        "EmailJS Error:",
+        "Formspree Error:",
         error
       );
     }
