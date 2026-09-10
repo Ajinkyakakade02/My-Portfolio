@@ -2884,27 +2884,44 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+      const endpoint = import.meta.env.VITE_BASIN_ENDPOINT;
 
       if (!endpoint) {
         throw new Error(
-          "VITE_FORMSPREE_ENDPOINT is not configured. Add it to your Vercel environment variables and redeploy."
+          "VITE_BASIN_ENDPOINT is not configured. Add it to your Vercel environment variables and redeploy."
         );
       }
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: form.subject || "Portfolio Contact",
-          message: form.message,
-        }),
-      });
+      const endpoint = import.meta.env.VITE_BASIN_ENDPOINT;
+
+if (!endpoint) {
+  throw new Error(
+    "VITE_BASIN_ENDPOINT is not configured."
+  );
+}
+
+const response = await fetch(endpoint, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  body: JSON.stringify({
+    name: form.name,
+    email: form.email,
+    subject: form.subject || "Portfolio Contact",
+    message: form.message,
+  }),
+});
+
+if (!response.ok) {
+  const errorData = await response.json().catch(() => null);
+
+  throw new Error(
+    errorData?.error ||
+      `Form submission failed with status ${response.status}`
+  );
+}
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
