@@ -78,8 +78,7 @@ const HeroContent = () => {
     threshold: 0.1,
   });
 
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
   const { theme } = useTheme();
 
@@ -408,9 +407,7 @@ const HeroContent = () => {
                   focus-visible:outline-[#C9A66B]
                 "
               >
-                <span>
-                  View My Work
-                </span>
+                <span>View My Work</span>
 
                 <FaArrowRight
                   className="
@@ -426,9 +423,7 @@ const HeroContent = () => {
               {/* Get Resume */}
 
               <motion.a
-                href={
-                  siteConfig.resumePath
-                }
+                href={siteConfig.resumePath}
                 download
                 whileHover={
                   prefersReducedMotion
@@ -476,9 +471,7 @@ const HeroContent = () => {
                   aria-hidden="true"
                 />
 
-                <span>
-                  Get Resume
-                </span>
+                <span>Get Resume</span>
               </motion.a>
             </motion.div>
           </motion.div>
@@ -524,9 +517,7 @@ const HeroContent = () => {
               {/* Hero Illustration */}
 
               <img
-                src={getImagePath(
-                  "/hero-bg.svg"
-                )}
+                src={getImagePath("/hero-bg.svg")}
                 alt=""
                 loading="eager"
                 decoding="async"
@@ -548,11 +539,7 @@ const HeroContent = () => {
                   prefersReducedMotion
                     ? {}
                     : {
-                        scale: [
-                          1,
-                          1.2,
-                          1,
-                        ],
+                        scale: [1, 1.2, 1],
                         opacity: [
                           0.15,
                           0.35,
@@ -589,16 +576,8 @@ const HeroContent = () => {
                   prefersReducedMotion
                     ? {}
                     : {
-                        y: [
-                          0,
-                          -12,
-                          0,
-                        ],
-                        x: [
-                          0,
-                          4,
-                          0,
-                        ],
+                        y: [0, -12, 0],
+                        x: [0, 4, 0],
                       }
                 }
                 transition={{
@@ -688,16 +667,8 @@ const HeroContent = () => {
                   prefersReducedMotion
                     ? {}
                     : {
-                        y: [
-                          0,
-                          12,
-                          0,
-                        ],
-                        x: [
-                          0,
-                          -4,
-                          0,
-                        ],
+                        y: [0, 12, 0],
+                        x: [0, -4, 0],
                       }
                 }
                 transition={{
@@ -743,9 +714,7 @@ const HeroContent = () => {
                   "
                 >
                   <SiLeetcode
-                    className="
-                      text-2xl
-                    "
+                    className="text-2xl"
                     style={{
                       color: "#f89f1c",
                     }}
@@ -829,7 +798,7 @@ const Hero = () => {
           `}
         />
 
-        {/* Subtle center glow */}
+        {/* Subtle Center Glow */}
 
         <div
           className="
@@ -847,13 +816,14 @@ const Hero = () => {
           "
         />
 
-        {/* Subtle radial vignette */}
+        {/* Subtle Radial Vignette */}
 
         <div
           className={`
             pointer-events-none
             absolute
             inset-0
+
             ${
               theme === "dark"
                 ? `
@@ -895,8 +865,7 @@ const Skills = () => {
   });
 
   const { theme } = useTheme();
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
   const technologies = [
     {
@@ -991,14 +960,9 @@ const Skills = () => {
     },
   ];
 
-  const firstRow =
-    technologies.slice(0, 7);
-
-  const secondRow =
-    technologies.slice(7, 13);
-
-  const thirdRow =
-    technologies.slice(13, 18);
+  const firstRow = technologies.slice(0, 7);
+  const secondRow = technologies.slice(7, 13);
+  const thirdRow = technologies.slice(13, 18);
 
   // ==========================================================
   // Technology Item
@@ -1147,14 +1111,12 @@ const Skills = () => {
                 }
           }
         >
-          {repeated.map(
-            (tech, index) => (
-              <TechItem
-                key={`${tech.name}-${index}`}
-                tech={tech}
-              />
-            )
-          )}
+          {repeated.map((tech, index) => (
+            <TechItem
+              key={`${tech.name}-${index}`}
+              tech={tech}
+            />
+          ))}
         </motion.div>
       </div>
     );
@@ -1174,9 +1136,7 @@ const Skills = () => {
         sm:py-28
       "
     >
-      {/* ======================================================
-          SECTION BACKGROUND
-      ======================================================= */}
+      {/* Section Background */}
 
       <div
         className="
@@ -1224,9 +1184,7 @@ const Skills = () => {
         />
       </div>
 
-      {/* ======================================================
-          HEADING
-      ======================================================= */}
+      {/* Heading */}
 
       <div
         className="
@@ -1313,9 +1271,7 @@ const Skills = () => {
         </motion.div>
       </div>
 
-      {/* ======================================================
-          TECH STACK BOX
-      ======================================================= */}
+      {/* Tech Stack Box */}
 
       <motion.div
         initial={
@@ -1539,9 +1495,7 @@ const ProjectsSection = () => {
         sm:py-32
       "
     >
-      {/* ======================================================
-          BACKGROUND
-      ======================================================= */}
+      {/* Background */}
 
       <div
         className="
@@ -1589,9 +1543,7 @@ const ProjectsSection = () => {
           lg:px-8
         "
       >
-        {/* ==================================================
-            SECTION HEADER
-        ================================================== */}
+        {/* Section Header */}
 
         <motion.div
           ref={ref}
@@ -1681,11 +1633,7 @@ const ProjectsSection = () => {
 
               <br />
 
-              <span
-                className="
-                  text-[#C9A66B]
-                "
-              >
+              <span className="text-[#C9A66B]">
                 Showcase
               </span>
             </h2>
@@ -1712,9 +1660,7 @@ const ProjectsSection = () => {
           </div>
         </motion.div>
 
-        {/* ==================================================
-            PROJECTS
-        ================================================== */}
+        {/* Projects */}
 
         <div className="space-y-28 sm:space-y-36">
           {PROJECTS.map((project, index) => {
@@ -1752,9 +1698,7 @@ const ProjectsSection = () => {
                   relative
                 "
               >
-                {/* ==================================================
-                    PROJECT NUMBER + LINE
-                ================================================== */}
+                {/* Project Number + Line */}
 
                 <div
                   className="
@@ -1807,9 +1751,7 @@ const ProjectsSection = () => {
                   </span>
                 </div>
 
-                {/* ==================================================
-                    PROJECT TITLE
-                ================================================== */}
+                {/* Project Title */}
 
                 <div
                   className="
@@ -1903,9 +1845,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* ==================================================
-                    LARGE PROJECT VISUAL
-                ================================================== */}
+                {/* Large Project Visual */}
 
                 <div
                   className={`
@@ -2057,9 +1997,7 @@ const ProjectsSection = () => {
 
                     {isLive && (
                       <a
-                        href={
-                          project.link
-                        }
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) =>
@@ -2092,9 +2030,7 @@ const ProjectsSection = () => {
                           sm:top-7
                         "
                       >
-                        <span>
-                          Visit Project
-                        </span>
+                        <span>Visit Project</span>
 
                         <FaExternalLinkAlt
                           className="text-[10px]"
@@ -2105,9 +2041,7 @@ const ProjectsSection = () => {
                   </motion.div>
                 </div>
 
-                {/* ==================================================
-                    PROJECT INFORMATION
-                ================================================== */}
+                {/* Project Information */}
 
                 <div
                   className="
@@ -2120,11 +2054,7 @@ const ProjectsSection = () => {
                 >
                   {/* Description */}
 
-                  <div
-                    className="
-                      lg:col-span-7
-                    "
-                  >
+                  <div className="lg:col-span-7">
                     <p
                       className={`
                         max-w-3xl
@@ -2146,11 +2076,7 @@ const ProjectsSection = () => {
 
                   {/* Technologies */}
 
-                  <div
-                    className="
-                      lg:col-span-5
-                    "
-                  >
+                  <div className="lg:col-span-5">
                     <div
                       className="
                         mb-3
@@ -2212,9 +2138,7 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* ==================================================
-                    PROJECT LINKS
-                ================================================== */}
+                {/* Project Links */}
 
                 <div
                   className="
@@ -2227,9 +2151,7 @@ const ProjectsSection = () => {
                 >
                   {isLive && (
                     <motion.a
-                      href={
-                        project.link
-                      }
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={
@@ -2249,9 +2171,7 @@ const ProjectsSection = () => {
                         text-[#C9A66B]
                       "
                     >
-                      <span>
-                        View Live Project
-                      </span>
+                      <span>View Live Project</span>
 
                       <FaArrowRight
                         className="
@@ -2269,9 +2189,7 @@ const ProjectsSection = () => {
                     (project.github as string) !==
                       "#" && (
                       <motion.a
-                        href={
-                          project.github
-                        }
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={
@@ -2300,16 +2218,12 @@ const ProjectsSection = () => {
                           aria-hidden="true"
                         />
 
-                        <span>
-                          Source Code
-                        </span>
+                        <span>Source Code</span>
                       </motion.a>
                     )}
                 </div>
 
-                {/* ==================================================
-                    DIVIDER
-                ================================================== */}
+                {/* Divider */}
 
                 {index <
                   PROJECTS.length - 1 && (
@@ -2332,24 +2246,22 @@ const ProjectsSection = () => {
     </section>
   );
 };
+
 // ============================================================
 // VIEW MY WORK
 // ============================================================
 
 const ViewMyWork = () => {
-  const [ref, inView] =
-    useInView({
-      triggerOnce: true,
-      threshold: 0.1,
-    });
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   const { theme } = useTheme();
 
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
-  const navigate =
-    useNavigate();
+  const navigate = useNavigate();
 
   const cards = [
     {
@@ -2357,30 +2269,24 @@ const ViewMyWork = () => {
       description:
         "View my resume, tech stack, and achievements",
       icon: <FaUser />,
-      accent:
-        "primary" as AccentColor,
-      onClick: () =>
-        navigate("/about-me"),
+      accent: "primary" as AccentColor,
+      onClick: () => navigate("/about-me"),
     },
     {
       title: "My Projects",
       description:
         "Explore all my completed projects with live links",
       icon: <FaFolderOpen />,
-      accent:
-        "accent" as AccentColor,
-      onClick: () =>
-        navigate("/projects"),
+      accent: "accent" as AccentColor,
+      onClick: () => navigate("/projects"),
     },
     {
       title: "GitHub Profile",
       description:
         "Visit my GitHub profile and see my open-source work",
       icon: <FaGithub />,
-      accent:
-        "primary" as AccentColor,
-      onClick: () =>
-        navigate("/github"),
+      accent: "primary" as AccentColor,
+      onClick: () => navigate("/github"),
     },
   ];
 
@@ -2499,8 +2405,8 @@ const ViewMyWork = () => {
               )}
             `}
           >
-            Explore my professional
-            information and projects
+            Explore my professional information
+            and projects
           </motion.p>
         </div>
 
@@ -2535,254 +2441,228 @@ const ViewMyWork = () => {
             mx-auto
           "
         >
-          {cards.map(
-            (card, index) => {
-              const accent =
-                getAccentClasses(
-                  card.accent,
-                  theme
-                );
+          {cards.map((card, index) => {
+            const accent = getAccentClasses(
+              card.accent,
+              theme
+            );
 
-              return (
-                <motion.div
-                  key={
-                    card.title
+            return (
+              <motion.div
+                key={card.title}
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 30,
+                      }
+                }
+                animate={
+                  inView
+                    ? {
+                        opacity: 1,
+                        y: 0,
+                      }
+                    : {}
+                }
+                transition={{
+                  delay: 0.4 + index * 0.1,
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                }}
+                onClick={card.onClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (
+                    e.key === "Enter" ||
+                    e.key === " "
+                  ) {
+                    e.preventDefault();
+                    card.onClick();
                   }
-                  initial={
-                    prefersReducedMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          y: 30,
-                        }
-                  }
-                  animate={
-                    inView
-                      ? {
-                          opacity: 1,
-                          y: 0,
-                        }
-                      : {}
-                  }
-                  transition={{
-                    delay:
-                      0.4 +
-                      index * 0.1,
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    y: -5,
-                  }}
-                  onClick={
-                    card.onClick
-                  }
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (
-                      e.key ===
-                        "Enter" ||
-                      e.key ===
-                        " "
-                    ) {
-                      e.preventDefault();
+                }}
+                className={`
+                  group
+                  relative
+                  backdrop-blur-md
+                  rounded-2xl
+                  p-6
+                  cursor-pointer
+                  border
+                  transition-all
+                  duration-300
+                  focus-visible:outline
+                  focus-visible:outline-2
+                  focus-visible:outline-[#C9A66B]
 
-                      card.onClick();
-                    }
-                  }}
+                  ${t(
+                    theme,
+                    "bg-white/5",
+                    "bg-white shadow-sm"
+                  )}
+
+                  ${accent.cardBorder}
+
+                  ${accent.cardBorderHover}
+                `}
+              >
+                {/* Hover Background */}
+
+                <div
                   className={`
-                    group
-                    relative
-                    backdrop-blur-md
+                    absolute
+                    inset-0
                     rounded-2xl
-                    p-6
-                    cursor-pointer
-                    border
-                    transition-all
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-opacity
                     duration-300
-                    focus-visible:outline
-                    focus-visible:outline-2
-                    focus-visible:outline-[#C9A66B]
+                    bg-gradient-to-r
 
                     ${t(
                       theme,
-                      "bg-white/5",
-                      "bg-white shadow-sm"
+                      card.accent === "primary"
+                        ? `
+                          from-[#C9A66B]/[0.06]
+                          to-transparent
+                        `
+                        : `
+                          from-[#C9A66B]/[0.035]
+                          to-transparent
+                        `,
+                      card.accent === "primary"
+                        ? `
+                          from-[#C9A66B]/[0.05]
+                          to-transparent
+                        `
+                        : `
+                          from-[#9A743B]/[0.04]
+                          to-transparent
+                        `
                     )}
-
-                    ${accent.cardBorder}
-
-                    ${accent.cardBorderHover}
                   `}
+                />
+
+                <div
+                  className="
+                    relative
+                    z-10
+                    text-center
+                  "
                 >
-                  {/* Hover Background */}
+                  {/* Icon */}
 
                   <div
                     className={`
-                      absolute
-                      inset-0
+                      inline-flex
+                      p-4
                       rounded-2xl
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-opacity
-                      duration-300
-                      bg-gradient-to-r
+                      mb-4
+                      group-hover:scale-110
+                      transition-transform
 
                       ${t(
                         theme,
-                        card.accent ===
-                          "primary"
-                          ? `
-                            from-[#C9A66B]/[0.06]
-                            to-transparent
-                          `
-                          : `
-                            from-[#C9A66B]/[0.035]
-                            to-transparent
-                          `,
-                        card.accent ===
-                          "primary"
-                          ? `
-                            from-[#C9A66B]/[0.05]
-                            to-transparent
-                          `
-                          : `
-                            from-[#9A743B]/[0.04]
-                            to-transparent
-                          `
+                        card.accent === "primary"
+                          ? "bg-white/[0.05]"
+                          : "bg-[#C9A66B]/[0.06]",
+                        card.accent === "primary"
+                          ? "bg-black/[0.025]"
+                          : "bg-[#9A743B]/[0.05]"
                       )}
                     `}
-                  />
-
-                  <div
-                    className="
-                      relative
-                      z-10
-                      text-center
-                    "
                   >
-                    {/* Icon */}
-
                     <div
                       className={`
-                        inline-flex
-                        p-4
-                        rounded-2xl
-                        mb-4
-                        group-hover:scale-110
-                        transition-transform
-
-                        ${t(
-                          theme,
-                          card.accent ===
-                            "primary"
-                            ? "bg-white/[0.05]"
-                            : "bg-[#C9A66B]/[0.06]",
-                          card.accent ===
-                            "primary"
-                            ? "bg-black/[0.025]"
-                            : "bg-[#9A743B]/[0.05]"
-                        )}
-                      `}
-                    >
-                      <div
-                        className={`
-                          text-4xl
-                          ${accent.text}
-                        `}
-                        aria-hidden="true"
-                      >
-                        {
-                          card.icon
-                        }
-                      </div>
-                    </div>
-
-                    <h3
-                      className={`
-                        text-xl
-                        font-bold
-                        mb-2
-
-                        ${t(
-                          theme,
-                          "text-white",
-                          "text-gray-900"
-                        )}
-                      `}
-                    >
-                      {
-                        card.title
-                      }
-                    </h3>
-
-                    <p
-                      className={`
-                        text-sm
-                        leading-relaxed
-                        mb-4
-
-                        ${t(
-                          theme,
-                          "text-gray-400",
-                          "text-gray-600"
-                        )}
-                      `}
-                    >
-                      {
-                        card.description
-                      }
-                    </p>
-
-                    <motion.div
-                      className={`
-                        inline-flex
-                        items-center
-                        gap-2
-                        text-sm
-                        font-medium
+                        text-4xl
                         ${accent.text}
                       `}
-                      whileHover={{
-                        x: 5,
-                      }}
+                      aria-hidden="true"
                     >
-                      <span>
-                        Click to explore
-                      </span>
-
-                      <FaExternalLinkAlt
-                        className="
-                          text-xs
-                        "
-                        aria-hidden="true"
-                      />
-                    </motion.div>
+                      {card.icon}
+                    </div>
                   </div>
 
-                  {/* Bottom Accent */}
+                  <h3
+                    className={`
+                      text-xl
+                      font-bold
+                      mb-2
 
-                  <div
-                    className="
-                      absolute
-                      bottom-0
-                      left-0
-                      right-0
-                      h-0.5
-                      rounded-b-2xl
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-opacity
-                      duration-300
-                      bg-gradient-to-r
-                      from-[#C9A66B]
-                      to-transparent
-                    "
-                  />
-                </motion.div>
-              );
-            }
-          )}
+                      ${t(
+                        theme,
+                        "text-white",
+                        "text-gray-900"
+                      )}
+                    `}
+                  >
+                    {card.title}
+                  </h3>
+
+                  <p
+                    className={`
+                      text-sm
+                      leading-relaxed
+                      mb-4
+
+                      ${t(
+                        theme,
+                        "text-gray-400",
+                        "text-gray-600"
+                      )}
+                    `}
+                  >
+                    {card.description}
+                  </p>
+
+                  <motion.div
+                    className={`
+                      inline-flex
+                      items-center
+                      gap-2
+                      text-sm
+                      font-medium
+                      ${accent.text}
+                    `}
+                    whileHover={{
+                      x: 5,
+                    }}
+                  >
+                    <span>Click to explore</span>
+
+                    <FaExternalLinkAlt
+                      className="text-xs"
+                      aria-hidden="true"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Bottom Accent */}
+
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    right-0
+                    h-0.5
+                    rounded-b-2xl
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-opacity
+                    duration-300
+                    bg-gradient-to-r
+                    from-[#C9A66B]
+                    to-transparent
+                  "
+                />
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
@@ -2796,37 +2676,28 @@ const ViewMyWork = () => {
 const MAX_MESSAGE_LENGTH = 1000;
 
 const Contact = () => {
-  const [ref, inView] =
-    useInView({
-      triggerOnce: true,
-      threshold: 0.1,
-    });
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   const { theme } = useTheme();
 
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
-  const [form, setForm] =
-    useState({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const [status, setStatus] =
-    useState<
-      "idle" |
-      "sending" |
-      "sent" |
-      "error"
-    >("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
 
   const honeypotRef =
-    useRef<HTMLInputElement>(
-      null
-    );
+    useRef<HTMLInputElement>(null);
 
   // ==========================================================
   // Input Change
@@ -2834,17 +2705,13 @@ const Contact = () => {
 
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement |
-      HTMLTextAreaElement
+      HTMLInputElement | HTMLTextAreaElement
     >
   ) => {
-    setForm(
-      (previous) => ({
-        ...previous,
-        [e.target.name]:
-          e.target.value,
-      })
-    );
+    setForm((previous) => ({
+      ...previous,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   // ==========================================================
@@ -2857,18 +2724,19 @@ const Contact = () => {
     e.preventDefault();
 
     if (
-      !form.name ||
-      !form.email ||
-      !form.message
+      !form.name.trim() ||
+      !form.email.trim() ||
+      !form.message.trim()
     ) {
+      toast.error(
+        "Please fill in all required fields."
+      );
       return;
     }
 
     // Honeypot
 
-    if (
-      honeypotRef.current?.value
-    ) {
+    if (honeypotRef.current?.value) {
       setStatus("sent");
 
       setForm({
@@ -2884,7 +2752,8 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      const endpoint = import.meta.env.VITE_BASIN_ENDPOINT;
+      const endpoint =
+        import.meta.env.VITE_BASIN_ENDPOINT;
 
       if (!endpoint) {
         throw new Error(
@@ -2892,39 +2761,32 @@ const Contact = () => {
         );
       }
 
-      const endpoint = import.meta.env.VITE_BASIN_ENDPOINT;
-
-if (!endpoint) {
-  throw new Error(
-    "VITE_BASIN_ENDPOINT is not configured."
-  );
-}
-
-const response = await fetch(endpoint, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-  body: JSON.stringify({
-    name: form.name,
-    email: form.email,
-    subject: form.subject || "Portfolio Contact",
-    message: form.message,
-  }),
-});
-
-if (!response.ok) {
-  const errorData = await response.json().catch(() => null);
-
-  throw new Error(
-    errorData?.error ||
-      `Form submission failed with status ${response.status}`
-  );
-}
+      const response = await fetch(
+        endpoint,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            subject:
+              form.subject ||
+              "Portfolio Contact",
+            message: form.message,
+          }),
+        }
+      );
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
+        const errorData =
+          await response
+            .json()
+            .catch(() => null);
+
         throw new Error(
           errorData?.error ||
             `Form submission failed with status ${response.status}`
@@ -2951,7 +2813,7 @@ if (!response.ok) {
       );
 
       console.error(
-        "Formspree Error:",
+        "Basin Form Error:",
         error
       );
     }
@@ -3194,11 +3056,7 @@ if (!response.ok) {
                 Contact Info
               </h3>
 
-              <div
-                className="
-                  space-y-4
-                "
-              >
+              <div className="space-y-4">
                 {[
                   {
                     icon: FaEnvelope,
@@ -3225,8 +3083,7 @@ if (!response.ok) {
                       "Location",
                     value:
                       siteConfig.location,
-                    href:
-                      undefined,
+                    href: undefined,
                   },
                 ].map(
                   ({
@@ -3237,12 +3094,8 @@ if (!response.ok) {
                   }) =>
                     href ? (
                       <a
-                        key={
-                          label
-                        }
-                        href={
-                          href
-                        }
+                        key={label}
+                        href={href}
                         className={`
                           flex
                           items-start
@@ -3290,34 +3143,18 @@ if (!response.ok) {
                         </div>
 
                         <div>
-                          <p
-                            className="
-                              text-xs
-                              opacity-60
-                            "
-                          >
-                            {
-                              label
-                            }
+                          <p className="text-xs opacity-60">
+                            {label}
                           </p>
 
-                          <p
-                            className="
-                              text-sm
-                              font-medium
-                            "
-                          >
-                            {
-                              value
-                            }
+                          <p className="text-sm font-medium">
+                            {value}
                           </p>
                         </div>
                       </a>
                     ) : (
                       <div
-                        key={
-                          label
-                        }
+                        key={label}
                         className={`
                           flex
                           items-start
@@ -3357,26 +3194,12 @@ if (!response.ok) {
                         </div>
 
                         <div>
-                          <p
-                            className="
-                              text-xs
-                              opacity-60
-                            "
-                          >
-                            {
-                              label
-                            }
+                          <p className="text-xs opacity-60">
+                            {label}
                           </p>
 
-                          <p
-                            className="
-                              text-sm
-                              font-medium
-                            "
-                          >
-                            {
-                              value
-                            }
+                          <p className="text-sm font-medium">
+                            {value}
                           </p>
                         </div>
                       </div>
@@ -3424,33 +3247,25 @@ if (!response.ok) {
                 Check out my
               </h3>
 
-              <div
-                className="
-                  flex
-                  gap-3
-                "
-              >
+              <div className="flex gap-3">
                 {[
                   {
                     icon: FaGithub,
                     href:
                       siteConfig.github,
-                    label:
-                      "GitHub",
+                    label: "GitHub",
                   },
                   {
                     icon: FaLinkedin,
                     href:
                       siteConfig.linkedin,
-                    label:
-                      "LinkedIn",
+                    label: "LinkedIn",
                   },
                   {
                     icon: SiLeetcode,
                     href:
                       siteConfig.leetcode,
-                    label:
-                      "LeetCode",
+                    label: "LeetCode",
                   },
                 ].map(
                   ({
@@ -3459,17 +3274,11 @@ if (!response.ok) {
                     label,
                   }) => (
                     <motion.a
-                      key={
-                        label
-                      }
-                      href={
-                        href
-                      }
+                      key={label}
+                      href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={
-                        label
-                      }
+                      aria-label={label}
                       whileHover={{
                         y: -3,
                         scale: 1.1,
@@ -3499,11 +3308,7 @@ if (!response.ok) {
                         )}
                       `}
                     >
-                      <Icon
-                        className="
-                          text-lg
-                        "
-                      />
+                      <Icon className="text-lg" />
                     </motion.a>
                   )
                 )}
@@ -3561,11 +3366,8 @@ if (!response.ok) {
                 )}
               `}
             >
-              <AnimatePresence
-                mode="wait"
-              >
-                {status ===
-                "sent" ? (
+              <AnimatePresence mode="wait">
+                {status === "sent" ? (
                   <motion.div
                     key="success"
                     role="status"
@@ -3629,20 +3431,16 @@ if (!response.ok) {
                     >
                       Thanks for reaching
                       out,{" "}
-                      {
-                        siteConfig.name.split(
-                          " "
-                        )[0]
-                      }{" "}
+                      {siteConfig.name.split(
+                        " "
+                      )[0]}{" "}
                       will get back to you
                       within 24 hours.
                     </p>
 
                     <button
                       onClick={() =>
-                        setStatus(
-                          "idle"
-                        )
+                        setStatus("idle")
                       }
                       className="
                         mt-4
@@ -3660,9 +3458,7 @@ if (!response.ok) {
                 ) : (
                   <motion.form
                     key="form"
-                    onSubmit={
-                      handleSubmit
-                    }
+                    onSubmit={handleSubmit}
                     className="
                       space-y-4
                       h-full
@@ -3674,9 +3470,7 @@ if (!response.ok) {
                     {/* Honeypot */}
 
                     <input
-                      ref={
-                        honeypotRef
-                      }
+                      ref={honeypotRef}
                       type="text"
                       name="company"
                       tabIndex={-1}
@@ -3724,18 +3518,12 @@ if (!response.ok) {
                           id="contact-name"
                           type="text"
                           name="name"
-                          value={
-                            form.name
-                          }
-                          onChange={
-                            handleChange
-                          }
+                          value={form.name}
+                          onChange={handleChange}
                           placeholder="Your name"
                           required
                           autoComplete="name"
-                          className={
-                            inputClass
-                          }
+                          className={inputClass}
                         />
                       </div>
 
@@ -3762,18 +3550,12 @@ if (!response.ok) {
                           id="contact-email"
                           type="email"
                           name="email"
-                          value={
-                            form.email
-                          }
-                          onChange={
-                            handleChange
-                          }
+                          value={form.email}
+                          onChange={handleChange}
                           placeholder="your@email.com"
                           required
                           autoComplete="email"
-                          className={
-                            inputClass
-                          }
+                          className={inputClass}
                         />
                       </div>
                     </div>
@@ -3803,16 +3585,10 @@ if (!response.ok) {
                         id="contact-subject"
                         type="text"
                         name="subject"
-                        value={
-                          form.subject
-                        }
-                        onChange={
-                          handleChange
-                        }
+                        value={form.subject}
+                        onChange={handleChange}
                         placeholder="Project Collaboration"
-                        className={
-                          inputClass
-                        }
+                        className={inputClass}
                       />
                     </div>
 
@@ -3861,31 +3637,20 @@ if (!response.ok) {
                             )}
                           `}
                         >
-                          {
-                            form.message.length
-                          }
-                          /
-                          {
-                            MAX_MESSAGE_LENGTH
-                          }
+                          {form.message.length}/
+                          {MAX_MESSAGE_LENGTH}
                         </span>
                       </div>
 
                       <textarea
                         id="contact-message"
                         name="message"
-                        value={
-                          form.message
-                        }
-                        onChange={
-                          handleChange
-                        }
+                        value={form.message}
+                        onChange={handleChange}
                         placeholder="Tell me about your project..."
                         required
                         rows={5}
-                        maxLength={
-                          MAX_MESSAGE_LENGTH
-                        }
+                        maxLength={MAX_MESSAGE_LENGTH}
                         className={`
                           ${inputClass}
                           resize-none
@@ -3899,10 +3664,7 @@ if (!response.ok) {
 
                     <motion.button
                       type="submit"
-                      disabled={
-                        status ===
-                        "sending"
-                      }
+                      disabled={status === "sending"}
                       whileHover={{
                         scale: 1.02,
                       }}
@@ -3931,8 +3693,7 @@ if (!response.ok) {
                         focus-visible:outline-[#C9A66B]
                       "
                     >
-                      {status ===
-                      "sending" ? (
+                      {status === "sending" ? (
                         <>
                           <svg
                             className="
@@ -3967,30 +3728,23 @@ if (!response.ok) {
                             />
                           </svg>
 
-                          <span>
-                            Sending...
-                          </span>
+                          <span>Sending...</span>
                         </>
                       ) : (
                         <>
                           <FaPaperPlane
-                            className="
-                              text-sm
-                            "
+                            className="text-sm"
                             aria-hidden="true"
                           />
 
-                          <span>
-                            Send Message
-                          </span>
+                          <span>Send Message</span>
                         </>
                       )}
                     </motion.button>
 
                     {/* Error */}
 
-                    {status ===
-                      "error" && (
+                    {status === "error" && (
                       <p
                         className="
                           text-sm
@@ -4000,18 +3754,12 @@ if (!response.ok) {
                         role="alert"
                       >
                         Something went wrong.
-                        Please email directly
-                        at{" "}
-
+                        Please email directly at{" "}
                         <a
                           href={`mailto:${siteConfig.email}`}
-                          className="
-                            underline
-                          "
+                          className="underline"
                         >
-                          {
-                            siteConfig.email
-                          }
+                          {siteConfig.email}
                         </a>
                       </p>
                     )}
@@ -4031,17 +3779,13 @@ if (!response.ok) {
 // ============================================================
 
 const ScrollToTop = () => {
-  const [visible, setVisible] =
-    useState(false);
+  const [visible, setVisible] = useState(false);
 
-  const prefersReducedMotion =
-    useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(
-        window.scrollY > 400
-      );
+      setVisible(window.scrollY > 400);
     };
 
     window.addEventListener(
@@ -4109,10 +3853,7 @@ const ScrollToTop = () => {
           aria-label="Scroll to top"
         >
           <svg
-            className="
-              w-4
-              h-4
-            "
+            className="w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -4140,11 +3881,9 @@ const ScrollToTop = () => {
 // ============================================================
 
 const HomePage = () => {
-  const { theme } =
-    useTheme();
+  const { theme } = useTheme();
 
-  const location =
-    useLocation();
+  const location = useLocation();
 
   // ==========================================================
   // Scroll to View My Work after navigation
@@ -4161,34 +3900,26 @@ const HomePage = () => {
       "view-my-work"
     ) {
       const timer =
-        window.setTimeout(
-          () => {
-            const section =
-              document.getElementById(
-                "view-my-work"
-              );
-
-            if (section) {
-              section.scrollIntoView(
-                {
-                  behavior:
-                    "smooth",
-                }
-              );
-            }
-
-            window.history.replaceState(
-              {},
-              document.title
+        window.setTimeout(() => {
+          const section =
+            document.getElementById(
+              "view-my-work"
             );
-          },
-          100
-        );
+
+          if (section) {
+            section.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+
+          window.history.replaceState(
+            {},
+            document.title
+          );
+        }, 100);
 
       return () =>
-        window.clearTimeout(
-          timer
-        );
+        window.clearTimeout(timer);
     }
   }, [location]);
 
