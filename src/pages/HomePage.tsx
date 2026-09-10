@@ -78,7 +78,9 @@ const HeroContent = () => {
     threshold: 0.1,
   });
 
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion =
+    useReducedMotion();
+
   const { theme } = useTheme();
 
   return (
@@ -406,7 +408,9 @@ const HeroContent = () => {
                   focus-visible:outline-[#C9A66B]
                 "
               >
-                <span>View My Work</span>
+                <span>
+                  View My Work
+                </span>
 
                 <FaArrowRight
                   className="
@@ -422,7 +426,9 @@ const HeroContent = () => {
               {/* Get Resume */}
 
               <motion.a
-                href={siteConfig.resumePath}
+                href={
+                  siteConfig.resumePath
+                }
                 download
                 whileHover={
                   prefersReducedMotion
@@ -470,7 +476,9 @@ const HeroContent = () => {
                   aria-hidden="true"
                 />
 
-                <span>Get Resume</span>
+                <span>
+                  Get Resume
+                </span>
               </motion.a>
             </motion.div>
           </motion.div>
@@ -516,7 +524,9 @@ const HeroContent = () => {
               {/* Hero Illustration */}
 
               <img
-                src={getImagePath("/hero-bg.svg")}
+                src={getImagePath(
+                  "/hero-bg.svg"
+                )}
                 alt=""
                 loading="eager"
                 decoding="async"
@@ -538,7 +548,11 @@ const HeroContent = () => {
                   prefersReducedMotion
                     ? {}
                     : {
-                        scale: [1, 1.2, 1],
+                        scale: [
+                          1,
+                          1.2,
+                          1,
+                        ],
                         opacity: [
                           0.15,
                           0.35,
@@ -566,15 +580,25 @@ const HeroContent = () => {
                 "
               />
 
-              {/* Projects Statistic */}
+              {/* ==================================================
+                  PROJECTS STATISTIC
+              ================================================== */}
 
               <motion.div
                 animate={
                   prefersReducedMotion
                     ? {}
                     : {
-                        y: [0, -12, 0],
-                        x: [0, 4, 0],
+                        y: [
+                          0,
+                          -12,
+                          0,
+                        ],
+                        x: [
+                          0,
+                          4,
+                          0,
+                        ],
                       }
                 }
                 transition={{
@@ -655,15 +679,25 @@ const HeroContent = () => {
                 </div>
               </motion.div>
 
-              {/* LeetCode Statistic */}
+              {/* ==================================================
+                  LEETCODE STATISTIC
+              ================================================== */}
 
               <motion.div
                 animate={
                   prefersReducedMotion
                     ? {}
                     : {
-                        y: [0, 12, 0],
-                        x: [0, -4, 0],
+                        y: [
+                          0,
+                          12,
+                          0,
+                        ],
+                        x: [
+                          0,
+                          -4,
+                          0,
+                        ],
                       }
                 }
                 transition={{
@@ -709,7 +743,9 @@ const HeroContent = () => {
                   "
                 >
                   <SiLeetcode
-                    className="text-2xl"
+                    className="
+                      text-2xl
+                    "
                     style={{
                       color: "#f89f1c",
                     }}
@@ -793,7 +829,7 @@ const Hero = () => {
           `}
         />
 
-        {/* Subtle Center Glow */}
+        {/* Subtle center glow */}
 
         <div
           className="
@@ -811,14 +847,13 @@ const Hero = () => {
           "
         />
 
-        {/* Subtle Radial Vignette */}
+        {/* Subtle radial vignette */}
 
         <div
           className={`
             pointer-events-none
             absolute
             inset-0
-
             ${
               theme === "dark"
                 ? `
@@ -860,7 +895,8 @@ const Skills = () => {
   });
 
   const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion =
+    useReducedMotion();
 
   const technologies = [
     {
@@ -955,9 +991,14 @@ const Skills = () => {
     },
   ];
 
-  const firstRow = technologies.slice(0, 7);
-  const secondRow = technologies.slice(7, 13);
-  const thirdRow = technologies.slice(13, 18);
+  const firstRow =
+    technologies.slice(0, 7);
+
+  const secondRow =
+    technologies.slice(7, 13);
+
+  const thirdRow =
+    technologies.slice(13, 18);
 
   // ==========================================================
   // Technology Item
@@ -1106,12 +1147,14 @@ const Skills = () => {
                 }
           }
         >
-          {repeated.map((tech, index) => (
-            <TechItem
-              key={`${tech.name}-${index}`}
-              tech={tech}
-            />
-          ))}
+          {repeated.map(
+            (tech, index) => (
+              <TechItem
+                key={`${tech.name}-${index}`}
+                tech={tech}
+              />
+            )
+          )}
         </motion.div>
       </div>
     );
@@ -1131,7 +1174,9 @@ const Skills = () => {
         sm:py-28
       "
     >
-      {/* Section Background */}
+      {/* ======================================================
+          SECTION BACKGROUND
+      ======================================================= */}
 
       <div
         className="
@@ -1179,7 +1224,9 @@ const Skills = () => {
         />
       </div>
 
-      {/* Heading */}
+      {/* ======================================================
+          HEADING
+      ======================================================= */}
 
       <div
         className="
@@ -1266,7 +1313,9 @@ const Skills = () => {
         </motion.div>
       </div>
 
-      {/* Tech Stack Box */}
+      {/* ======================================================
+          TECH STACK BOX
+      ======================================================= */}
 
       <motion.div
         initial={
@@ -1477,6 +1526,7 @@ const ProjectsSection = () => {
   });
 
   const { theme } = useTheme();
+
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -1489,7 +1539,9 @@ const ProjectsSection = () => {
         sm:py-32
       "
     >
-      {/* Background */}
+      {/* ======================================================
+          BACKGROUND
+      ======================================================= */}
 
       <div
         className="
@@ -1537,7 +1589,9 @@ const ProjectsSection = () => {
           lg:px-8
         "
       >
-        {/* Section Header */}
+        {/* ==================================================
+            SECTION HEADER
+        ================================================== */}
 
         <motion.div
           ref={ref}
@@ -1627,7 +1681,11 @@ const ProjectsSection = () => {
 
               <br />
 
-              <span className="text-[#C9A66B]">
+              <span
+                className="
+                  text-[#C9A66B]
+                "
+              >
                 Showcase
               </span>
             </h2>
@@ -1654,7 +1712,9 @@ const ProjectsSection = () => {
           </div>
         </motion.div>
 
-        {/* Projects */}
+        {/* ==================================================
+            PROJECTS
+        ================================================== */}
 
         <div className="space-y-28 sm:space-y-36">
           {PROJECTS.map((project, index) => {
@@ -1687,9 +1747,14 @@ const ProjectsSection = () => {
                   duration: 0.8,
                   ease: "easeOut",
                 }}
-                className="group relative"
+                className="
+                  group
+                  relative
+                "
               >
-                {/* Project Number + Line */}
+                {/* ==================================================
+                    PROJECT NUMBER + LINE
+                ================================================== */}
 
                 <div
                   className="
@@ -1715,6 +1780,7 @@ const ProjectsSection = () => {
                     className={`
                       h-px
                       flex-1
+
                       ${
                         theme === "dark"
                           ? "bg-white/[0.08]"
@@ -1741,7 +1807,9 @@ const ProjectsSection = () => {
                   </span>
                 </div>
 
-                {/* Project Title */}
+                {/* ==================================================
+                    PROJECT TITLE
+                ================================================== */}
 
                 <div
                   className="
@@ -1835,7 +1903,9 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Large Project Visual */}
+                {/* ==================================================
+                    LARGE PROJECT VISUAL
+                ================================================== */}
 
                 <div
                   className={`
@@ -1895,7 +1965,9 @@ const ProjectsSection = () => {
                     "
                   >
                     <img
-                      src={getImagePath(project.image)}
+                      src={getImagePath(
+                        project.image
+                      )}
                       alt={project.title}
                       loading="lazy"
                       decoding="async"
@@ -1905,7 +1977,8 @@ const ProjectsSection = () => {
                         object-cover
                       "
                       onError={(e) => {
-                        const target = e.currentTarget;
+                        const target =
+                          e.currentTarget;
 
                         target.onerror = null;
 
@@ -1984,7 +2057,9 @@ const ProjectsSection = () => {
 
                     {isLive && (
                       <a
-                        href={project.link}
+                        href={
+                          project.link
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) =>
@@ -2017,7 +2092,9 @@ const ProjectsSection = () => {
                           sm:top-7
                         "
                       >
-                        <span>Visit Project</span>
+                        <span>
+                          Visit Project
+                        </span>
 
                         <FaExternalLinkAlt
                           className="text-[10px]"
@@ -2028,7 +2105,9 @@ const ProjectsSection = () => {
                   </motion.div>
                 </div>
 
-                {/* Project Information */}
+                {/* ==================================================
+                    PROJECT INFORMATION
+                ================================================== */}
 
                 <div
                   className="
@@ -2041,7 +2120,11 @@ const ProjectsSection = () => {
                 >
                   {/* Description */}
 
-                  <div className="lg:col-span-7">
+                  <div
+                    className="
+                      lg:col-span-7
+                    "
+                  >
                     <p
                       className={`
                         max-w-3xl
@@ -2063,7 +2146,11 @@ const ProjectsSection = () => {
 
                   {/* Technologies */}
 
-                  <div className="lg:col-span-5">
+                  <div
+                    className="
+                      lg:col-span-5
+                    "
+                  >
                     <div
                       className="
                         mb-3
@@ -2125,7 +2212,9 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Project Links */}
+                {/* ==================================================
+                    PROJECT LINKS
+                ================================================== */}
 
                 <div
                   className="
@@ -2138,7 +2227,9 @@ const ProjectsSection = () => {
                 >
                   {isLive && (
                     <motion.a
-                      href={project.link}
+                      href={
+                        project.link
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={
@@ -2158,7 +2249,9 @@ const ProjectsSection = () => {
                         text-[#C9A66B]
                       "
                     >
-                      <span>View Live Project</span>
+                      <span>
+                        View Live Project
+                      </span>
 
                       <FaArrowRight
                         className="
@@ -2176,7 +2269,9 @@ const ProjectsSection = () => {
                     (project.github as string) !==
                       "#" && (
                       <motion.a
-                        href={project.github}
+                        href={
+                          project.github
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={
@@ -2205,12 +2300,16 @@ const ProjectsSection = () => {
                           aria-hidden="true"
                         />
 
-                        <span>Source Code</span>
+                        <span>
+                          Source Code
+                        </span>
                       </motion.a>
                     )}
                 </div>
 
-                {/* Divider */}
+                {/* ==================================================
+                    DIVIDER
+                ================================================== */}
 
                 {index <
                   PROJECTS.length - 1 && (
@@ -2233,20 +2332,24 @@ const ProjectsSection = () => {
     </section>
   );
 };
-
 // ============================================================
 // VIEW MY WORK
 // ============================================================
 
 const ViewMyWork = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] =
+    useInView({
+      triggerOnce: true,
+      threshold: 0.1,
+    });
 
   const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
-  const navigate = useNavigate();
+
+  const prefersReducedMotion =
+    useReducedMotion();
+
+  const navigate =
+    useNavigate();
 
   const cards = [
     {
@@ -2254,24 +2357,30 @@ const ViewMyWork = () => {
       description:
         "View my resume, tech stack, and achievements",
       icon: <FaUser />,
-      accent: "primary" as AccentColor,
-      onClick: () => navigate("/about-me"),
+      accent:
+        "primary" as AccentColor,
+      onClick: () =>
+        navigate("/about-me"),
     },
     {
       title: "My Projects",
       description:
         "Explore all my completed projects with live links",
       icon: <FaFolderOpen />,
-      accent: "accent" as AccentColor,
-      onClick: () => navigate("/projects"),
+      accent:
+        "accent" as AccentColor,
+      onClick: () =>
+        navigate("/projects"),
     },
     {
       title: "GitHub Profile",
       description:
         "Visit my GitHub profile and see my open-source work",
       icon: <FaGithub />,
-      accent: "primary" as AccentColor,
-      onClick: () => navigate("/github"),
+      accent:
+        "primary" as AccentColor,
+      onClick: () =>
+        navigate("/github"),
     },
   ];
 
@@ -2390,8 +2499,8 @@ const ViewMyWork = () => {
               )}
             `}
           >
-            Explore my professional information
-            and projects
+            Explore my professional
+            information and projects
           </motion.p>
         </div>
 
@@ -2426,228 +2535,254 @@ const ViewMyWork = () => {
             mx-auto
           "
         >
-          {cards.map((card, index) => {
-            const accent = getAccentClasses(
-              card.accent,
-              theme
-            );
+          {cards.map(
+            (card, index) => {
+              const accent =
+                getAccentClasses(
+                  card.accent,
+                  theme
+                );
 
-            return (
-              <motion.div
-                key={card.title}
-                initial={
-                  prefersReducedMotion
-                    ? false
-                    : {
-                        opacity: 0,
-                        y: 30,
-                      }
-                }
-                animate={
-                  inView
-                    ? {
-                        opacity: 1,
-                        y: 0,
-                      }
-                    : {}
-                }
-                transition={{
-                  delay: 0.4 + index * 0.1,
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                }}
-                onClick={card.onClick}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (
-                    e.key === "Enter" ||
-                    e.key === " "
-                  ) {
-                    e.preventDefault();
-                    card.onClick();
+              return (
+                <motion.div
+                  key={
+                    card.title
                   }
-                }}
-                className={`
-                  group
-                  relative
-                  backdrop-blur-md
-                  rounded-2xl
-                  p-6
-                  cursor-pointer
-                  border
-                  transition-all
-                  duration-300
-                  focus-visible:outline
-                  focus-visible:outline-2
-                  focus-visible:outline-[#C9A66B]
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : {
+                          opacity: 0,
+                          y: 30,
+                        }
+                  }
+                  animate={
+                    inView
+                      ? {
+                          opacity: 1,
+                          y: 0,
+                        }
+                      : {}
+                  }
+                  transition={{
+                    delay:
+                      0.4 +
+                      index * 0.1,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -5,
+                  }}
+                  onClick={
+                    card.onClick
+                  }
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (
+                      e.key ===
+                        "Enter" ||
+                      e.key ===
+                        " "
+                    ) {
+                      e.preventDefault();
 
-                  ${t(
-                    theme,
-                    "bg-white/5",
-                    "bg-white shadow-sm"
-                  )}
-
-                  ${accent.cardBorder}
-
-                  ${accent.cardBorderHover}
-                `}
-              >
-                {/* Hover Background */}
-
-                <div
+                      card.onClick();
+                    }
+                  }}
                   className={`
-                    absolute
-                    inset-0
+                    group
+                    relative
+                    backdrop-blur-md
                     rounded-2xl
-                    opacity-0
-                    group-hover:opacity-100
-                    transition-opacity
+                    p-6
+                    cursor-pointer
+                    border
+                    transition-all
                     duration-300
-                    bg-gradient-to-r
+                    focus-visible:outline
+                    focus-visible:outline-2
+                    focus-visible:outline-[#C9A66B]
 
                     ${t(
                       theme,
-                      card.accent === "primary"
-                        ? `
-                          from-[#C9A66B]/[0.06]
-                          to-transparent
-                        `
-                        : `
-                          from-[#C9A66B]/[0.035]
-                          to-transparent
-                        `,
-                      card.accent === "primary"
-                        ? `
-                          from-[#C9A66B]/[0.05]
-                          to-transparent
-                        `
-                        : `
-                          from-[#9A743B]/[0.04]
-                          to-transparent
-                        `
+                      "bg-white/5",
+                      "bg-white shadow-sm"
                     )}
-                  `}
-                />
 
-                <div
-                  className="
-                    relative
-                    z-10
-                    text-center
-                  "
+                    ${accent.cardBorder}
+
+                    ${accent.cardBorderHover}
+                  `}
                 >
-                  {/* Icon */}
+                  {/* Hover Background */}
 
                   <div
                     className={`
-                      inline-flex
-                      p-4
+                      absolute
+                      inset-0
                       rounded-2xl
-                      mb-4
-                      group-hover:scale-110
-                      transition-transform
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-opacity
+                      duration-300
+                      bg-gradient-to-r
 
                       ${t(
                         theme,
-                        card.accent === "primary"
-                          ? "bg-white/[0.05]"
-                          : "bg-[#C9A66B]/[0.06]",
-                        card.accent === "primary"
-                          ? "bg-black/[0.025]"
-                          : "bg-[#9A743B]/[0.05]"
+                        card.accent ===
+                          "primary"
+                          ? `
+                            from-[#C9A66B]/[0.06]
+                            to-transparent
+                          `
+                          : `
+                            from-[#C9A66B]/[0.035]
+                            to-transparent
+                          `,
+                        card.accent ===
+                          "primary"
+                          ? `
+                            from-[#C9A66B]/[0.05]
+                            to-transparent
+                          `
+                          : `
+                            from-[#9A743B]/[0.04]
+                            to-transparent
+                          `
                       )}
                     `}
+                  />
+
+                  <div
+                    className="
+                      relative
+                      z-10
+                      text-center
+                    "
                   >
+                    {/* Icon */}
+
                     <div
                       className={`
-                        text-4xl
+                        inline-flex
+                        p-4
+                        rounded-2xl
+                        mb-4
+                        group-hover:scale-110
+                        transition-transform
+
+                        ${t(
+                          theme,
+                          card.accent ===
+                            "primary"
+                            ? "bg-white/[0.05]"
+                            : "bg-[#C9A66B]/[0.06]",
+                          card.accent ===
+                            "primary"
+                            ? "bg-black/[0.025]"
+                            : "bg-[#9A743B]/[0.05]"
+                        )}
+                      `}
+                    >
+                      <div
+                        className={`
+                          text-4xl
+                          ${accent.text}
+                        `}
+                        aria-hidden="true"
+                      >
+                        {
+                          card.icon
+                        }
+                      </div>
+                    </div>
+
+                    <h3
+                      className={`
+                        text-xl
+                        font-bold
+                        mb-2
+
+                        ${t(
+                          theme,
+                          "text-white",
+                          "text-gray-900"
+                        )}
+                      `}
+                    >
+                      {
+                        card.title
+                      }
+                    </h3>
+
+                    <p
+                      className={`
+                        text-sm
+                        leading-relaxed
+                        mb-4
+
+                        ${t(
+                          theme,
+                          "text-gray-400",
+                          "text-gray-600"
+                        )}
+                      `}
+                    >
+                      {
+                        card.description
+                      }
+                    </p>
+
+                    <motion.div
+                      className={`
+                        inline-flex
+                        items-center
+                        gap-2
+                        text-sm
+                        font-medium
                         ${accent.text}
                       `}
-                      aria-hidden="true"
+                      whileHover={{
+                        x: 5,
+                      }}
                     >
-                      {card.icon}
-                    </div>
+                      <span>
+                        Click to explore
+                      </span>
+
+                      <FaExternalLinkAlt
+                        className="
+                          text-xs
+                        "
+                        aria-hidden="true"
+                      />
+                    </motion.div>
                   </div>
 
-                  <h3
-                    className={`
-                      text-xl
-                      font-bold
-                      mb-2
+                  {/* Bottom Accent */}
 
-                      ${t(
-                        theme,
-                        "text-white",
-                        "text-gray-900"
-                      )}
-                    `}
-                  >
-                    {card.title}
-                  </h3>
-
-                  <p
-                    className={`
-                      text-sm
-                      leading-relaxed
-                      mb-4
-
-                      ${t(
-                        theme,
-                        "text-gray-400",
-                        "text-gray-600"
-                      )}
-                    `}
-                  >
-                    {card.description}
-                  </p>
-
-                  <motion.div
-                    className={`
-                      inline-flex
-                      items-center
-                      gap-2
-                      text-sm
-                      font-medium
-                      ${accent.text}
-                    `}
-                    whileHover={{
-                      x: 5,
-                    }}
-                  >
-                    <span>Click to explore</span>
-
-                    <FaExternalLinkAlt
-                      className="text-xs"
-                      aria-hidden="true"
-                    />
-                  </motion.div>
-                </div>
-
-                {/* Bottom Accent */}
-
-                <div
-                  className="
-                    absolute
-                    bottom-0
-                    left-0
-                    right-0
-                    h-0.5
-                    rounded-b-2xl
-                    opacity-0
-                    group-hover:opacity-100
-                    transition-opacity
-                    duration-300
-                    bg-gradient-to-r
-                    from-[#C9A66B]
-                    to-transparent
-                  "
-                />
-              </motion.div>
-            );
-          })}
+                  <div
+                    className="
+                      absolute
+                      bottom-0
+                      left-0
+                      right-0
+                      h-0.5
+                      rounded-b-2xl
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-opacity
+                      duration-300
+                      bg-gradient-to-r
+                      from-[#C9A66B]
+                      to-transparent
+                    "
+                  />
+                </motion.div>
+              );
+            }
+          )}
         </motion.div>
       </div>
     </section>
@@ -2661,27 +2796,37 @@ const ViewMyWork = () => {
 const MAX_MESSAGE_LENGTH = 1000;
 
 const Contact = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] =
+    useInView({
+      triggerOnce: true,
+      threshold: 0.1,
+    });
 
   const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const prefersReducedMotion =
+    useReducedMotion();
 
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "sent" | "error"
-  >("idle");
+  const [form, setForm] =
+    useState({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+  const [status, setStatus] =
+    useState<
+      "idle" |
+      "sending" |
+      "sent" |
+      "error"
+    >("idle");
 
   const honeypotRef =
-    useRef<HTMLInputElement>(null);
+    useRef<HTMLInputElement>(
+      null
+    );
 
   // ==========================================================
   // Input Change
@@ -2689,13 +2834,17 @@ const Contact = () => {
 
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
+      HTMLInputElement |
+      HTMLTextAreaElement
     >
   ) => {
-    setForm((previous) => ({
-      ...previous,
-      [e.target.name]: e.target.value,
-    }));
+    setForm(
+      (previous) => ({
+        ...previous,
+        [e.target.name]:
+          e.target.value,
+      })
+    );
   };
 
   // ==========================================================
@@ -2707,26 +2856,19 @@ const Contact = () => {
   ) => {
     e.preventDefault();
 
-    // ----------------------------------------------------------
-    // Validate required fields
-    // ----------------------------------------------------------
-
     if (
-      !form.name.trim() ||
-      !form.email.trim() ||
-      !form.message.trim()
+      !form.name ||
+      !form.email ||
+      !form.message
     ) {
-      toast.error(
-        "Please fill in all required fields."
-      );
       return;
     }
 
-    // ----------------------------------------------------------
-    // Honeypot anti-spam protection
-    // ----------------------------------------------------------
+    // Honeypot
 
-    if (honeypotRef.current?.value) {
+    if (
+      honeypotRef.current?.value
+    ) {
       setStatus("sent");
 
       setForm({
@@ -2742,22 +2884,13 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      // --------------------------------------------------------
-      // Formspree endpoint
-      // --------------------------------------------------------
-
-      const endpoint =
-        import.meta.env.VITE_FORMSPREE_ENDPOINT;
+      const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
 
       if (!endpoint) {
         throw new Error(
-          "VITE_FORMSPREE_ENDPOINT is not configured. Add the Formspree endpoint to your Vercel environment variables and redeploy."
+          "VITE_FORMSPREE_ENDPOINT is not configured. Add it to your Vercel environment variables and redeploy."
         );
       }
-
-      // --------------------------------------------------------
-      // Submit form to Formspree
-      // --------------------------------------------------------
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -2766,61 +2899,20 @@ const Contact = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim(),
-          subject:
-            form.subject.trim() ||
-            "New Portfolio Contact",
-          message: form.message.trim(),
-
-          // Formspree special fields
-          _replyto: form.email.trim(),
-          _subject:
-            form.subject.trim() ||
-            "New Portfolio Contact",
+          name: form.name,
+          email: form.email,
+          subject: form.subject || "Portfolio Contact",
+          message: form.message,
         }),
       });
 
-      // --------------------------------------------------------
-      // Handle Formspree response
-      // --------------------------------------------------------
-
       if (!response.ok) {
-        let errorMessage =
-          `Form submission failed with status ${response.status}.`;
-
-        try {
-          const errorData =
-            await response.json();
-
-          if (errorData?.error) {
-            errorMessage =
-              errorData.error;
-          } else if (
-            Array.isArray(errorData?.errors) &&
-            errorData.errors.length > 0
-          ) {
-            errorMessage =
-              errorData.errors
-                .map(
-                  (item: {
-                    message?: string;
-                  }) =>
-                    item.message
-                )
-                .filter(Boolean)
-                .join(", ");
-          }
-        } catch {
-          // Response may not contain JSON.
-        }
-
-        throw new Error(errorMessage);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(
+          errorData?.error ||
+            `Form submission failed with status ${response.status}`
+        );
       }
-
-      // --------------------------------------------------------
-      // Successful submission
-      // --------------------------------------------------------
 
       setStatus("sent");
 
@@ -2842,7 +2934,7 @@ const Contact = () => {
       );
 
       console.error(
-        "Formspree Form Error:",
+        "Formspree Error:",
         error
       );
     }
@@ -3085,7 +3177,11 @@ const Contact = () => {
                 Contact Info
               </h3>
 
-              <div className="space-y-4">
+              <div
+                className="
+                  space-y-4
+                "
+              >
                 {[
                   {
                     icon: FaEnvelope,
@@ -3112,7 +3208,8 @@ const Contact = () => {
                       "Location",
                     value:
                       siteConfig.location,
-                    href: undefined,
+                    href:
+                      undefined,
                   },
                 ].map(
                   ({
@@ -3123,8 +3220,12 @@ const Contact = () => {
                   }) =>
                     href ? (
                       <a
-                        key={label}
-                        href={href}
+                        key={
+                          label
+                        }
+                        href={
+                          href
+                        }
                         className={`
                           flex
                           items-start
@@ -3172,18 +3273,34 @@ const Contact = () => {
                         </div>
 
                         <div>
-                          <p className="text-xs opacity-60">
-                            {label}
+                          <p
+                            className="
+                              text-xs
+                              opacity-60
+                            "
+                          >
+                            {
+                              label
+                            }
                           </p>
 
-                          <p className="text-sm font-medium">
-                            {value}
+                          <p
+                            className="
+                              text-sm
+                              font-medium
+                            "
+                          >
+                            {
+                              value
+                            }
                           </p>
                         </div>
                       </a>
                     ) : (
                       <div
-                        key={label}
+                        key={
+                          label
+                        }
                         className={`
                           flex
                           items-start
@@ -3223,12 +3340,26 @@ const Contact = () => {
                         </div>
 
                         <div>
-                          <p className="text-xs opacity-60">
-                            {label}
+                          <p
+                            className="
+                              text-xs
+                              opacity-60
+                            "
+                          >
+                            {
+                              label
+                            }
                           </p>
 
-                          <p className="text-sm font-medium">
-                            {value}
+                          <p
+                            className="
+                              text-sm
+                              font-medium
+                            "
+                          >
+                            {
+                              value
+                            }
                           </p>
                         </div>
                       </div>
@@ -3276,25 +3407,33 @@ const Contact = () => {
                 Check out my
               </h3>
 
-              <div className="flex gap-3">
+              <div
+                className="
+                  flex
+                  gap-3
+                "
+              >
                 {[
                   {
                     icon: FaGithub,
                     href:
                       siteConfig.github,
-                    label: "GitHub",
+                    label:
+                      "GitHub",
                   },
                   {
                     icon: FaLinkedin,
                     href:
                       siteConfig.linkedin,
-                    label: "LinkedIn",
+                    label:
+                      "LinkedIn",
                   },
                   {
                     icon: SiLeetcode,
                     href:
                       siteConfig.leetcode,
-                    label: "LeetCode",
+                    label:
+                      "LeetCode",
                   },
                 ].map(
                   ({
@@ -3303,11 +3442,17 @@ const Contact = () => {
                     label,
                   }) => (
                     <motion.a
-                      key={label}
-                      href={href}
+                      key={
+                        label
+                      }
+                      href={
+                        href
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={label}
+                      aria-label={
+                        label
+                      }
                       whileHover={{
                         y: -3,
                         scale: 1.1,
@@ -3337,7 +3482,11 @@ const Contact = () => {
                         )}
                       `}
                     >
-                      <Icon className="text-lg" />
+                      <Icon
+                        className="
+                          text-lg
+                        "
+                      />
                     </motion.a>
                   )
                 )}
@@ -3395,8 +3544,11 @@ const Contact = () => {
                 )}
               `}
             >
-              <AnimatePresence mode="wait">
-                {status === "sent" ? (
+              <AnimatePresence
+                mode="wait"
+              >
+                {status ===
+                "sent" ? (
                   <motion.div
                     key="success"
                     role="status"
@@ -3460,17 +3612,20 @@ const Contact = () => {
                     >
                       Thanks for reaching
                       out,{" "}
-                      {siteConfig.name.split(
-                        " "
-                      )[0]}{" "}
+                      {
+                        siteConfig.name.split(
+                          " "
+                        )[0]
+                      }{" "}
                       will get back to you
                       within 24 hours.
                     </p>
 
                     <button
-                      type="button"
                       onClick={() =>
-                        setStatus("idle")
+                        setStatus(
+                          "idle"
+                        )
                       }
                       className="
                         mt-4
@@ -3488,7 +3643,9 @@ const Contact = () => {
                 ) : (
                   <motion.form
                     key="form"
-                    onSubmit={handleSubmit}
+                    onSubmit={
+                      handleSubmit
+                    }
                     className="
                       space-y-4
                       h-full
@@ -3500,7 +3657,9 @@ const Contact = () => {
                     {/* Honeypot */}
 
                     <input
-                      ref={honeypotRef}
+                      ref={
+                        honeypotRef
+                      }
                       type="text"
                       name="company"
                       tabIndex={-1}
@@ -3548,12 +3707,18 @@ const Contact = () => {
                           id="contact-name"
                           type="text"
                           name="name"
-                          value={form.name}
-                          onChange={handleChange}
+                          value={
+                            form.name
+                          }
+                          onChange={
+                            handleChange
+                          }
                           placeholder="Your name"
                           required
                           autoComplete="name"
-                          className={inputClass}
+                          className={
+                            inputClass
+                          }
                         />
                       </div>
 
@@ -3580,12 +3745,18 @@ const Contact = () => {
                           id="contact-email"
                           type="email"
                           name="email"
-                          value={form.email}
-                          onChange={handleChange}
+                          value={
+                            form.email
+                          }
+                          onChange={
+                            handleChange
+                          }
                           placeholder="your@email.com"
                           required
                           autoComplete="email"
-                          className={inputClass}
+                          className={
+                            inputClass
+                          }
                         />
                       </div>
                     </div>
@@ -3615,10 +3786,16 @@ const Contact = () => {
                         id="contact-subject"
                         type="text"
                         name="subject"
-                        value={form.subject}
-                        onChange={handleChange}
+                        value={
+                          form.subject
+                        }
+                        onChange={
+                          handleChange
+                        }
                         placeholder="Project Collaboration"
-                        className={inputClass}
+                        className={
+                          inputClass
+                        }
                       />
                     </div>
 
@@ -3667,20 +3844,31 @@ const Contact = () => {
                             )}
                           `}
                         >
-                          {form.message.length}/
-                          {MAX_MESSAGE_LENGTH}
+                          {
+                            form.message.length
+                          }
+                          /
+                          {
+                            MAX_MESSAGE_LENGTH
+                          }
                         </span>
                       </div>
 
                       <textarea
                         id="contact-message"
                         name="message"
-                        value={form.message}
-                        onChange={handleChange}
+                        value={
+                          form.message
+                        }
+                        onChange={
+                          handleChange
+                        }
                         placeholder="Tell me about your project..."
                         required
                         rows={5}
-                        maxLength={MAX_MESSAGE_LENGTH}
+                        maxLength={
+                          MAX_MESSAGE_LENGTH
+                        }
                         className={`
                           ${inputClass}
                           resize-none
@@ -3694,7 +3882,10 @@ const Contact = () => {
 
                     <motion.button
                       type="submit"
-                      disabled={status === "sending"}
+                      disabled={
+                        status ===
+                        "sending"
+                      }
                       whileHover={{
                         scale: 1.02,
                       }}
@@ -3723,7 +3914,8 @@ const Contact = () => {
                         focus-visible:outline-[#C9A66B]
                       "
                     >
-                      {status === "sending" ? (
+                      {status ===
+                      "sending" ? (
                         <>
                           <svg
                             className="
@@ -3758,23 +3950,30 @@ const Contact = () => {
                             />
                           </svg>
 
-                          <span>Sending...</span>
+                          <span>
+                            Sending...
+                          </span>
                         </>
                       ) : (
                         <>
                           <FaPaperPlane
-                            className="text-sm"
+                            className="
+                              text-sm
+                            "
                             aria-hidden="true"
                           />
 
-                          <span>Send Message</span>
+                          <span>
+                            Send Message
+                          </span>
                         </>
                       )}
                     </motion.button>
 
                     {/* Error */}
 
-                    {status === "error" && (
+                    {status ===
+                      "error" && (
                       <p
                         className="
                           text-sm
@@ -3784,12 +3983,18 @@ const Contact = () => {
                         role="alert"
                       >
                         Something went wrong.
-                        Please email directly at{" "}
+                        Please email directly
+                        at{" "}
+
                         <a
                           href={`mailto:${siteConfig.email}`}
-                          className="underline"
+                          className="
+                            underline
+                          "
                         >
-                          {siteConfig.email}
+                          {
+                            siteConfig.email
+                          }
                         </a>
                       </p>
                     )}
@@ -3809,13 +4014,17 @@ const Contact = () => {
 // ============================================================
 
 const ScrollToTop = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] =
+    useState(false);
 
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion =
+    useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > 400);
+      setVisible(
+        window.scrollY > 400
+      );
     };
 
     window.addEventListener(
@@ -3838,7 +4047,6 @@ const ScrollToTop = () => {
     <AnimatePresence>
       {visible && (
         <motion.button
-          type="button"
           initial={{
             opacity: 0,
             scale: 0.8,
@@ -3884,17 +4092,24 @@ const ScrollToTop = () => {
           aria-label="Scroll to top"
         >
           <svg
-            className="w-4 h-4"
+            className="
+              w-4
+              h-4
+            "
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M5 15l7-7 7 7"
+              strokeWidth={2}
+              d="
+                M5 15
+                l7-7
+                7 7
+              "
             />
           </svg>
         </motion.button>
@@ -3908,8 +4123,11 @@ const ScrollToTop = () => {
 // ============================================================
 
 const HomePage = () => {
-  const { theme } = useTheme();
-  const location = useLocation();
+  const { theme } =
+    useTheme();
+
+  const location =
+    useLocation();
 
   // ==========================================================
   // Scroll to View My Work after navigation
@@ -3926,26 +4144,34 @@ const HomePage = () => {
       "view-my-work"
     ) {
       const timer =
-        window.setTimeout(() => {
-          const section =
-            document.getElementById(
-              "view-my-work"
+        window.setTimeout(
+          () => {
+            const section =
+              document.getElementById(
+                "view-my-work"
+              );
+
+            if (section) {
+              section.scrollIntoView(
+                {
+                  behavior:
+                    "smooth",
+                }
+              );
+            }
+
+            window.history.replaceState(
+              {},
+              document.title
             );
-
-          if (section) {
-            section.scrollIntoView({
-              behavior: "smooth",
-            });
-          }
-
-          window.history.replaceState(
-            {},
-            document.title
-          );
-        }, 100);
+          },
+          100
+        );
 
       return () =>
-        window.clearTimeout(timer);
+        window.clearTimeout(
+          timer
+        );
     }
   }, [location]);
 
