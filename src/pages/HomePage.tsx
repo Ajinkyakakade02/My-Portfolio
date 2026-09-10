@@ -2884,9 +2884,13 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      const endpoint =
-        import.meta.env.VITE_FORMSPREE_ENDPOINT ||
-        "https://formspree.io/f/YOUR_FORM_ID";
+      const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+
+      if (!endpoint) {
+        throw new Error(
+          "VITE_FORMSPREE_ENDPOINT is not configured. Add it to your Vercel environment variables and redeploy."
+        );
+      }
 
       const response = await fetch(endpoint, {
         method: "POST",
