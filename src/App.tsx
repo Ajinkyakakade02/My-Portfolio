@@ -16,7 +16,6 @@ import GitHubPage from "@/pages/GitHubPage";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { StarsCanvas } from "./components/shared/StarsCanvas";
-import CursorCat from "./components/shared/CursorCat";
 
 import { useTheme } from "./hooks/useTheme";
 
@@ -47,10 +46,7 @@ const AppContent = () => {
   // ==========================================================
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
@@ -60,36 +56,20 @@ const AppContent = () => {
         overflow-x-hidden
         transition-colors
         duration-300
-
         ${
           theme === "dark"
-            ? "bg-[#0A0A0A] text-[#F5F3EE]"
-            : "bg-[#F5F4EF] text-[#171717]"
+            ? "bg-[#030014] text-white"
+            : "bg-white text-gray-900"
         }
       `}
     >
-      {/* ======================================================
-          GLOBAL CURSOR CAT
-      ======================================================= */}
-
-      <CursorCat />
-
-      {/* ======================================================
-          BACKGROUND STARS
-      ======================================================= */}
-
+      {/* Background Stars */}
       <StarsCanvas />
 
-      {/* ======================================================
-          HEADER
-      ======================================================= */}
-
+      {/* Header */}
       <Header />
 
-      {/* ======================================================
-          ROUTES
-      ======================================================= */}
-
+      {/* Routes */}
       <Routes>
         {/* Home */}
         <Route
@@ -115,69 +95,21 @@ const AppContent = () => {
           element={<GitHubPage />}
         />
 
-        {/* ==================================================
-            404 PAGE
-        ================================================== */}
-
+        {/* 404 */}
         <Route
           path="*"
           element={
-            <div
-              className={`
-                min-h-screen
-                flex
-                items-center
-                justify-center
-                px-4
-                ${
-                  theme === "dark"
-                    ? "bg-[#0A0A0A]"
-                    : "bg-[#F5F4EF]"
-                }
-              `}
-            >
+            <div className="min-h-screen flex items-center justify-center">
               <div className="text-center">
-                <h1
-                  className={`
-                    text-4xl
-                    font-bold
-                    mb-4
-
-                    ${
-                      theme === "dark"
-                        ? "text-red-400"
-                        : "text-red-500"
-                    }
-                  `}
-                >
+                <h1 className="text-4xl font-bold text-red-500 mb-4">
                   404 - Page Not Found
                 </h1>
 
-                <p
-                  className={`
-                    ${
-                      theme === "dark"
-                        ? "text-[#8F8B83]"
-                        : "text-[#65615A]"
-                    }
-                  `}
-                >
-                  The page you're looking for
-                  doesn't exist.
+                <p className="text-gray-400">
+                  The page you're looking for doesn't exist.
                 </p>
 
-                <p
-                  className={`
-                    mt-2
-                    text-sm
-
-                    ${
-                      theme === "dark"
-                        ? "text-[#706D67]"
-                        : "text-[#918D84]"
-                    }
-                  `}
-                >
+                <p className="text-gray-400 mt-2">
                   Current path:{" "}
                   {window.location.pathname}
                 </p>
@@ -187,10 +119,7 @@ const AppContent = () => {
         />
       </Routes>
 
-      {/* ======================================================
-          FOOTER
-      ======================================================= */}
-
+      {/* Footer */}
       <Footer />
     </div>
   );
@@ -203,62 +132,45 @@ const AppContent = () => {
 function App() {
   // ==========================================================
   // SMOOTH SCROLL FOR ANCHOR LINKS
+  // Only runs on the homepage
   // ==========================================================
 
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-
-      const anchor =
-        target.closest("a");
-
-      if (!anchor) return;
-
-      const hash = anchor.hash;
+      const anchor = target.closest("a");
 
       if (
-        !hash ||
-        !hash.startsWith("#")
+        anchor &&
+        anchor.hash &&
+        anchor.hash.startsWith("#") &&
+        (
+          window.location.pathname === "/" ||
+          window.location.pathname === "/My-Portfolio/"
+        )
       ) {
-        return;
+        e.preventDefault();
+
+        const id = anchor.hash.replace("#", "");
+        const element = document.getElementById(id);
+
+        if (element) {
+          const offset = 80;
+
+          const elementPosition =
+            element.getBoundingClientRect().top;
+
+          const offsetPosition =
+            elementPosition +
+            window.pageYOffset -
+            offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
       }
-
-      const isHomePage =
-        window.location.pathname === "/" ||
-        window.location.pathname ===
-          "/My-Portfolio/";
-
-      if (!isHomePage) {
-        return;
-      }
-
-      e.preventDefault();
-
-      const id =
-        hash.substring(1);
-
-      const element =
-        document.getElementById(id);
-
-      if (!element) {
-        return;
-      }
-
-      const offset = 80;
-
-      const elementPosition =
-        element.getBoundingClientRect()
-          .top;
-
-      const offsetPosition =
-        elementPosition +
-        window.pageYOffset -
-        offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
     };
 
     document.addEventListener(
@@ -275,7 +187,7 @@ function App() {
   }, []);
 
   // ==========================================================
-  // ROUTER
+  // RENDER
   // ==========================================================
 
   return (
