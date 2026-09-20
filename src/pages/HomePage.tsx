@@ -766,7 +766,7 @@ const HeroContent = () => {
                       }
                     `}
                   >
-                    200+
+                    208+
                   </div>
 
                   <div
