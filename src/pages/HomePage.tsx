@@ -85,15 +85,11 @@ const HeroContent = () => {
     <div className="min-h-screen flex items-center justify-center pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* ==================================================
-              LEFT SIDE
-          ================================================== */}
+          {/* LEFT SIDE */}
           <motion.div
             ref={ref}
             initial={
-              prefersReducedMotion
-                ? false
-                : { opacity: 0, x: -50 }
+              prefersReducedMotion ? false : { opacity: 0, x: -50 }
             }
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -109,22 +105,12 @@ const HeroContent = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 }}
               className={`
-                relative
-                inline-flex
-                items-center
-                gap-2
-                px-5
-                py-2
-                rounded-full
-                border
-                mb-6
-                text-sm
-                font-medium
-                backdrop-blur-sm
+                relative inline-flex items-center gap-2 px-5 py-2
+                rounded-full border mb-6 text-sm font-medium backdrop-blur-sm
                 ${
                   theme === "dark"
-                    ? "bg-white/[0.05] border-white/15 text-[#D8BC91]"
-                    : "bg-black/[0.03] border-black/15 text-[#7C5B2B]"
+                    ? "bg-white/[0.035] border-white/10 text-[#D8BC91]"
+                    : "bg-black/[0.02] border-black/10 text-[#7C5B2B]"
                 }
               `}
             >
@@ -145,21 +131,27 @@ const HeroContent = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
               className="
-                text-4xl
-                sm:text-5xl
-                md:text-6xl
-                lg:text-7xl
-                font-bold
-                mb-6
-                leading-[1.05]
-                tracking-tight
-                text-white
-                drop-shadow-[0_2px_20px_rgba(0,0,0,0.7)]
+                text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                font-bold mb-6 leading-[1.05] tracking-tight
               "
             >
-              <span>Transforming Ideas</span>
+              <span
+                className={
+                  theme === "dark"
+                    ? "text-[#F5F3EE]"
+                    : "text-[#171717]"
+                }
+              >
+                Transforming Ideas
+              </span>
               <br />
-              <span className="text-[#D8BC91]">
+              <span
+                className={
+                  theme === "dark"
+                    ? "text-[#A7A39A]"
+                    : "text-[#65615A]"
+                }
+              >
                 Into Digital Reality
               </span>
             </motion.h1>
@@ -173,26 +165,23 @@ const HeroContent = () => {
               }
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
-              className="
-                text-lg
-                mb-8
-                max-w-xl
-                mx-auto
-                lg:mx-0
-                leading-relaxed
-                text-white/90
-                drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]
-              "
+              className={`
+                text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed
+                ${
+                  theme === "dark"
+                    ? "text-[#A7A39A]"
+                    : "text-[#65615A]"
+                }
+              `}
             >
               I'm{" "}
-              <span className="font-semibold text-[#D8BC91]">
+              <span className="font-semibold text-[#C9A66B]">
                 Ajinkya Kakade
               </span>
-              , a passionate Full Stack Developer with
-              expertise in React, Spring Boot, and cloud
-              technologies. I build end-to-end web
-              applications that are scalable, secure,
-              and user-friendly.
+              , a passionate Full Stack Developer with expertise
+              in React, Spring Boot, and cloud technologies. I
+              build end-to-end web applications that are
+              scalable, secure, and user-friendly.
             </motion.p>
 
             {/* Buttons */}
@@ -204,22 +193,13 @@ const HeroContent = () => {
               }
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.65 }}
-              className="
-                flex
-                flex-wrap
-                gap-3
-                justify-center
-                lg:justify-start
-                mb-8
-              "
+              className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8"
             >
               {/* View My Work */}
               <motion.button
                 type="button"
                 whileHover={
-                  prefersReducedMotion
-                    ? undefined
-                    : { y: -2 }
+                  prefersReducedMotion ? undefined : { y: -2 }
                 }
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
@@ -234,26 +214,13 @@ const HeroContent = () => {
                   }
                 }}
                 className="
-                  group
-                  inline-flex
-                  h-12
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-[#C9A66B]/50
-                  bg-[#C9A66B]
-                  px-7
-                  text-sm
-                  font-semibold
-                  text-[#0A0A0A]
-                  transition-all
-                  duration-300
-                  hover:bg-[#D8BC91]
-                  hover:border-[#D8BC91]
-                  focus-visible:outline
-                  focus-visible:outline-2
+                  group inline-flex h-12 items-center justify-center
+                  gap-2 rounded-full border border-white/[0.12]
+                  bg-[#0A0A0A] px-7 text-sm font-semibold
+                  text-[#F5F3EE] transition-all duration-300
+                  hover:border-[#C9A66B]/40 hover:bg-[#171717]
+                  hover:text-[#D8BC91]
+                  focus-visible:outline focus-visible:outline-2
                   focus-visible:outline-offset-2
                   focus-visible:outline-[#C9A66B]
                 "
@@ -270,33 +237,17 @@ const HeroContent = () => {
                 href={siteConfig.resumePath}
                 download
                 whileHover={
-                  prefersReducedMotion
-                    ? undefined
-                    : { y: -2 }
+                  prefersReducedMotion ? undefined : { y: -2 }
                 }
                 whileTap={{ scale: 0.98 }}
                 className="
-                  group
-                  inline-flex
-                  h-12
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-white/30
-                  bg-white/10
-                  backdrop-blur-md
-                  px-7
-                  text-sm
-                  font-semibold
-                  text-white
-                  transition-all
-                  duration-300
-                  hover:bg-white/20
-                  hover:border-white/50
-                  focus-visible:outline
-                  focus-visible:outline-2
+                  group inline-flex h-12 items-center justify-center
+                  gap-2 rounded-full border border-white/[0.12]
+                  bg-[#0A0A0A] px-7 text-sm font-semibold
+                  text-[#F5F3EE] transition-all duration-300
+                  hover:border-[#C9A66B]/40 hover:bg-[#171717]
+                  hover:text-[#D8BC91]
+                  focus-visible:outline focus-visible:outline-2
                   focus-visible:outline-offset-2
                   focus-visible:outline-[#C9A66B]
                 "
@@ -310,14 +261,10 @@ const HeroContent = () => {
             </motion.div>
           </motion.div>
 
-          {/* ==================================================
-              RIGHT SIDE
-          ================================================== */}
+          {/* RIGHT SIDE */}
           <motion.div
             initial={
-              prefersReducedMotion
-                ? false
-                : { opacity: 0, x: 50 }
+              prefersReducedMotion ? false : { opacity: 0, x: 50 }
             }
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -351,17 +298,9 @@ const HeroContent = () => {
                   ease: "easeInOut",
                 }}
                 className="
-                  pointer-events-none
-                  absolute
-                  top-1/2
-                  left-1/2
-                  h-96
-                  w-96
-                  -translate-x-1/2
-                  -translate-y-1/2
-                  rounded-full
-                  bg-[#C9A66B]/[0.08]
-                  blur-3xl
+                  pointer-events-none absolute top-1/2 left-1/2
+                  h-96 w-96 -translate-x-1/2 -translate-y-1/2
+                  rounded-full bg-[#C9A66B]/[0.06] blur-3xl
                 "
               />
 
@@ -377,33 +316,34 @@ const HeroContent = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="
-                  absolute
-                  backdrop-blur-xl
-                  rounded-2xl
-                  px-6
-                  py-4
-                  border
-                  border-white/20
-                  shadow-2xl
-                  flex
-                  items-center
-                  gap-3
-                  bg-black/50
-                "
+                className={`
+                  absolute backdrop-blur-xl rounded-2xl px-6 py-4
+                  border shadow-2xl flex items-center gap-3
+                  ${
+                    theme === "dark"
+                      ? "bg-white/[0.06] border-white/10"
+                      : "bg-white border-black/10"
+                  }
+                `}
                 style={{ top: "10%", right: "-8%" }}
               >
-                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.15]">
+                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.07]">
                   <FaFolderOpen
                     className="text-2xl text-[#C9A66B]"
                     aria-hidden="true"
                   />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div
+                    className={`text-2xl font-bold ${
+                      theme === "dark"
+                        ? "text-[#F5F3EE]"
+                        : "text-[#171717]"
+                    }`}
+                  >
                     5+
                   </div>
-                  <div className="text-xs font-medium text-[#D8BC91]">
+                  <div className="text-xs font-medium text-[#C9A66B]">
                     Projects Completed
                   </div>
                 </div>
@@ -422,23 +362,18 @@ const HeroContent = () => {
                   ease: "easeInOut",
                   delay: 0.3,
                 }}
-                className="
-                  absolute
-                  backdrop-blur-xl
-                  rounded-2xl
-                  px-6
-                  py-4
-                  border
-                  border-white/20
-                  shadow-2xl
-                  flex
-                  items-center
-                  gap-3
-                  bg-black/50
-                "
+                className={`
+                  absolute backdrop-blur-xl rounded-2xl px-6 py-4
+                  border shadow-2xl flex items-center gap-3
+                  ${
+                    theme === "dark"
+                      ? "bg-white/[0.06] border-white/10"
+                      : "bg-white border-black/10"
+                  }
+                `}
                 style={{ bottom: "15%", left: "-8%" }}
               >
-                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.15]">
+                <div className="p-2 rounded-xl bg-[#C9A66B]/[0.05]">
                   <SiLeetcode
                     className="text-2xl"
                     style={{ color: "#f89f1c" }}
@@ -446,10 +381,16 @@ const HeroContent = () => {
                   />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">
+                  <div
+                    className={`text-2xl font-bold ${
+                      theme === "dark"
+                        ? "text-[#F5F3EE]"
+                        : "text-[#171717]"
+                    }`}
+                  >
                     208+
                   </div>
-                  <div className="text-xs font-medium text-[#D8BC91]">
+                  <div className="text-xs font-medium text-[#A7A39A]">
                     LeetCode Problems
                   </div>
                 </div>
@@ -463,73 +404,40 @@ const HeroContent = () => {
 };
 
 // ============================================================
-// HERO BACKGROUND WITH BLACKHOLE VIDEO
+// HERO BACKGROUND (gradient only — no video)
 // ============================================================
 
 const Hero = () => {
   const { theme } = useTheme();
-  const [videoError, setVideoError] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      {/* ==================================================
-          VIDEO BACKGROUND
-      ================================================== */}
-      <div className="absolute inset-0 z-0">
-        {!videoError ? (
-          <>
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover"
-              onError={() => setVideoError(true)}
-            >
-              <source
-                src="/videos/blackhole.mp4"
-                type="video/mp4"
-              />
-              <source
-                src="/blackhole.mp4"
-                type="video/mp4"
-              />
-            </video>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      <div className="absolute inset-0">
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-br
+            ${
+              theme === "dark"
+                ? "from-[#121212] via-[#0A0A0A] to-[#080808]"
+                : "from-[#F5F4EF] via-[#FFFFFF] to-[#EEECE6]"
+            }
+          `}
+        />
 
-            {/* ==============================================
-                LIGHT OVERLAY (video is clearly visible)
-            ============================================== */}
-            <div className="absolute inset-0 bg-black/35" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A66B]/[0.025] blur-[140px]" />
 
-            {/* Vignette for edge depth (very subtle) */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_45%,_rgba(0,0,0,0.55)_100%)]" />
-
-            {/* Warm gold tint */}
-            <div className="absolute inset-0 bg-[#C9A66B]/[0.05] mix-blend-overlay" />
-          </>
-        ) : (
-          <>
-            {/* Fallback gradient if video fails */}
-            <div
-              className={`
-                absolute inset-0 bg-gradient-to-br
-                ${
-                  theme === "dark"
-                    ? "from-[#121212] via-[#0A0A0A] to-[#080808]"
-                    : "from-[#F5F4EF] via-[#FFFFFF] to-[#EEECE6]"
-                }
-              `}
-            />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A66B]/[0.03] blur-[140px]" />
-          </>
-        )}
+        <div
+          className={`
+            pointer-events-none absolute inset-0
+            ${
+              theme === "dark"
+                ? "bg-[radial-gradient(ellipse_at_center,_transparent_25%,_rgba(0,0,0,0.45)_100%)]"
+                : "bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.035)_100%)]"
+            }
+          `}
+        />
       </div>
 
-      {/* ==================================================
-          HERO CONTENT
-      ================================================== */}
       <div className="relative z-10">
         <HeroContent />
       </div>
@@ -584,23 +492,11 @@ const Skills = () => {
     return (
       <motion.div
         whileHover={
-          prefersReducedMotion
-            ? undefined
-            : { y: -3, scale: 1.03 }
+          prefersReducedMotion ? undefined : { y: -3, scale: 1.03 }
         }
         className={`
-          group
-          flex
-          shrink-0
-          items-center
-          gap-3
-          rounded-xl
-          border
-          px-4
-          py-3
-          backdrop-blur-md
-          transition-all
-          duration-300
+          group flex shrink-0 items-center gap-3 rounded-xl border
+          px-4 py-3 backdrop-blur-md transition-all duration-300
           ${
             theme === "dark"
               ? "border-white/[0.08] bg-white/[0.025] hover:border-[#C9A66B]/30 hover:bg-[#C9A66B]/[0.035]"
@@ -615,10 +511,7 @@ const Skills = () => {
         />
         <span
           className={`
-            whitespace-nowrap
-            text-sm
-            font-medium
-            tracking-wide
+            whitespace-nowrap text-sm font-medium tracking-wide
             ${
               theme === "dark"
                 ? "text-white/70 group-hover:text-white"
@@ -651,9 +544,7 @@ const Skills = () => {
             prefersReducedMotion
               ? undefined
               : {
-                  x: reverse
-                    ? ["-25%", "0%"]
-                    : ["0%", "-25%"],
+                  x: reverse ? ["-25%", "0%"] : ["0%", "-25%"],
                 }
           }
           transition={
@@ -684,7 +575,6 @@ const Skills = () => {
       id="skills"
       className="relative overflow-hidden py-24 sm:py-28"
     >
-      {/* Section Background */}
       <div className="absolute inset-0 -z-10">
         <div
           className={`
@@ -699,14 +589,11 @@ const Skills = () => {
         <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A66B]/[0.055] blur-[130px]" />
       </div>
 
-      {/* Heading */}
       <div className="relative z-10 mx-auto mb-14 max-w-4xl px-4 text-center">
         <motion.div
           ref={ref}
           initial={
-            prefersReducedMotion
-              ? false
-              : { opacity: 0, y: 20 }
+            prefersReducedMotion ? false : { opacity: 0, y: 20 }
           }
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -714,19 +601,7 @@ const Skills = () => {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#C9A66B]">
             Technologies
           </p>
-          <h2
-            className="
-              bg-gradient-to-r
-              from-[#F5F3EE]
-              via-[#E5D3B3]
-              to-[#C9A66B]
-              bg-clip-text
-              text-4xl
-              font-bold
-              text-transparent
-              sm:text-5xl
-            "
-          >
+          <h2 className="bg-gradient-to-r from-[#F5F3EE] via-[#E5D3B3] to-[#C9A66B] bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
             My Tech Stack
           </h2>
           <p
@@ -745,12 +620,9 @@ const Skills = () => {
         </motion.div>
       </div>
 
-      {/* Tech Stack Box */}
       <motion.div
         initial={
-          prefersReducedMotion
-            ? false
-            : { opacity: 0, y: 25 }
+          prefersReducedMotion ? false : { opacity: 0, y: 25 }
         }
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.15, duration: 0.6 }}
@@ -803,7 +675,7 @@ const Skills = () => {
 };
 
 // ============================================================
-// PROJECTS SHOWCASE
+// PROJECTS SHOWCASE (not used on homepage, kept for reference)
 // ============================================================
 
 const ProjectsSection = () => {
@@ -828,9 +700,7 @@ const ProjectsSection = () => {
         <motion.div
           ref={ref}
           initial={
-            prefersReducedMotion
-              ? false
-              : { opacity: 0, y: 30 }
+            prefersReducedMotion ? false : { opacity: 0, y: 30 }
           }
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: "easeOut" }}
@@ -867,9 +737,9 @@ const ProjectsSection = () => {
                 }
               `}
             >
-              A selection of applications I have designed
-              and built across full-stack development,
-              real-time systems, and AI-powered experiences.
+              A selection of applications I have designed and
+              built across full-stack development, real-time
+              systems, and AI-powered experiences.
             </p>
           </div>
         </motion.div>
@@ -1052,9 +922,7 @@ const ProjectsSection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={
-                        prefersReducedMotion
-                          ? undefined
-                          : { x: 4 }
+                        prefersReducedMotion ? undefined : { x: 4 }
                       }
                       className="group/link inline-flex items-center gap-3 text-sm font-semibold text-[#C9A66B]"
                     >
@@ -1072,9 +940,7 @@ const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={
-                          prefersReducedMotion
-                            ? undefined
-                            : { x: 4 }
+                          prefersReducedMotion ? undefined : { x: 4 }
                         }
                         className={`
                           inline-flex items-center gap-2 text-sm font-medium
@@ -1107,7 +973,7 @@ const ProjectsSection = () => {
 };
 
 // ============================================================
-// VIEW MY WORK
+// VIEW MY WORK  ← VIDEO LIVES HERE ONLY
 // ============================================================
 
 const ViewMyWork = () => {
@@ -1151,13 +1017,16 @@ const ViewMyWork = () => {
       id="view-my-work"
       className="relative py-20 px-4 overflow-hidden"
     >
+      {/* ==================================================
+          BLACKHOLE VIDEO BACKGROUND — ONLY HERE
+      ================================================== */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
         >
@@ -1165,16 +1034,19 @@ const ViewMyWork = () => {
           <source src="/blackhole.mp4" type="video/mp4" />
         </video>
 
+        {/* Dark overlay for readable text/cards */}
         <div
-          className={t(
+          className={`absolute inset-0 ${t(
             theme,
-            "absolute inset-0 bg-black/65",
-            "absolute inset-0 bg-black/30"
-          )}
+            "bg-black/65",
+            "bg-black/40"
+          )}`}
         />
 
+        {/* Subtle warm gold atmospheric glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,166,107,0.10),transparent_60%)]" />
 
+        {/* Bottom fade to blend into the next section */}
         <div
           className={`absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent ${
             theme === "light" ? "opacity-30" : "opacity-70"
@@ -1182,7 +1054,11 @@ const ViewMyWork = () => {
         />
       </div>
 
+      {/* ==================================================
+          CONTENT
+      ================================================== */}
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Heading */}
         <div className="text-center mb-12">
           <motion.h2
             ref={ref}
@@ -1193,10 +1069,15 @@ const ViewMyWork = () => {
             }
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#C9A66B] to-[#D8BC91] bg-clip-text text-transparent"
+            className="
+              text-4xl sm:text-5xl font-bold
+              bg-gradient-to-r from-[#C9A66B] to-[#D8BC91]
+              bg-clip-text text-transparent
+            "
           >
             View My Work
           </motion.h2>
+
           <motion.p
             initial={
               prefersReducedMotion
@@ -1205,16 +1086,16 @@ const ViewMyWork = () => {
             }
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className={`text-lg max-w-2xl mx-auto ${t(
-              theme,
-              "text-gray-300",
-              "text-gray-200"
-            )}`}
+            className={`
+              text-lg max-w-2xl mx-auto
+              ${t(theme, "text-gray-200", "text-gray-100")}
+            `}
           >
             Explore my professional information and projects
           </motion.p>
         </div>
 
+        {/* Cards */}
         <motion.div
           initial={
             prefersReducedMotion
@@ -1248,26 +1129,24 @@ const ViewMyWork = () => {
                   }
                 }}
                 className={`
-                  group
-                  relative
-                  backdrop-blur-md
-                  rounded-2xl
-                  p-6
-                  cursor-pointer
-                  border
-                  transition-all
-                  duration-300
-                  focus-visible:outline
-                  focus-visible:outline-2
+                  group relative backdrop-blur-md rounded-2xl p-6
+                  cursor-pointer border transition-all duration-300
+                  focus-visible:outline focus-visible:outline-2
                   focus-visible:outline-[#C9A66B]
-                  ${t(theme, "bg-black/40", "bg-white/90")}
+                  ${t(
+                    theme,
+                    "bg-black/40 border-white/15",
+                    "bg-white/95 border-black/10"
+                  )}
                   ${accent.cardBorder}
                   ${accent.cardBorderHover}
                 `}
               >
                 <div
                   className={`
-                    absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r
+                    absolute inset-0 rounded-2xl opacity-0
+                    group-hover:opacity-100 transition-opacity duration-300
+                    bg-gradient-to-r
                     ${
                       card.accent === "primary"
                         ? "from-[#C9A66B]/[0.12] to-transparent"
@@ -1279,16 +1158,13 @@ const ViewMyWork = () => {
                 <div className="relative z-10 text-center">
                   <div
                     className={`
-                      inline-flex p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform
-                      ${t(
-                        theme,
-                        card.accent === "primary"
-                          ? "bg-white/[0.05]"
-                          : "bg-[#C9A66B]/[0.08]",
-                        card.accent === "primary"
-                          ? "bg-black/[0.025]"
-                          : "bg-[#9A743B]/[0.05]"
-                      )}
+                      inline-flex p-4 rounded-2xl mb-4
+                      group-hover:scale-110 transition-transform
+                      ${
+                        theme === "dark"
+                          ? "bg-white/[0.08]"
+                          : "bg-black/[0.05]"
+                      }
                     `}
                   >
                     <div
@@ -1312,7 +1188,7 @@ const ViewMyWork = () => {
                   <p
                     className={`text-sm leading-relaxed mb-4 ${t(
                       theme,
-                      "text-gray-300",
+                      "text-gray-200",
                       "text-gray-600"
                     )}`}
                   >
@@ -1434,16 +1310,8 @@ const Contact = () => {
   };
 
   const inputClass = `
-    w-full
-    px-4
-    py-3
-    rounded-xl
-    border
-    outline-none
-    text-sm
-    transition-all
-    duration-200
-    focus:ring-2
+    w-full px-4 py-3 rounded-xl border outline-none text-sm
+    transition-all duration-200 focus:ring-2
     focus:ring-[#C9A66B]/20
     ${t(
       theme,
@@ -1704,8 +1572,8 @@ const Contact = () => {
                       )}`}
                     >
                       Thanks for reaching out,{" "}
-                      {siteConfig.name.split(" ")[0]} will get
-                      back to you within 24 hours.
+                      {siteConfig.name.split(" ")[0]} will get back
+                      to you within 24 hours.
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
@@ -1843,23 +1711,12 @@ const Contact = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="
-                        w-full
-                        inline-flex
-                        items-center
-                        justify-center
-                        gap-2
-                        bg-[#F5F3EE]
-                        py-3.5
-                        rounded-full
-                        font-semibold
-                        text-[#0A0A0A]
-                        shadow-lg
-                        hover:bg-[#C9A66B]
-                        transition-all
-                        disabled:opacity-60
-                        disabled:cursor-not-allowed
-                        focus-visible:outline
-                        focus-visible:outline-2
+                        w-full inline-flex items-center justify-center
+                        gap-2 bg-[#F5F3EE] py-3.5 rounded-full
+                        font-semibold text-[#0A0A0A] shadow-lg
+                        hover:bg-[#C9A66B] transition-all
+                        disabled:opacity-60 disabled:cursor-not-allowed
+                        focus-visible:outline focus-visible:outline-2
                         focus-visible:outline-offset-2
                         focus-visible:outline-[#C9A66B]
                       "
@@ -1959,10 +1816,11 @@ const ScrollToTop = () => {
           }
           className="
             fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full
-            bg-[#F5F3EE] flex items-center justify-center text-[#0A0A0A]
-            shadow-lg hover:bg-[#C9A66B] transition-shadow
-            focus-visible:outline focus-visible:outline-2
-            focus-visible:outline-offset-2 focus-visible:outline-[#C9A66B]
+            bg-[#F5F3EE] flex items-center justify-center
+            text-[#0A0A0A] shadow-lg hover:bg-[#C9A66B]
+            transition-shadow focus-visible:outline
+            focus-visible:outline-2 focus-visible:outline-offset-2
+            focus-visible:outline-[#C9A66B]
           "
           aria-label="Scroll to top"
         >
