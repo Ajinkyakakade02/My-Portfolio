@@ -2394,27 +2394,72 @@ const ViewMyWork = () => {
         overflow-hidden
       "
     >
-      <div
-        className={`
-          absolute
-          inset-0
-          bg-gradient-to-b
+      {/* ==================================================
+          BLACK HOLE VIDEO BACKGROUND
+      ================================================== */}
 
-          ${t(
-            theme,
-            `
-              from-transparent
-              via-[#C9A66B]/[0.025]
-              to-transparent
-            `,
-            `
-              from-transparent
-              via-[#9A743B]/[0.025]
-              to-transparent
-            `
-          )}
-        `}
-      />
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+          "
+        >
+          <source
+            src="/videos/blackhole.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* Dark overlay for readable text and cards */}
+        <div
+          className={`
+            absolute
+            inset-0
+            ${t(
+              theme,
+              "bg-black/65",
+              "bg-black/30"
+            )}
+          `}
+        />
+
+        {/* Subtle gold atmospheric glow */}
+        <div
+          className="
+            absolute
+            inset-0
+            bg-[radial-gradient(
+              circle_at_center,
+              rgba(201,166,107,0.10),
+              transparent_60%
+            )]
+          "
+        />
+
+        {/* Bottom fade to blend into the next section */}
+        <div
+          className={`
+            absolute
+            inset-x-0
+            bottom-0
+            h-32
+            bg-gradient-to-t
+            from-black
+            to-transparent
+            ${theme === "light" ? "opacity-30" : "opacity-70"}
+          `}
+        />
+      </div>
 
       <div
         className="
