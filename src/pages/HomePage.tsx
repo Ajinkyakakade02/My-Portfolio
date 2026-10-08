@@ -264,7 +264,7 @@ LEFT SIDE
             <span>MySQL</span>
           </span>
 
-          {/* MongoDB */}
+          /* {/* MongoDB */}
           <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
             <SiMongodb
               className="text-base"
@@ -273,7 +273,7 @@ LEFT SIDE
             />
             <span>MongoDB</span>
           </span>
-        </motion.div>
+        </motion.div> */
 
         {/* Main Heading */}
 
