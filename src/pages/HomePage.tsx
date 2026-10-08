@@ -7,10 +7,6 @@ AnimatePresence,
 useReducedMotion,
 } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-useNavigate,
-useLocation,
-} from "react-router-dom";
 import toast from "react-hot-toast";
 
 import {
@@ -27,7 +23,6 @@ FaPaperPlane,
 FaCheckCircle,
 FaHtml5,
 FaCss3Alt,
-FaNodeJs,
 FaDocker,
 FaGitAlt,
 FaUser,
@@ -36,6 +31,9 @@ FaJava,
 FaPython,
 FaServer,
 FaExternalLinkAlt,
+FaAws,
+FaGraduationCap,
+FaKey,
 } from "react-icons/fa";
 
 import {
@@ -440,7 +438,7 @@ LEFT SIDE
             onClick={() => {
               const section =
                 document.getElementById(
-                  "view-my-work"
+                  "projects"
                 );
 
               if (section) {
@@ -1622,1281 +1620,1889 @@ SECTION BACKGROUND
 );
 };
 
-// ============================================================
-// PROJECTS SHOWCASE
-// ============================================================
-
 const ProjectsSection = () => {
-const [ref, inView] = useInView({
-triggerOnce: true,
-threshold: 0.1,
-});
+  const { theme } = useTheme();
 
-const { theme } = useTheme();
+  return (
+    <section
+      id="projects"
+      className={`
+        relative
+        overflow-hidden
+        py-24
+        transition-colors
+        duration-300
 
-const prefersReducedMotion = useReducedMotion();
-
-return (
-<section
-   id="projects"
-   className="
-     relative
-     overflow-hidden
-     py-28
-     sm:py-32
-   "
- >
-{/* ======================================================
-BACKGROUND
-======================================================= */}
-
-  <div
-    className="
-      pointer-events-none
-      absolute
-      inset-0
-    "
-  >
-    <div
-      className="
-        absolute
-        left-1/2
-        top-[30%]
-        h-[600px]
-        w-[600px]
-        -translate-x-1/2
-        rounded-full
-        bg-[#C9A66B]/[0.025]
-        blur-[150px]
-      "
-    />
-
-    <div
-      className="
-        absolute
-        inset-x-0
-        top-0
-        h-px
-        bg-gradient-to-r
-        from-transparent
-        via-[#C9A66B]/20
-        to-transparent
-      "
-    />
-  </div>
-
-  <div
-    className="
-      relative
-      z-10
-      mx-auto
-      max-w-7xl
-      px-4
-      sm:px-6
-      lg:px-8
-    "
-  >
-    {/* ==================================================
-        SECTION HEADER
-    ================================================== */}
-
-    <motion.div
-      ref={ref}
-      initial={
-        prefersReducedMotion
-          ? false
-          : {
-              opacity: 0,
-              y: 30,
-            }
-      }
-      animate={
-        inView
-          ? {
-              opacity: 1,
-              y: 0,
-            }
-          : {}
-      }
-      transition={{
-        duration: 0.7,
-        ease: "easeOut",
-      }}
-      className="
-        mb-20
-        max-w-4xl
-      "
+        ${
+          theme === "dark"
+            ? "bg-[#0A0A0A] text-[#F5F3EE]"
+            : "bg-[#F5F4EF] text-[#171717]"
+        }
+      `}
     >
-      <div
-        className="
-          mb-5
-          flex
-          items-center
-          gap-4
-        "
-      >
-        <span
-          className="
-            h-px
-            w-10
-            bg-[#C9A66B]
-          "
-        />
+      {/* ======================================================
+          Ambient background
+      ======================================================= */}
 
-        <span
-          className="
-            text-xs
-            font-semibold
-            uppercase
-            tracking-[0.35em]
-            text-[#C9A66B]
-          "
-        >
-          Selected Work
-        </span>
-      </div>
-
-      <div
-        className="
-          flex
-          flex-col
-          gap-6
-          lg:flex-row
-          lg:items-end
-          lg:justify-between
-        "
-      >
-        <h2
-          className="
-            text-5xl
-            font-bold
-            leading-[0.95]
-            tracking-tight
-            sm:text-6xl
-            lg:text-7xl
-          "
-        >
-          <span
-            className={
-              theme === "dark"
-                ? "text-[#F5F3EE]"
-                : "text-[#171717]"
-            }
-          >
-            Project
-          </span>
-
-          <br />
-
-          <span
-            className="
-              text-[#C9A66B]
-            "
-          >
-            Showcase
-          </span>
-        </h2>
-
-        <p
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div
           className={`
-            max-w-md
-            text-base
-            leading-7
-            lg:pb-1
+            absolute
+            left-[10%]
+            top-[12%]
+            h-72
+            w-72
+            rounded-full
+            blur-[130px]
 
             ${
               theme === "dark"
-                ? "text-[#8F8B83]"
-                : "text-[#65615A]"
+                ? "bg-[#C9A66B]/[0.02]"
+                : "bg-[#9A743B]/[0.03]"
             }
           `}
-        >
-          A selection of applications I have
-          designed and built across full-stack
-          development, real-time systems, and
-          AI-powered experiences.
-        </p>
-      </div>
-    </motion.div>
+        />
 
-    {/* ==================================================
-        PROJECTS
-    ================================================== */}
+        <div
+          className={`
+            absolute
+            bottom-[10%]
+            right-[5%]
+            h-80
+            w-80
+            rounded-full
+            blur-[140px]
 
-    <div className="space-y-28 sm:space-y-36">
-      {PROJECTS.map((project, index) => {
-        const isLive =
-          (project.link as string) !== "#";
-
-        const projectNumber =
-          String(index + 1).padStart(2, "0");
-
-        return (
-          <motion.article
-            key={project.id}
-            initial={
-              prefersReducedMotion
-                ? false
-                : {
-                    opacity: 0,
-                    y: 60,
-                  }
+            ${
+              theme === "dark"
+                ? "bg-white/[0.012]"
+                : "bg-black/[0.015]"
             }
-            whileInView={{
+          `}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+
+        {/* ====================================================
+            Page heading
+        ===================================================== */}
+
+        <div className="mb-12 text-center">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -20,
+            }}
+            animate={{
               opacity: 1,
               y: 0,
             }}
-            viewport={{
-              once: true,
-              amount: 0.12,
-            }}
             transition={{
-              duration: 0.8,
-              ease: "easeOut",
+              duration: 0.5,
             }}
-            className="
-              group
-              relative
-            "
           >
-            {/* ==================================================
-                PROJECT NUMBER + LINE
-            ================================================== */}
-
-            <div
-              className="
-                mb-6
-                flex
-                items-center
-                gap-4
-              "
+            <p
+              className={`
+                mb-3
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.28em]
+                ${
+                  theme === "dark"
+                    ? "text-[#C9A66B]"
+                    : "text-[#9A743B]"
+                }
+              `}
             >
-              <span
-                className="
-                  font-mono
-                  text-sm
-                  font-medium
-                  tracking-[0.2em]
-                  text-[#C9A66B]
-                "
-              >
-                {projectNumber}
-              </span>
+              Selected Work
+            </p>
 
-              <div
-                className={`
-                  h-px
-                  flex-1
-
-                  ${
-                    theme === "dark"
-                      ? "bg-white/[0.08]"
-                      : "bg-black/[0.08]"
-                  }
-                `}
-              />
-
-              <span
-                className={`
-                  text-[10px]
-                  font-medium
-                  uppercase
-                  tracking-[0.25em]
-
-                  ${
-                    theme === "dark"
-                      ? "text-white/30"
-                      : "text-black/30"
-                  }
-                `}
-              >
-                Featured Project
-              </span>
-            </div>
-
-            {/* ==================================================
-                PROJECT TITLE
-            ================================================== */}
-
-            <div
-              className="
-                mb-8
-                flex
-                flex-col
-                gap-4
-                lg:flex-row
-                lg:items-end
-                lg:justify-between
-              "
+            <h1
+              className={`
+                text-4xl
+                font-bold
+                tracking-tight
+                sm:text-5xl
+                ${
+                  theme ===
+                  "dark"
+                    ? "text-[#F5F3EE]"
+                    : "text-[#171717]"
+                }
+              `}
             >
-              <div>
-                <h3
+              My Projects
+            </h1>
+
+            <p
+              className={`
+                mx-auto
+                mt-4
+                max-w-2xl
+                text-sm
+                leading-7
+                sm:text-base
+                ${
+                  theme ===
+                  "dark"
+                    ? "text-[#8F8B83]"
+                    : "text-[#65615A]"
+                }
+              `}
+            >
+              A collection of applications and
+              solutions built with modern
+              technologies.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ====================================================
+            Projects
+        ===================================================== */}
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {PROJECTS.map(
+            (project, index) => {
+              const isLive =
+                (project.link as string) !==
+                "#";
+
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{
+                    opacity: 0,
+                    y: 30,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay:
+                      index * 0.08,
+                    duration: 0.5,
+                  }}
+                  whileHover={{
+                    y: -6,
+                  }}
+                  onClick={() =>
+                    isLive &&
+                    window.open(
+                      project.link,
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
+                  }
                   className={`
-                    text-3xl
-                    font-bold
-                    tracking-tight
-                    transition-colors
+                    group
+                    relative
+                    flex
+                    h-full
+                    flex-col
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    transition-all
                     duration-300
-                    sm:text-4xl
-                    lg:text-5xl
+
+                    ${
+                      isLive
+                        ? "cursor-pointer"
+                        : "cursor-default"
+                    }
 
                     ${
                       theme === "dark"
                         ? `
-                          text-[#F5F3EE]
-                          group-hover:text-[#D8BC91]
+                          border-white/[0.07]
+                          bg-[#141414]
+                          hover:border-[#C9A66B]/30
                         `
                         : `
-                          text-[#171717]
-                          group-hover:text-[#9A743B]
+                          border-black/[0.07]
+                          bg-white
+                          hover:border-[#9A743B]/30
                         `
                     }
                   `}
                 >
-                  {project.title}
-                </h3>
+                  {/* ==================================================
+                      Image
+                  =================================================== */}
 
+                  <div className="relative h-52 overflow-hidden">
+                    <img
+                      src={getImagePath(
+                        project.image
+                      )}
+                      alt={project.title}
+                      loading="lazy"
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition-transform
+                        duration-700
+                        group-hover:scale-[1.04]
+                      "
+                      onError={(e) => {
+                        const target =
+                          e.currentTarget as HTMLImageElement;
+
+                        target.onerror = null;
+
+                        target.src =
+                          `data:image/svg+xml,${encodeURIComponent(`
+                            <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+                              <rect width="100%" height="100%" fill="#141414"/>
+                              <text
+                                x="50%"
+                                y="50%"
+                                fill="#C9A66B"
+                                font-family="sans-serif"
+                                font-size="20"
+                                text-anchor="middle"
+                                dominant-baseline="middle"
+                              >${project.title}</text>
+                            </svg>
+                          `)}`;
+                      }}
+                    />
+
+                    {/* Image overlay */}
+
+                    <div
+                      className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/80
+                        via-black/10
+                        to-transparent
+                      "
+                    />
+
+                    {/* Project icon */}
+
+                    <div
+                      className="
+                        absolute
+                        bottom-4
+                        left-5
+                        text-3xl
+                        text-white
+                        drop-shadow-lg
+                      "
+                    >
+                      {project.icon}
+                    </div>
+
+                    {/* External link */}
+
+                    {isLive && (
+                      <div
+                        className="
+                          absolute
+                          right-4
+                          top-4
+                          flex
+                          h-8
+                          w-8
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-black/55
+                          opacity-0
+                          backdrop-blur-sm
+                          transition-all
+                          duration-200
+                          group-hover:opacity-100
+                        "
+                      >
+                        <FaExternalLinkAlt className="text-[10px] text-white" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* ==================================================
+                      Content
+                  =================================================== */}
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-2 flex items-start justify-between gap-4">
+                      <h3
+                        className={`
+                          text-xl
+                          font-semibold
+                          transition-colors
+                          duration-200
+
+                          ${
+                            theme ===
+                            "dark"
+                              ? "text-[#F5F3EE] group-hover:text-[#D8BC91]"
+                              : "text-[#171717] group-hover:text-[#9A743B]"
+                          }
+                        `}
+                      >
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <p
+                      className={`
+                        mb-5
+                        flex-1
+                        text-sm
+                        leading-7
+                        ${
+                          theme ===
+                          "dark"
+                            ? "text-[#858179]"
+                            : "text-[#65615A]"
+                        }
+                      `}
+                    >
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+
+                    <div className="mb-6 flex flex-wrap gap-2">
+                      {project.technologies.map(
+                        (tech) => (
+                          <span
+                            key={tech}
+                            className={`
+                              rounded-full
+                              border
+                              px-2.5
+                              py-1
+                              text-[11px]
+                              transition-colors
+                              duration-200
+
+                              ${
+                                theme ===
+                                "dark"
+                                  ? `
+                                    border-white/[0.07]
+                                    bg-white/[0.02]
+                                    text-[#8F8B83]
+                                    group-hover:border-[#C9A66B]/20
+                                  `
+                                  : `
+                                    border-black/[0.07]
+                                    bg-black/[0.012]
+                                    text-[#65615A]
+                                    group-hover:border-[#9A743B]/20
+                                  `
+                              }
+                            `}
+                          >
+                            {tech}
+                          </span>
+                        )
+                      )}
+                    </div>
+
+                    {/* Actions */}
+
+                    <div
+                      className="
+                        mt-auto
+                        flex
+                        items-center
+                        justify-between
+                        gap-4
+                      "
+                    >
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{
+                          x: 3,
+                        }}
+                        onClick={(e) =>
+                          e.stopPropagation()
+                        }
+                        className={`
+                          inline-flex
+                          items-center
+                          gap-2
+                          rounded-full
+                          text-sm
+                          font-medium
+                          transition-colors
+                          duration-200
+
+                          ${
+                            theme ===
+                            "dark"
+                              ? "text-[#C9A66B] hover:text-[#D8BC91]"
+                              : "text-[#9A743B] hover:text-[#7D5D2C]"
+                          }
+                        `}
+                      >
+                        <span>
+                          View Project
+                        </span>
+
+                        <FaArrowRight className="text-xs" />
+                      </motion.a>
+
+                      {project.github &&
+                        (project.github as string) !==
+                          "#" && (
+                          <motion.a
+                            href={
+                              project.github
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${project.title} on GitHub`}
+                            whileHover={{
+                              scale: 1.08,
+                            }}
+                            whileTap={{
+                              scale: 0.95,
+                            }}
+                            onClick={(e) =>
+                              e.stopPropagation()
+                            }
+                            className={`
+                              flex
+                              h-9
+                              w-9
+                              items-center
+                              justify-center
+                              rounded-full
+                              border
+                              transition-all
+                              duration-200
+
+                              ${
+                                theme ===
+                                "dark"
+                                  ? `
+                                    border-white/[0.07]
+                                    text-[#77736B]
+                                    hover:border-[#C9A66B]/30
+                                    hover:text-[#D8BC91]
+                                  `
+                                  : `
+                                    border-black/[0.07]
+                                    text-[#77726A]
+                                    hover:border-[#9A743B]/30
+                                    hover:text-[#9A743B]
+                                  `
+                              }
+                            `}
+                          >
+                            <FaGithub className="text-sm" />
+                          </motion.a>
+                        )}
+                    </div>
+                  </div>
+
+                  {/* Bottom accent */}
+
+                  <div
+                    className="
+                      absolute
+                      bottom-0
+                      left-0
+                      h-px
+                      w-full
+                      origin-left
+                      scale-x-0
+                      bg-[#C9A66B]
+                      transition-transform
+                      duration-300
+                      group-hover:scale-x-100
+                    "
+                  />
+                </motion.div>
+              );
+            }
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+
+
+
+const certificates = [
+  {
+    id: 1,
+    name: "Agentic AI Oracle",
+    organization: "Oracle University",
+    period: "July 2026",
+    image: "/certificates/agentic-ai-oracle-thumbnail.jpg",
+    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=C3E61DCCC8A83594C24EAF10BB8BB2060D8A67C29F62F2732BA2BFF1B5E1BAB3",
+    description:
+      "Earned the Agentic AI Certified Foundations Associate certification from Oracle, covering intelligent agents, autonomous decision-making, and real-world AI system design.",
+  },
+  {
+    id: 2,
+    name: "Java Spring Boot",
+    organization: "Onwingspan",
+    period: "April 2026",
+    image: "/certificates/java-spring-boot-thumbnail.jpg",
+    link: "/certificates/java-spring-boot-thumbnail.jpg",
+    description:
+      "Completed a hands-on course in Java Spring Boot, focusing on building scalable backend applications, REST APIs, and enterprise-level services.",
+  },
+  {
+    id: 3,
+    name: "AI on Jetson Nano",
+    organization: "NVIDIA",
+    period: "2026",
+    image: "/certificates/nvidia-jetson-nano-thumbnail.jpg",
+    link: "/certificates/nvidia-jetson-nano-thumbnail.jpg",
+    description:
+      "Learned the fundamentals of edge AI by building and deploying AI models on NVIDIA Jetson Nano for real-world applications.",
+  },
+  {
+    id: 4,
+    name: "Lyzr AI Nation SkillUp",
+    organization: "GeeksforGeeks",
+    period: "2025",
+    image: "/certificates/lyzr-ai-nation-thumbnail.jpg",
+    link: "/certificates/lyzr-ai-nation-thumbnail.jpg",
+    description:
+      "Gained practical exposure to applied AI concepts, tools, and workflows through the Lyzr AI SkillUp program.",
+  },
+  {
+    id: 5,
+    name: "GenAI Powered Data Analytics",
+    organization: "Tata",
+    period: "September 2025",
+    image: "/certificates/tata-genai-thumbnail.jpg",
+    link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_68c523f5c5c1406e81da9833_1757874836524_completion_certificate.pdf",
+    description:
+      "Completed a Generative AI certification, understanding core concepts like LLMs, prompt engineering, and AI-driven content generation.",
+  },
+  {
+    id: 6,
+    name: "Java Course",
+    organization: "Scaler",
+    period: "April 2026",
+    image: "/certificates/java-thumbnail.jpg",
+    link: "/certificates/java-thumbnail.jpg",
+    description:
+      "Mastered core Java concepts including OOP, problem-solving, and foundational programming through an intensive learning program.",
+  },
+];
+
+// ============================================================
+// ACHIEVEMENTS
+// ============================================================
+
+const achievements = [
+  {
+    title: "Software Engineer Intern",
+    organization: "Crescify Pvt Ltd",
+    period: "2025",
+    location: "Remote",
+    description:
+      "Full-stack development using React, Spring Boot, and REST APIs",
+    tech: ["React", "Spring Boot", "Java", "REST APIs"],
+  },
+  {
+    title: "Smart India Hackathon — Team Lead",
+    organization: "Government of India",
+    period: "2024 & 2025",
+    location: "India",
+    description:
+      "Led 6-member team to national-level win twice among 10,000+ teams",
+    tech: ["React", "Spring Boot", "AI/ML", "AWS", "Leadership"],
+  },
+  {
+    title: "MetaXScalar School Hackathon",
+    organization: "MetaXScalar",
+    period: "2025",
+    location: "Online",
+    description:
+      "Built an innovative AI-powered solution in a competitive hackathon environment",
+    tech: ["AI/ML", "React", "Python", "FastAPI"],
+  },
+  {
+    title: "Google Developer Hackathon",
+    organization: "Google",
+    period: "2025",
+    location: "Online",
+    description:
+      "Developed a scalable application using Google Cloud technologies",
+    tech: ["Google Cloud", "React", "Firebase", "Node.js"],
+  },
+];
+
+// ============================================================
+// EDUCATION
+// ============================================================
+
+const educationData = [
+  {
+    degree: "B.Tech in Computer Science & Engineering",
+    institution:
+      "Nutan College of Engineering & Research, Pune",
+    period: "2023 – 2027",
+    location: "Pune, India",
+    description:
+      "Focus on full-stack development and AI/ML.",
+    grade: "CGPA: 7.45/10",
+  },
+  {
+    degree: "Higher Secondary Certificate (HSC)",
+    institution:
+      "Sant Tukaram Maharaj High School, Buldhana",
+    period: "2022",
+    location: "Buldhana, India",
+    description: "Science stream.",
+    grade: "70.17%",
+  },
+  {
+    degree: "Secondary School Certificate (SSC)",
+    institution:
+      "Deulgaon Raja High School, Buldhana",
+    period: "2020",
+    location: "Buldhana, India",
+    description: "",
+    grade: "82%",
+  },
+];
+
+// ============================================================
+// REUSABLE CLASSES
+// ============================================================
+
+const pageBackground = (
+  theme: string
+) =>
+  t(
+    theme,
+    "bg-[#0A0A0A] text-[#F5F3EE]",
+    "bg-[#F5F4EF] text-[#171717]"
+  );
+
+const cardClass = (
+  theme: string
+) =>
+  t(
+    theme,
+    "bg-[#141414]/85 border-white/[0.07]",
+    "bg-white border-black/[0.07]"
+  );
+
+const innerCardClass = (
+  theme: string
+) =>
+  t(
+    theme,
+    "bg-white/[0.018] border-white/[0.07]",
+    "bg-black/[0.012] border-black/[0.07]"
+  );
+
+const primaryText = (
+  theme: string
+) =>
+  t(
+    theme,
+    "text-[#F5F3EE]",
+    "text-[#171717]"
+  );
+
+const secondaryText = (
+  theme: string
+) =>
+  t(
+    theme,
+    "text-[#A7A39A]",
+    "text-[#65615A]"
+  );
+
+const mutedText = (
+  theme: string
+) =>
+  t(
+    theme,
+    "text-[#706D67]",
+    "text-[#918D84]"
+  );
+
+const accentText = (
+  theme: string
+) =>
+  t(
+    theme,
+    "text-[#C9A66B]",
+    "text-[#9A743B]"
+  );
+
+// ============================================================
+// PAGE
+// ============================================================
+
+const AboutSection = () => {
+  const { theme } = useTheme();
+
+  return (
+    <section
+      id="about-me"
+      className={`
+        relative
+        overflow-hidden
+        py-24
+        transition-colors
+        duration-300
+        ${pageBackground(theme)}
+      `}
+    >
+      {/* Ambient background */}
+      <div
+        className="
+          pointer-events-none
+          fixed
+          inset-0
+          -z-10
+          overflow-hidden
+        "
+      >
+        <div
+          className={`
+            absolute
+            left-[10%]
+            top-[8%]
+            h-72
+            w-72
+            rounded-full
+            blur-[120px]
+            ${
+              theme === "dark"
+                ? "bg-[#C9A66B]/[0.025]"
+                : "bg-[#9A743B]/[0.035]"
+            }
+          `}
+        />
+
+        <div
+          className={`
+            absolute
+            bottom-[10%]
+            right-[8%]
+            h-80
+            w-80
+            rounded-full
+            blur-[130px]
+            ${
+              theme === "dark"
+                ? "bg-white/[0.012]"
+                : "bg-black/[0.015]"
+            }
+          `}
+        />
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+
+        {/* ====================================================
+            Header
+        ===================================================== */}
+
+        <div className="mb-12 text-center">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
+          >
+            <p
+              className={`
+                mb-3
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.28em]
+                ${accentText(theme)}
+              `}
+            >
+              Profile
+            </p>
+
+            <h1
+              className={`
+                text-4xl
+                font-bold
+                tracking-tight
+                sm:text-5xl
+                ${primaryText(theme)}
+              `}
+            >
+              About Me
+            </h1>
+
+            <p
+              className={`
+                mx-auto
+                mt-4
+                max-w-2xl
+                text-sm
+                leading-7
+                sm:text-base
+                ${secondaryText(theme)}
+              `}
+            >
+              Resume, education, technology,
+              certifications, achievements and
+              professional experience.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ====================================================
+            Resume + Education
+        ===================================================== */}
+
+        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* Resume */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.1,
+              duration: 0.5,
+            }}
+            className={`
+              flex
+              h-full
+              flex-col
+              rounded-2xl
+              border
+              p-6
+              ${cardClass(theme)}
+            `}
+          >
+            <div className="mb-5 flex items-center justify-between">
+              <div>
                 <p
-                  className="
-                    mt-2
-                    text-sm
+                  className={`
+                    mb-1
+                    text-xs
                     uppercase
                     tracking-[0.18em]
-                    text-[#C9A66B]
-                  "
+                    ${accentText(theme)}
+                  `}
                 >
-                  {project.technologies
-                    .slice(0, 3)
-                    .join(" · ")}
+                  Profile
                 </p>
+
+                <h2
+                  className={`
+                    text-xl
+                    font-semibold
+                    ${primaryText(theme)}
+                  `}
+                >
+                  Resume
+                </h2>
               </div>
 
-              {/* Project Icon */}
-
-              <div
+              <FaUser
                 className={`
-                  hidden
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  text-xl
-                  transition-all
-                  duration-300
-                  lg:flex
-
-                  ${
-                    theme === "dark"
-                      ? `
-                        border-white/10
-                        bg-white/[0.025]
-                        text-[#C9A66B]
-                        group-hover:border-[#C9A66B]/30
-                        group-hover:bg-[#C9A66B]/[0.05]
-                      `
-                      : `
-                        border-black/10
-                        bg-white
-                        text-[#9A743B]
-                        group-hover:border-[#9A743B]/30
-                        group-hover:bg-[#9A743B]/[0.04]
-                      `
-                  }
+                  text-lg
+                  ${mutedText(theme)}
                 `}
-              >
-                {project.icon}
-              </div>
+              />
             </div>
 
-            {/* ==================================================
-                LARGE PROJECT VISUAL
-            ================================================== */}
+            <p
+              className={`
+                mb-6
+                text-sm
+                leading-7
+                ${secondaryText(theme)}
+              `}
+            >
+              Full Stack Developer with expertise
+              in React, Spring Boot, and cloud
+              technologies. Passionate about building
+              scalable, secure, and user-friendly web
+              applications. Experienced in leading
+              teams and delivering high-impact
+              solutions in hackathons and internships.
+            </p>
+
+            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "Name",
+                    value: siteConfig.name,
+                    icon: FaUser,
+                  },
+                  {
+                    label: "Role",
+                    value: "Full Stack Developer",
+                    icon: FaUser,
+                  },
+                  {
+                    label: "Status",
+                    value: "Open to opportunities",
+                    icon: FaUser,
+                  },
+                ].map(
+                  ({
+                    label,
+                    value,
+                    icon: Icon,
+                  }) => (
+                    <div
+                      key={label}
+                      className="flex items-start gap-3"
+                    >
+                      <div
+                        className={`
+                          mt-0.5
+                          rounded-lg
+                          border
+                          p-2
+                          ${innerCardClass(theme)}
+                        `}
+                      >
+                        <Icon
+                          className={`
+                            text-xs
+                            ${accentText(theme)}
+                          `}
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <p
+                          className={`
+                            text-[10px]
+                            uppercase
+                            tracking-wider
+                            ${mutedText(theme)}
+                          `}
+                        >
+                          {label}
+                        </p>
+
+                        <p
+                          className={`
+                            mt-0.5
+                            break-words
+                            text-xs
+                            font-semibold
+                            ${primaryText(theme)}
+                          `}
+                        >
+                          {value}
+                          {label === "Status" &&
+                            " ✅"}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "Location",
+                    value: siteConfig.location,
+                    icon: FaMapMarkerAlt,
+                  },
+                  {
+                    label: "Email",
+                    value: siteConfig.email,
+                    icon: FaEnvelope,
+                  },
+                  {
+                    label: "Phone",
+                    value: siteConfig.phone,
+                    icon: FaPhone,
+                  },
+                ].map(
+                  ({
+                    label,
+                    value,
+                    icon: Icon,
+                  }) => (
+                    <div
+                      key={label}
+                      className="flex items-start gap-3"
+                    >
+                      <div
+                        className={`
+                          mt-0.5
+                          rounded-lg
+                          border
+                          p-2
+                          ${innerCardClass(theme)}
+                        `}
+                      >
+                        <Icon
+                          className={`
+                            text-xs
+                            ${accentText(theme)}
+                          `}
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <p
+                          className={`
+                            text-[10px]
+                            uppercase
+                            tracking-wider
+                            ${mutedText(theme)}
+                          `}
+                        >
+                          {label}
+                        </p>
+
+                        <p
+                          className={`
+                            mt-0.5
+                            break-words
+                            text-xs
+                            font-semibold
+                            ${primaryText(theme)}
+                          `}
+                        >
+                          {value}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
 
             <div
               className={`
-                relative
-                overflow-hidden
-                rounded-3xl
-                border
-
+                mt-6
+                border-t
+                pt-5
                 ${
                   theme === "dark"
-                    ? `
-                      border-white/[0.08]
-                      bg-[#111111]
-                    `
-                    : `
-                      border-black/[0.08]
-                      bg-white
-                    `
+                    ? "border-white/[0.07]"
+                    : "border-black/[0.07]"
                 }
               `}
             >
-              {/* Top Gold Line */}
-
-              <div
-                className="
-                  absolute
-                  left-1/2
-                  top-0
-                  z-20
-                  h-px
-                  w-1/3
-                  -translate-x-1/2
-                  bg-gradient-to-r
-                  from-transparent
-                  via-[#C9A66B]/60
-                  to-transparent
-                "
-              />
-
-              <motion.div
-                whileHover={
-                  prefersReducedMotion
-                    ? undefined
-                    : {
-                        scale: 1.025,
-                      }
-                }
-                transition={{
-                  duration: 0.7,
-                  ease: "easeOut",
+              <motion.a
+                href={siteConfig.resumePath}
+                download
+                whileHover={{
+                  scale: 1.02,
+                  y: -1,
+                }}
+                whileTap={{
+                  scale: 0.98,
                 }}
                 className="
-                  relative
-                  aspect-[16/8]
-                  overflow-hidden
-                  sm:aspect-[16/7]
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  bg-[#F5F3EE]
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-semibold
+                  text-[#0A0A0A]
+                  transition-all
+                  duration-300
+                  hover:bg-[#C9A66B]
                 "
               >
-                <img
-                  src={getImagePath(
-                    project.image
-                  )}
-                  alt={project.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="
-                    h-full
-                    w-full
-                    object-cover
-                  "
-                  onError={(e) => {
-                    const target =
-                      e.currentTarget;
-
-                    target.onerror = null;
-
-                    target.src =
-                      `data:image/svg+xml,${encodeURIComponent(
-                        `
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1200"
-                            height="600"
-                          >
-                            <rect
-                              width="100%"
-                              height="100%"
-                              fill="#111111"
-                            />
-
-                            <text
-                              x="50%"
-                              y="50%"
-                              fill="#C9A66B"
-                              font-family="sans-serif"
-                              font-size="42"
-                              text-anchor="middle"
-                              dominant-baseline="middle"
-                            >
-                              ${project.title}
-                            </text>
-                          </svg>
-                        `
-                      )}`;
-                  }}
-                />
-
-                {/* Image Overlay */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-                    bg-gradient-to-t
-                    from-black/60
-                    via-black/10
-                    to-transparent
-                  "
-                />
-
-                {/* Project Icon */}
-
-                <div
-                  className="
-                    absolute
-                    bottom-5
-                    left-5
-                    flex
-                    h-12
-                    w-12
-                    items-center
-                    justify-center
-                    rounded-xl
-                    border
-                    border-white/15
-                    bg-black/40
-                    text-xl
-                    text-[#D8BC91]
-                    backdrop-blur-md
-                    sm:bottom-7
-                    sm:left-7
-                  "
-                >
-                  {project.icon}
-                </div>
-
-                {/* View Button */}
-
-                {isLive && (
-                  <a
-                    href={
-                      project.link
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) =>
-                      e.stopPropagation()
-                    }
-                    className="
-                      absolute
-                      right-5
-                      top-5
-                      inline-flex
-                      h-11
-                      items-center
-                      gap-2
-                      rounded-full
-                      border
-                      border-white/15
-                      bg-black/40
-                      px-5
-                      text-xs
-                      font-semibold
-                      text-white
-                      opacity-0
-                      backdrop-blur-md
-                      transition-all
-                      duration-300
-                      group-hover:opacity-100
-                      hover:border-[#C9A66B]/50
-                      hover:bg-black/60
-                      sm:right-7
-                      sm:top-7
-                    "
-                  >
-                    <span>
-                      Visit Project
-                    </span>
-
-                    <FaExternalLinkAlt
-                      className="text-[10px]"
-                      aria-hidden="true"
-                    />
-                  </a>
-                )}
-              </motion.div>
+                <FaDownload className="text-xs" />
+                Download Full Resume
+              </motion.a>
             </div>
+          </motion.div>
 
-            {/* ==================================================
-                PROJECT INFORMATION
-            ================================================== */}
+          {/* Education */}
 
-            <div
-              className="
-                mt-7
-                grid
-                grid-cols-1
-                gap-8
-                lg:grid-cols-12
-              "
-            >
-              {/* Description */}
-
-              <div
-                className="
-                  lg:col-span-7
-                "
-              >
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.15,
+              duration: 0.5,
+            }}
+            className={`
+              flex
+              h-full
+              flex-col
+              rounded-2xl
+              border
+              p-6
+              ${cardClass(theme)}
+            `}
+          >
+            <div className="mb-5 flex items-center justify-between">
+              <div>
                 <p
                   className={`
-                    max-w-3xl
-                    text-base
-                    leading-7
-                    sm:text-lg
-                    sm:leading-8
-
-                    ${
-                      theme === "dark"
-                        ? "text-[#96928A]"
-                        : "text-[#65615A]"
-                    }
+                    mb-1
+                    text-xs
+                    uppercase
+                    tracking-[0.18em]
+                    ${accentText(theme)}
                   `}
                 >
-                  {project.description}
+                  Academic
                 </p>
+
+                <h2
+                  className={`
+                    text-xl
+                    font-semibold
+                    ${primaryText(theme)}
+                  `}
+                >
+                  Education
+                </h2>
               </div>
 
-              {/* Technologies */}
+              <FaGraduationCap
+                className={`
+                  text-lg
+                  ${mutedText(theme)}
+                `}
+              />
+            </div>
 
-              <div
-                className="
-                  lg:col-span-5
-                "
-              >
-                <div
-                  className="
-                    mb-3
-                    text-[10px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.25em]
-                    text-[#C9A66B]
-                  "
-                >
-                  Built With
-                </div>
+            <div className="flex flex-1 flex-col gap-4">
+              {educationData.map(
+                (item, idx) => (
+                  <div
+                    key={idx}
+                    className={`
+                      rounded-xl
+                      border
+                      p-4
+                      transition-all
+                      duration-300
+                      ${
+                        theme === "dark"
+                          ? `
+                            bg-white/[0.018]
+                            border-white/[0.07]
+                            hover:border-[#C9A66B]/25
+                            hover:bg-white/[0.03]
+                          `
+                          : `
+                            bg-black/[0.012]
+                            border-black/[0.07]
+                            hover:border-[#9A743B]/25
+                            hover:bg-black/[0.02]
+                          `
+                      }
+                    `}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <h3
+                          className={`
+                            text-sm
+                            font-semibold
+                            leading-6
+                            ${primaryText(theme)}
+                          `}
+                        >
+                          {item.degree}
+                        </h3>
 
-                <div
-                  className="
-                    flex
-                    flex-wrap
-                    gap-2
-                  "
-                >
-                  {project.technologies.map(
-                    (tech) => (
+                        <p
+                          className={`
+                            mt-1
+                            text-xs
+                            ${accentText(theme)}
+                          `}
+                        >
+                          {item.institution}
+                        </p>
+                      </div>
+
+                      <div className="shrink-0 text-right">
+                        <span
+                          className={`
+                            text-xs
+                            font-medium
+                            ${primaryText(theme)}
+                          `}
+                        >
+                          {item.period}
+                        </span>
+
+                        <p
+                          className={`
+                            mt-1
+                            text-[11px]
+                            ${mutedText(theme)}
+                          `}
+                        >
+                          {item.location}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
                       <span
-                        key={tech}
                         className={`
+                          rounded-full
+                          border
+                          px-2.5
+                          py-1
+                          text-[11px]
+                          font-medium
+                          ${
+                            theme === "dark"
+                              ? "border-[#C9A66B]/20 bg-[#C9A66B]/[0.06] text-[#D8BC91]"
+                              : "border-[#9A743B]/20 bg-[#9A743B]/[0.05] text-[#9A743B]"
+                          }
+                        `}
+                      >
+                        {item.grade}
+                      </span>
+
+                      {item.description && (
+                        <span
+                          className={`
+                            text-xs
+                            ${secondaryText(theme)}
+                          `}
+                        >
+                          {item.description}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ====================================================
+            Tech Stack
+        ===================================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.2,
+            duration: 0.5,
+          }}
+          className={`
+            mb-6
+            rounded-2xl
+            border
+            p-6
+            ${cardClass(theme)}
+          `}
+        >
+          <div className="mb-6">
+            <p
+              className={`
+                mb-1
+                text-xs
+                uppercase
+                tracking-[0.18em]
+                ${accentText(theme)}
+              `}
+            >
+              Technologies
+            </p>
+
+            <h2
+              className={`
+                text-xl
+                font-semibold
+                ${primaryText(theme)}
+              `}
+            >
+              Tech Stack
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Frontend",
+                items: [
+                  { name: "React", icon: FaReact },
+                  {
+                    name: "TypeScript",
+                    icon: SiTypescript,
+                  },
+                  {
+                    name: "JavaScript",
+                    icon: FaJs,
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    icon: SiTailwindcss,
+                  },
+                  {
+                    name: "HTML5",
+                    icon: FaHtml5,
+                  },
+                  {
+                    name: "CSS3",
+                    icon: FaCss3Alt,
+                  },
+                ],
+              },
+              {
+                title: "Backend",
+                items: [
+                  { name: "Java", icon: FaJava },
+                  {
+                    name: "Python",
+                    icon: FaPython,
+                  },
+                  {
+                    name: "Spring Boot",
+                    icon: SiSpringboot,
+                  },
+                  {
+                    name: "Spring Security",
+                    icon: SiSpringsecurity,
+                  },
+                  { name: "JWT", icon: FaKey },
+                  {
+                    name: "REST APIs",
+                    icon: FaServer,
+                  },
+                ],
+              },
+              {
+                title: "Database & DevOps",
+                items: [
+                  {
+                    name: "MySQL",
+                    icon: SiMysql,
+                  },
+                  {
+                    name: "MongoDB",
+                    icon: SiMongodb,
+                  },
+                  {
+                    name: "PostgreSQL",
+                    icon: SiPostgresql,
+                  },
+                  {
+                    name: "Redis",
+                    icon: SiRedis,
+                  },
+                  { name: "Git", icon: FaGitAlt },
+                  {
+                    name: "Docker",
+                    icon: FaDocker,
+                  },
+                  { name: "AWS", icon: FaAws },
+                ],
+              },
+            ].map((group) => (
+              <div
+                key={group.title}
+                className={`
+                  rounded-xl
+                  border
+                  p-5
+                  ${innerCardClass(theme)}
+                `}
+              >
+                <h3
+                  className={`
+                    mb-4
+                    text-sm
+                    font-semibold
+                    ${primaryText(theme)}
+                  `}
+                >
+                  {group.title}
+                </h3>
+
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map(
+                    ({
+                      name,
+                      icon: Icon,
+                    }) => (
+                      <span
+                        key={name}
+                        className={`
+                          group
+                          inline-flex
+                          items-center
+                          gap-2
                           rounded-full
                           border
                           px-3
                           py-1.5
                           text-xs
-                          font-medium
-                          transition-colors
-                          duration-300
+                          transition-all
+                          duration-200
 
                           ${
                             theme === "dark"
                               ? `
-                                border-white/10
-                                bg-white/[0.025]
-                                text-white/60
-                                group-hover:border-[#C9A66B]/20
-                                group-hover:text-[#D8BC91]
+                                border-white/[0.08]
+                                bg-white/[0.02]
+                                text-[#A7A39A]
+                                hover:border-[#C9A66B]/25
+                                hover:text-[#F5F3EE]
                               `
                               : `
-                                border-black/10
-                                bg-black/[0.015]
+                                border-black/[0.07]
+                                bg-black/[0.012]
                                 text-[#65615A]
-                                group-hover:border-[#9A743B]/20
-                                group-hover:text-[#7C5B2B]
+                                hover:border-[#9A743B]/25
+                                hover:text-[#171717]
                               `
                           }
                         `}
                       >
-                        {tech}
+                        <Icon
+                          className={`
+                            text-sm
+                            transition-colors
+                            duration-200
+                            ${
+                              theme === "dark"
+                                ? "text-[#817C72] group-hover:text-[#C9A66B]"
+                                : "text-[#858077] group-hover:text-[#9A743B]"
+                            }
+                          `}
+                        />
+                        {name}
                       </span>
                     )
                   )}
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </motion.div>
 
-            {/* ==================================================
-                PROJECT LINKS
-            ================================================== */}
+        {/* ====================================================
+            Certifications
+        ===================================================== */}
 
-            <div
-              className="
-                mt-8
-                flex
-                flex-wrap
-                items-center
-                gap-6
-              "
-            >
-              {isLive && (
-                <motion.a
-                  href={
-                    project.link
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={
-                    prefersReducedMotion
-                      ? undefined
-                      : {
-                          x: 4,
-                        }
-                  }
-                  className="
-                    group/link
-                    inline-flex
-                    items-center
-                    gap-3
-                    text-sm
-                    font-semibold
-                    text-[#C9A66B]
-                  "
-                >
-                  <span>
-                    View Live Project
-                  </span>
-
-                  <FaArrowRight
-                    className="
-                      text-xs
-                      transition-transform
-                      duration-200
-                      group-hover/link:translate-x-1
-                    "
-                    aria-hidden="true"
-                  />
-                </motion.a>
-              )}
-
-              {project.github &&
-                (project.github as string) !==
-                  "#" && (
-                  <motion.a
-                    href={
-                      project.github
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={
-                      prefersReducedMotion
-                        ? undefined
-                        : {
-                            x: 4,
-                          }
-                    }
-                    className={`
-                      inline-flex
-                      items-center
-                      gap-2
-                      text-sm
-                      font-medium
-
-                      ${
-                        theme === "dark"
-                          ? "text-white/40 hover:text-white/80"
-                          : "text-black/40 hover:text-black/80"
-                      }
-                    `}
-                  >
-                    <FaGithub
-                      className="text-base"
-                      aria-hidden="true"
-                    />
-
-                    <span>
-                      Source Code
-                    </span>
-                  </motion.a>
-                )}
-            </div>
-
-            {/* ==================================================
-                DIVIDER
-            ================================================== */}
-
-            {index <
-              PROJECTS.length - 1 && (
-              <div
-                className="
-                  mt-16
-                  h-px
-                  bg-gradient-to-r
-                  from-[#C9A66B]/20
-                  via-white/[0.06]
-                  to-transparent
-                "
-              />
-            )}
-          </motion.article>
-        );
-      })}
-    </div>
-  </div>
-</section>
-
-);
-};
-// ============================================================
-// VIEW MY WORK
-// ============================================================
-
-const ViewMyWork = () => {
-const [ref, inView] =
-useInView({
-triggerOnce: true,
-threshold: 0.1,
-});
-
-const { theme } = useTheme();
-
-const prefersReducedMotion =
-useReducedMotion();
-
-const navigate =
-useNavigate();
-
-const cards = [
-{
-title: "About Me",
-description:
-"View my resume, tech stack, and achievements",
-icon: <FaUser />,
-accent:
-"primary" as AccentColor,
-onClick: () =>
-navigate("/about-me"),
-},
-{
-title: "My Projects",
-description:
-"Explore all my completed projects with live links",
-icon: <FaFolderOpen />,
-accent:
-"accent" as AccentColor,
-onClick: () =>
-navigate("/projects"),
-},
-{
-title: "GitHub Profile",
-description:
-"Visit my GitHub profile and see my open-source work",
-icon: <FaGithub />,
-accent:
-"primary" as AccentColor,
-onClick: () =>
-navigate("/github"),
-},
-];
-
-return (
-<section
-   id="view-my-work"
-   className="
-     relative
-     py-20
-     px-4
-     overflow-hidden
-   "
- >
-<div
-className={`
-absolute
-inset-0
-bg-gradient-to-b
-
-      ${t(
-        theme,
-        `
-          from-transparent
-          via-[#C9A66B]/[0.025]
-          to-transparent
-        `,
-        `
-          from-transparent
-          via-[#9A743B]/[0.025]
-          to-transparent
-        `
-      )}
-    `}
-  />
-
-  <div
-    className="
-      max-w-7xl
-      mx-auto
-      relative
-      z-10
-    "
-  >
-    {/* Heading */}
-
-    <div
-      className="
-        text-center
-        mb-12
-      "
-    >
-      <motion.h2
-        ref={ref}
-        initial={
-          prefersReducedMotion
-            ? false
-            : {
-                opacity: 0,
-                y: 20,
-              }
-        }
-        animate={
-          inView
-            ? {
-                opacity: 1,
-                y: 0,
-              }
-            : {}
-        }
-        transition={{
-          duration: 0.5,
-        }}
-        className="
-          text-4xl
-          sm:text-5xl
-          font-bold
-          bg-gradient-to-r
-          from-[#C9A66B]
-          to-[#D8BC91]
-          bg-clip-text
-          text-transparent
-        "
-      >
-        View My Work
-      </motion.h2>
-
-      <motion.p
-        initial={
-          prefersReducedMotion
-            ? false
-            : {
-                opacity: 0,
-                y: 20,
-              }
-        }
-        animate={
-          inView
-            ? {
-                opacity: 1,
-                y: 0,
-              }
-            : {}
-        }
-        transition={{
-          delay: 0.2,
-        }}
-        className={`
-          text-lg
-          max-w-2xl
-          mx-auto
-
-          ${t(
-            theme,
-            "text-gray-400",
-            "text-gray-600"
-          )}
-        `}
-      >
-        Explore my professional
-        information and projects
-      </motion.p>
-    </div>
-
-    {/* Cards */}
-
-    <motion.div
-      initial={
-        prefersReducedMotion
-          ? false
-          : {
-              opacity: 0,
-              y: 50,
-            }
-      }
-      animate={
-        inView
-          ? {
-              opacity: 1,
-              y: 0,
-            }
-          : {}
-      }
-      transition={{
-        delay: 0.3,
-      }}
-      className="
-        grid
-        grid-cols-1
-        md:grid-cols-3
-        gap-8
-        max-w-6xl
-        mx-auto
-      "
-    >
-      {cards.map(
-        (card, index) => {
-          const accent =
-            getAccentClasses(
-              card.accent,
-              theme
-            );
-
-          return (
-            <motion.div
-              key={
-                card.title
-              }
-              initial={
-                prefersReducedMotion
-                  ? false
-                  : {
-                      opacity: 0,
-                      y: 30,
-                    }
-              }
-              animate={
-                inView
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                    }
-                  : {}
-              }
-              transition={{
-                delay:
-                  0.4 +
-                  index * 0.1,
-              }}
-              whileHover={{
-                scale: 1.05,
-                y: -5,
-              }}
-              onClick={
-                card.onClick
-              }
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (
-                  e.key ===
-                    "Enter" ||
-                  e.key ===
-                    " "
-                ) {
-                  e.preventDefault();
-
-                  card.onClick();
-                }
-              }}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.3,
+            duration: 0.5,
+          }}
+          className={`
+            mb-6
+            rounded-2xl
+            border
+            p-6
+            ${cardClass(theme)}
+          `}
+        >
+          <div className="mb-6">
+            <p
               className={`
-                group
-                relative
-                backdrop-blur-md
-                rounded-2xl
-                p-6
-                cursor-pointer
-                border
-                transition-all
-                duration-300
-                focus-visible:outline
-                focus-visible:outline-2
-                focus-visible:outline-[#C9A66B]
-
-                ${t(
-                  theme,
-                  "bg-white/5",
-                  "bg-white shadow-sm"
-                )}
-
-                ${accent.cardBorder}
-
-                ${accent.cardBorderHover}
+                mb-1
+                text-xs
+                uppercase
+                tracking-[0.18em]
+                ${accentText(theme)}
               `}
             >
-              {/* Hover Background */}
+              Credentials
+            </p>
 
-              <div
+            <h2
+              className={`
+                text-xl
+                font-semibold
+                ${primaryText(theme)}
+              `}
+            >
+              Certifications
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {certificates.map((cert) => (
+              <motion.a
+                key={cert.id}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{
+                  y: -4,
+                }}
                 className={`
-                  absolute
-                  inset-0
-                  rounded-2xl
-                  opacity-0
-                  group-hover:opacity-100
-                  transition-opacity
+                  group
+                  overflow-hidden
+                  rounded-xl
+                  border
+                  transition-all
                   duration-300
-                  bg-gradient-to-r
 
-                  ${t(
-                    theme,
-                    card.accent ===
-                      "primary"
+                  ${
+                    theme === "dark"
                       ? `
-                        from-[#C9A66B]/[0.06]
-                        to-transparent
+                        border-white/[0.07]
+                        bg-white/[0.018]
+                        hover:border-[#C9A66B]/30
+                        hover:bg-white/[0.03]
                       `
                       : `
-                        from-[#C9A66B]/[0.035]
-                        to-transparent
-                      `,
-                    card.accent ===
-                      "primary"
-                      ? `
-                        from-[#C9A66B]/[0.05]
-                        to-transparent
+                        border-black/[0.07]
+                        bg-white
+                        hover:border-[#9A743B]/25
                       `
-                      : `
-                        from-[#9A743B]/[0.04]
-                        to-transparent
-                      `
-                  )}
+                  }
                 `}
-              />
-
-              <div
-                className="
-                  relative
-                  z-10
-                  text-center
-                "
               >
-                {/* Icon */}
+                <div className="relative h-36 overflow-hidden">
+                  <img
+                    src={getImagePath(cert.image)}
+                    alt={cert.name}
+                    loading="lazy"
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-500
+                      group-hover:scale-105
+                    "
+                    onError={(e) => {
+                      const target =
+                        e.currentTarget as HTMLImageElement;
 
-                <div
-                  className={`
-                    inline-flex
-                    p-4
-                    rounded-2xl
-                    mb-4
-                    group-hover:scale-110
-                    transition-transform
+                      target.onerror = null;
 
-                    ${t(
-                      theme,
-                      card.accent ===
-                        "primary"
-                        ? "bg-white/[0.05]"
-                        : "bg-[#C9A66B]/[0.06]",
-                      card.accent ===
-                        "primary"
-                        ? "bg-black/[0.025]"
-                        : "bg-[#9A743B]/[0.05]"
-                    )}
-                  `}
-                >
+                      target.src =
+                        `data:image/svg+xml,${encodeURIComponent(`
+                          <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+                            <rect width="100%" height="100%" fill="#141414"/>
+                            <text
+                              x="50%"
+                              y="50%"
+                              fill="#C9A66B"
+                              font-family="sans-serif"
+                              font-size="16"
+                              text-anchor="middle"
+                              dominant-baseline="middle"
+                            >${cert.name}</text>
+                          </svg>
+                        `)}`;
+                    }}
+                  />
+
                   <div
-                    className={`
-                      text-4xl
-                      ${accent.text}
-                    `}
-                    aria-hidden="true"
+                    className="
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-black/65
+                      via-transparent
+                      to-transparent
+                    "
+                  />
+
+                  <div
+                    className="
+                      absolute
+                      bottom-2
+                      right-2
+                      flex
+                      h-7
+                      w-7
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-black/55
+                      opacity-0
+                      backdrop-blur-sm
+                      transition-opacity
+                      duration-200
+                      group-hover:opacity-100
+                    "
                   >
-                    {
-                      card.icon
-                    }
+                    <FaExternalLinkAlt className="text-[10px] text-white" />
                   </div>
                 </div>
 
-                <h3
-                  className={`
-                    text-xl
-                    font-bold
-                    mb-2
+                <div className="p-4">
+                  <h4
+                    className={`
+                      text-sm
+                      font-semibold
+                      ${primaryText(theme)}
+                    `}
+                  >
+                    {cert.name}
+                  </h4>
 
-                    ${t(
-                      theme,
-                      "text-white",
-                      "text-gray-900"
-                    )}
-                  `}
-                >
-                  {
-                    card.title
-                  }
-                </h3>
-
-                <p
-                  className={`
-                    text-sm
-                    leading-relaxed
-                    mb-4
-
-                    ${t(
-                      theme,
-                      "text-gray-400",
-                      "text-gray-600"
-                    )}
-                  `}
-                >
-                  {
-                    card.description
-                  }
-                </p>
-
-                <motion.div
-                  className={`
-                    inline-flex
-                    items-center
-                    gap-2
-                    text-sm
-                    font-medium
-                    ${accent.text}
-                  `}
-                  whileHover={{
-                    x: 5,
-                  }}
-                >
-                  <span>
-                    Click to explore
-                  </span>
-
-                  <FaExternalLinkAlt
-                    className="
+                  <p
+                    className={`
+                      mt-1
                       text-xs
-                    "
-                    aria-hidden="true"
-                  />
+                      ${accentText(theme)}
+                    `}
+                  >
+                    {cert.organization}
+                    {" • "}
+                    {cert.period}
+                  </p>
+
+                  <p
+                    className={`
+                      mt-2
+                      text-xs
+                      leading-6
+                      ${secondaryText(theme)}
+                    `}
+                  >
+                    {cert.description}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ====================================================
+            Achievements
+        ===================================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.4,
+            duration: 0.5,
+          }}
+          className={`
+            rounded-2xl
+            border
+            p-6
+            ${cardClass(theme)}
+          `}
+        >
+          <div className="mb-6">
+            <p
+              className={`
+                mb-1
+                text-xs
+                uppercase
+                tracking-[0.18em]
+                ${accentText(theme)}
+              `}
+            >
+              Experience
+            </p>
+
+            <h2
+              className={`
+                text-xl
+                font-semibold
+                ${primaryText(theme)}
+              `}
+            >
+              Achievements & Leadership
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {achievements.map(
+              (item, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{
+                    y: -3,
+                  }}
+                  className={`
+                    rounded-xl
+                    border
+                    p-5
+                    transition-all
+                    duration-300
+
+                    ${
+                      theme === "dark"
+                        ? `
+                          border-white/[0.07]
+                          bg-white/[0.018]
+                          hover:border-[#C9A66B]/25
+                          hover:bg-white/[0.03]
+                        `
+                        : `
+                          border-black/[0.07]
+                          bg-black/[0.01]
+                          hover:border-[#9A743B]/25
+                        `
+                    }
+                  `}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3
+                        className={`
+                          text-sm
+                          font-semibold
+                          ${primaryText(theme)}
+                        `}
+                      >
+                        {item.title}
+                      </h3>
+
+                      <p
+                        className={`
+                          mt-1
+                          text-xs
+                          ${accentText(theme)}
+                        `}
+                      >
+                        {item.organization}
+                      </p>
+                    </div>
+
+                    <div className="shrink-0 text-right">
+                      <span
+                        className={`
+                          text-xs
+                          font-medium
+                          ${primaryText(theme)}
+                        `}
+                      >
+                        {item.period}
+                      </span>
+
+                      <p
+                        className={`
+                          mt-1
+                          text-[11px]
+                          ${mutedText(theme)}
+                        `}
+                      >
+                        {item.location}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p
+                    className={`
+                      mt-3
+                      text-xs
+                      leading-6
+                      ${secondaryText(theme)}
+                    `}
+                  >
+                    {item.description}
+                  </p>
+
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {item.tech.map(
+                      (tech) => (
+                        <span
+                          key={tech}
+                          className={`
+                            rounded-full
+                            border
+                            px-2.5
+                            py-1
+                            text-[11px]
+
+                            ${
+                              theme ===
+                              "dark"
+                                ? `
+                                  border-white/[0.07]
+                                  bg-white/[0.02]
+                                  text-[#8F8B83]
+                                `
+                                : `
+                                  border-black/[0.07]
+                                  bg-black/[0.012]
+                                  text-[#65615A]
+                                `
+                            }
+                          `}
+                        >
+                          {tech}
+                        </span>
+                      )
+                    )}
+                  </div>
                 </motion.div>
-              </div>
-
-              {/* Bottom Accent */}
-
-              <div
-                className="
-                  absolute
-                  bottom-0
-                  left-0
-                  right-0
-                  h-0.5
-                  rounded-b-2xl
-                  opacity-0
-                  group-hover:opacity-100
-                  transition-opacity
-                  duration-300
-                  bg-gradient-to-r
-                  from-[#C9A66B]
-                  to-transparent
-                "
-              />
-            </motion.div>
-          );
-        }
-      )}
-    </motion.div>
-  </div>
-</section>
-
-);
+              )
+            )}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
+
+
 
 // ============================================================
 // CONTACT
@@ -4236,58 +4842,7 @@ aria-label="Scroll to top"
 // ============================================================
 
 const HomePage = () => {
-const { theme } =
-useTheme();
-
-const location =
-useLocation();
-
-// ==========================================================
-// Scroll to View My Work after navigation
-// ==========================================================
-
-useEffect(() => {
-const state =
-location.state as {
-scrollTo?: string;
-} | null;
-
-if (
-  state?.scrollTo ===
-  "view-my-work"
-) {
-  const timer =
-    window.setTimeout(
-      () => {
-        const section =
-          document.getElementById(
-            "view-my-work"
-          );
-
-        if (section) {
-          section.scrollIntoView(
-            {
-              behavior:
-                "smooth",
-            }
-          );
-        }
-
-        window.history.replaceState(
-          {},
-          document.title
-        );
-      },
-      100
-    );
-
-  return () =>
-    window.clearTimeout(
-      timer
-    );
-}
-
-}, [location]);
+const { theme } = useTheme();
 
 return (
 <div
@@ -4313,7 +4868,7 @@ duration-300
   <main>
     {/* Home / Hero */}
 
-    <section id="about-me">
+    <section id="home">
       <Hero />
     </section>
 
@@ -4323,12 +4878,17 @@ duration-300
       <Skills />
     </section>
 
-    {/* Projects section is intentionally
-        not rendered on homepage */}
+    {/* ==================================================
+        PROJECTS
+    ================================================== */}
 
-    <section id="view-my-work">
-      <ViewMyWork />
-    </section> 
+    <ProjectsSection />
+
+    {/* ==================================================
+        ABOUT
+    ================================================== */}
+
+    <AboutSection />
 
     {/* Contact */}
 
