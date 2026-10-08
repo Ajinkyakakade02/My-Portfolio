@@ -9,9 +9,6 @@ import {
 } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import AboutPage from "@/pages/AboutPage";
-import ProjectsPage from "@/pages/ProjectsPage";
-import GitHubPage from "@/pages/GitHubPage";
 
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
@@ -41,10 +38,6 @@ const AppContent = () => {
   const location = useLocation();
   const { theme } = useTheme();
 
-  // ==========================================================
-  // SCROLL TO TOP ON ROUTE CHANGE
-  // ==========================================================
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -69,54 +62,9 @@ const AppContent = () => {
       {/* Header */}
       <Header />
 
-      {/* Routes */}
+      {/* Single-page portfolio */}
       <Routes>
-        {/* Home */}
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
-
-        {/* About */}
-        <Route
-          path="/about-me"
-          element={<AboutPage />}
-        />
-
-        {/* Projects */}
-        <Route
-          path="/projects"
-          element={<ProjectsPage />}
-        />
-
-        {/* GitHub */}
-        <Route
-          path="/github"
-          element={<GitHubPage />}
-        />
-
-        {/* 404 */}
-        <Route
-          path="*"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-red-500 mb-4">
-                  404 - Page Not Found
-                </h1>
-
-                <p className="text-gray-400">
-                  The page you're looking for doesn't exist.
-                </p>
-
-                <p className="text-gray-400 mt-2">
-                  Current path:{" "}
-                  {window.location.pathname}
-                </p>
-              </div>
-            </div>
-          }
-        />
+        <Route path="*" element={<HomePage />} />
       </Routes>
 
       {/* Footer */}
@@ -130,11 +78,6 @@ const AppContent = () => {
 // ============================================================
 
 function App() {
-  // ==========================================================
-  // SMOOTH SCROLL FOR ANCHOR LINKS
-  // Only runs on the homepage
-  // ==========================================================
-
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -186,14 +129,9 @@ function App() {
     };
   }, []);
 
-  // ==========================================================
-  // RENDER
-  // ==========================================================
-
   return (
     <Router>
       <RouteDebugger />
-
       <AppContent />
     </Router>
   );
