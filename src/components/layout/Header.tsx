@@ -29,7 +29,7 @@ export const Header = () => {
   const [
     activeSection,
     setActiveSection,
-  ] = useState("about-me");
+  ] = useState("home");
 
   const [
     scrolled,
@@ -50,8 +50,8 @@ export const Header = () => {
   const navLinks = [
     {
       title: "Home",
-      link: "#about-me",
-      sectionId: "about-me",
+      link: "#home",
+      sectionId: "home",
     },
     {
       title: "Skills",
@@ -60,8 +60,13 @@ export const Header = () => {
     },
     {
       title: "Projects",
-      link: "#view-my-work",
-      sectionId: "view-my-work",
+      link: "#projects",
+      sectionId: "projects",
+    },
+    {
+      title: "About Me",
+      link: "#about-me",
+      sectionId: "about-me",
     },
     {
       title: "Contact",
@@ -160,7 +165,7 @@ export const Header = () => {
       }
 
       let currentSection =
-        "about-me";
+        "home";
 
       for (const link of navLinks) {
         const element =
