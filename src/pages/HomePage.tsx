@@ -971,145 +971,138 @@ const prefersReducedMotion =
 useReducedMotion();
 
 const technologies = [
-{
-// =========================================================
-// CORE JAVA / BACKEND
-// =========================================================
-name: "Java",
-icon: FaJava,
-color: "#ED8B00",
-},
-{
-name: "Spring Boot",
-icon: SiSpringboot,
-color: "#6DB33F",
-},
-{
-name: "Spring Security",
-icon: SiSpringsecurity,
-color: "#6DB33F",
-},
-{
-name: "JPA / Hibernate",
-icon: SiHibernate,
-color: "#59666C",
-},
-{
-name: "REST APIs",
-icon: FaServer,
-color: "#A78BFA",
-},
-{
-name: "JWT",
-icon: SiJsonwebtokens,
-color: "#D63AFF",
-},
-{
-name: "Maven",
-icon: FaServer,
-color: "#C71A36",
-},
-{
-name: "WebSocket",
-icon: FaServer,
-color: "#C9A66B",
-},
-{
-// =========================================================
-// FRONTEND
-// =========================================================
-name: "React",
-icon: FaReact,
-color: "#61DAFB",
-},
-{
-name: "TypeScript",
-icon: SiTypescript,
-color: "#3178C6",
-},
-{
-name: "JavaScript",
-icon: FaJs,
-color: "#F7DF1E",
-},
-{
-name: "HTML5",
-icon: FaHtml5,
-color: "#E34F26",
-},
-{
-name: "CSS3",
-icon: FaCss3Alt,
-color: "#1572B6",
-},
-{
-name: "Tailwind CSS",
-icon: SiTailwindcss,
-color: "#06B6D4",
-},
-{
-name: "Material UI",
-icon: SiMui,
-color: "#007FFF",
-},
-{
-name: "Redux Toolkit",
-icon: SiRedux,
-color: "#764ABC",
-},
-{
-// =========================================================
-// DATABASE / TOOLS
-// =========================================================
-name: "MySQL",
-icon: SiMysql,
-color: "#4479A1",
-},
-{
-name: "PostgreSQL",
-icon: SiPostgresql,
-color: "#336791",
-},
-{
-name: "MongoDB",
-icon: SiMongodb,
-color: "#47A248",
-},
-{
-name: "Redis",
-icon: SiRedis,
-color: "#DC382D",
-},
-{
-name: "Git",
-icon: FaGitAlt,
-color: "#F05032",
-},
-{
-name: "Docker",
-icon: FaDocker,
-color: "#2496ED",
-},
-{
-name: "Postman",
-icon: SiPostman,
-color: "#FF6C37",
-},
-{
-name: "Swagger / OpenAPI",
-icon: SiSwagger,
-color: "#85EA2D",
-},
+  {
+    name: "Java",
+    icon: FaJava,
+    color: "#ED8B00",
+  },
+  {
+    name: "Python",
+    icon: FaPython,
+    color: "#3776AB",
+  },
+  {
+    name: "Spring Boot",
+    icon: SiSpringboot,
+    color: "#6DB33F",
+  },
+  {
+    name: "Spring Security",
+    icon: SiSpringsecurity,
+    color: "#6DB33F",
+  },
+  {
+    name: "JPA / Hibernate",
+    icon: SiHibernate,
+    color: "#59666C",
+  },
+  {
+    name: "REST APIs",
+    icon: FaServer,
+    color: "#A78BFA",
+  },
+  {
+    name: "JWT",
+    icon: SiJsonwebtokens,
+    color: "#D63AFF",
+  },
+  {
+    name: "Maven",
+    icon: FaServer,
+    color: "#C71A36",
+  },
+  {
+    name: "WebSocket",
+    icon: FaServer,
+    color: "#C9A66B",
+  },
+
+  {
+    name: "React",
+    icon: FaReact,
+    color: "#61DAFB",
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
+    color: "#3178C6",
+  },
+  {
+    name: "JavaScript",
+    icon: FaJs,
+    color: "#F7DF1E",
+  },
+  {
+    name: "HTML5",
+    icon: FaHtml5,
+    color: "#E34F26",
+  },
+  {
+    name: "CSS3",
+    icon: FaCss3Alt,
+    color: "#1572B6",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: SiTailwindcss,
+    color: "#06B6D4",
+  },
+  {
+    name: "Material UI",
+    icon: SiMui,
+    color: "#007FFF",
+  },
+  {
+    name: "Redux Toolkit",
+    icon: SiRedux,
+    color: "#764ABC",
+  },
+
+  {
+    name: "MySQL",
+    icon: SiMysql,
+    color: "#4479A1",
+  },
+  {
+    name: "PostgreSQL",
+    icon: SiPostgresql,
+    color: "#336791",
+  },
+  {
+    name: "MongoDB",
+    icon: SiMongodb,
+    color: "#47A248",
+  },
+  {
+    name: "Redis",
+    icon: SiRedis,
+    color: "#DC382D",
+  },
+  {
+    name: "Git",
+    icon: FaGitAlt,
+    color: "#F05032",
+  },
+  {
+    name: "Docker",
+    icon: FaDocker,
+    color: "#2496ED",
+  },
+  {
+    name: "Postman",
+    icon: SiPostman,
+    color: "#FF6C37",
+  },
+  {
+    name: "Swagger / OpenAPI",
+    icon: SiSwagger,
+    color: "#85EA2D",
+  },
 ];
 
-const firstRow =
-technologies.slice(0, 8);
-
-const secondRow =
-technologies.slice(8, 16);
-
-const thirdRow =
-technologies.slice(16, 24);
+const firstRow = technologies.slice(0, 9);
+const secondRow = technologies.slice(9, 17);
+const thirdRow = technologies.slice(17, 25);
 
 // ==========================================================
 // Technology Item
