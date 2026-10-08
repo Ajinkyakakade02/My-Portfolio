@@ -51,6 +51,7 @@ SiRedis,
 } from "react-icons/si";
 
 import { useTheme } from "@/hooks/useTheme";
+import MascotWidget from "@/components/shared/MascotWidget";
 import { getImagePath } from "@/lib/paths";
 import { siteConfig, PROJECTS } from "@/constants";
 import {
@@ -86,6 +87,7 @@ const { theme } = useTheme();
 return (
 <div
    className="
+     relative
      min-h-screen
      flex
      items-center
@@ -95,6 +97,7 @@ return (
  >
 <div
      className="
+       relative
        max-w-7xl
        mx-auto
        px-4
@@ -104,6 +107,9 @@ return (
        w-full
      "
    >
+      {/* Center Penguin Mascot */}
+      <MascotWidget />
+
 <div
        className="
          grid
@@ -168,11 +174,15 @@ LEFT SIDE
           className={`
             relative
             inline-flex
+            max-w-full
+            flex-wrap
             items-center
-            gap-2
+            justify-center
+            gap-x-3
+            gap-y-2
             px-5
             py-2
-            rounded-full
+            rounded-2xl
             border
             mb-6
             text-sm
@@ -194,6 +204,7 @@ LEFT SIDE
             }
           `}
         >
+          {/* Status Dot */}
           <span
             className="
               w-2
@@ -205,9 +216,62 @@ LEFT SIDE
             "
           />
 
-          <span>
-            Full Stack Developer | Spring Boot,
-            React, TypeScript, MySQL, MongoDB
+          {/* Developer Title */}
+          <span className="whitespace-nowrap font-semibold">
+            Full Stack Developer
+          </span>
+
+          {/* Separator */}
+          <span className="text-[#A7A39A]/60">|</span>
+
+          {/* Spring Boot */}
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <SiSpringboot
+              className="text-base"
+              style={{ color: "#6DB33F" }}
+              aria-hidden="true"
+            />
+            <span>Spring Boot</span>
+          </span>
+
+          {/* React */}
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <FaReact
+              className="text-base"
+              style={{ color: "#61DAFB" }}
+              aria-hidden="true"
+            />
+            <span>React</span>
+          </span>
+
+          {/* TypeScript */}
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <SiTypescript
+              className="text-base"
+              style={{ color: "#3178C6" }}
+              aria-hidden="true"
+            />
+            <span>TypeScript</span>
+          </span>
+
+          {/* MySQL */}
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <SiMysql
+              className="text-base"
+              style={{ color: "#4479A1" }}
+              aria-hidden="true"
+            />
+            <span>MySQL</span>
+          </span>
+
+          {/* MongoDB */}
+          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <SiMongodb
+              className="text-base"
+              style={{ color: "#47A248" }}
+              aria-hidden="true"
+            />
+            <span>MongoDB</span>
           </span>
         </motion.div>
 
