@@ -52,7 +52,7 @@ export const PROJECTS = [
     link: "https://elearn-pro-hyym.vercel.app",
     github: "https://github.com/Ajinkyakakade02/elearn-pro",
     technologies: ["React", "Spring Boot", "MySQL", "Tailwind"],
-    icon: "📚",
+    icon: "",
   },
   {
     id: 2,
@@ -63,7 +63,7 @@ export const PROJECTS = [
     link: "https://content-mod-ai.vercel.app",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["AI/ML", "React", "FastAPI", "TensorFlow"],
-    icon: "🤖",
+    icon: "",
   },
   {
     id: 3,
@@ -74,7 +74,7 @@ export const PROJECTS = [
     link: "https://chat-nova02.vercel.app",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["WebSocket", "React", "TypeScript", "Spring Boot"],
-    icon: "💬",
+    icon: "",
   },
   {
     id: 4,
@@ -85,7 +85,7 @@ export const PROJECTS = [
     link: "https://github.com/Ajinkyakakade02",
     github: "https://github.com/Ajinkyakakade02",
     technologies: ["Gemini API", "React", "Spring Boot", "OAuth"],
-    icon: "✉️",
+    icon: "",
   },
 ] as const;
 
