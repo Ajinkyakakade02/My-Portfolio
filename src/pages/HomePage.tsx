@@ -4290,7 +4290,7 @@ duration-300
 
     <section id="view-my-work">
       <ViewMyWork />
-    </section>
+    </section> 
 
     {/* Contact */}
 
