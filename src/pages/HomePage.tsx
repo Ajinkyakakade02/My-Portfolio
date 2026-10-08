@@ -48,6 +48,12 @@ SiMysql,
 SiSpringsecurity,
 SiPostgresql,
 SiRedis,
+SiHibernate,
+SiRedux,
+SiMui,
+SiJsonwebtokens,
+SiSwagger,
+SiPostman,
 } from "react-icons/si";
 
 import { useTheme } from "@/hooks/useTheme";
@@ -966,6 +972,9 @@ useReducedMotion();
 
 const technologies = [
 {
+// =========================================================
+// CORE JAVA / BACKEND
+// =========================================================
 name: "Java",
 icon: FaJava,
 color: "#ED8B00",
@@ -981,6 +990,34 @@ icon: SiSpringsecurity,
 color: "#6DB33F",
 },
 {
+name: "JPA / Hibernate",
+icon: SiHibernate,
+color: "#59666C",
+},
+{
+name: "REST APIs",
+icon: FaServer,
+color: "#A78BFA",
+},
+{
+name: "JWT",
+icon: SiJsonwebtokens,
+color: "#D63AFF",
+},
+{
+name: "Maven",
+icon: FaServer,
+color: "#C71A36",
+},
+{
+name: "WebSocket",
+icon: FaServer,
+color: "#C9A66B",
+},
+{
+// =========================================================
+// FRONTEND
+// =========================================================
 name: "React",
 icon: FaReact,
 color: "#61DAFB",
@@ -996,11 +1033,34 @@ icon: FaJs,
 color: "#F7DF1E",
 },
 {
-name: "Python",
-icon: FaPython,
-color: "#3776AB",
+name: "HTML5",
+icon: FaHtml5,
+color: "#E34F26",
 },
 {
+name: "CSS3",
+icon: FaCss3Alt,
+color: "#1572B6",
+},
+{
+name: "Tailwind CSS",
+icon: SiTailwindcss,
+color: "#06B6D4",
+},
+{
+name: "Material UI",
+icon: SiMui,
+color: "#007FFF",
+},
+{
+name: "Redux Toolkit",
+icon: SiRedux,
+color: "#764ABC",
+},
+{
+// =========================================================
+// DATABASE / TOOLS
+// =========================================================
 name: "MySQL",
 icon: SiMysql,
 color: "#4479A1",
@@ -1021,50 +1081,35 @@ icon: SiRedis,
 color: "#DC382D",
 },
 {
-name: "Docker",
-icon: FaDocker,
-color: "#2496ED",
-},
-{
 name: "Git",
 icon: FaGitAlt,
 color: "#F05032",
 },
 {
-name: "Node.js",
-icon: FaNodeJs,
-color: "#339933",
+name: "Docker",
+icon: FaDocker,
+color: "#2496ED",
 },
 {
-name: "Tailwind CSS",
-icon: SiTailwindcss,
-color: "#06B6D4",
+name: "Postman",
+icon: SiPostman,
+color: "#FF6C37",
 },
 {
-name: "HTML5",
-icon: FaHtml5,
-color: "#E34F26",
-},
-{
-name: "CSS3",
-icon: FaCss3Alt,
-color: "#1572B6",
-},
-{
-name: "REST APIs",
-icon: FaServer,
-color: "#A78BFA",
+name: "Swagger / OpenAPI",
+icon: SiSwagger,
+color: "#85EA2D",
 },
 ];
 
 const firstRow =
-technologies.slice(0, 7);
+technologies.slice(0, 8);
 
 const secondRow =
-technologies.slice(7, 13);
+technologies.slice(8, 16);
 
 const thirdRow =
-technologies.slice(13, 18);
+technologies.slice(16, 24);
 
 // ==========================================================
 // Technology Item
