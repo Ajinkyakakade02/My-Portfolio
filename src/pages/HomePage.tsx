@@ -264,16 +264,7 @@ LEFT SIDE
             <span>MySQL</span>
           </span>
 
-          /* {/* MongoDB */}
-          <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
-            <SiMongodb
-              className="text-base"
-              style={{ color: "#47A248" }}
-              aria-hidden="true"
-            />
-            <span>MongoDB</span>
-          </span>
-        </motion.div> */
+          
 
         {/* Main Heading */}
 
