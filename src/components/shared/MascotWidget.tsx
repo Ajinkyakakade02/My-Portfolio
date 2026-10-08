@@ -17,7 +17,7 @@ const MascotWidget = () => {
         lg:block
       "
     >
-      {/* Square Mascot Container */}
+      {/* Square glass mascot container */}
       <div
         className="
           relative
@@ -35,7 +35,7 @@ const MascotWidget = () => {
           shadow-[0_20px_60px_rgba(0,0,0,0.25)]
         "
       >
-        {/* Soft Glow */}
+        {/* Soft inner glow */}
         <div
           className="
             pointer-events-none
@@ -46,7 +46,7 @@ const MascotWidget = () => {
           "
         />
 
-        {/* Top Highlight */}
+        {/* Top gold highlight */}
         <div
           className="
             pointer-events-none
