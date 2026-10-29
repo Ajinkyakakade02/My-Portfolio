@@ -101,6 +101,24 @@ export const PROJECTS = [
   ],
   icon: "",
 },
+  {
+  id: 6,
+  title: "GoPratle Requirement Posting Flow",
+  description:
+    "Full-stack event requirement posting platform with a multi-step workflow, dynamic category-based forms, and backend data storage.",
+  image: "/projects/gopratle-requirement-banner.webp",
+  link: "https://gopratle-requirement-posting-flow.vercel.app/",
+  github:
+    "https://github.com/Ajinkyakade02/gopratle-requirement-posting-flow",
+  technologies: [
+    "Next.js",
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+  ],
+  icon: "",
+},
 ] as const;
 
 // ==================== EXPERIENCE / TIMELINE ====================
