@@ -8,7 +8,7 @@ import { SiLeetcode } from "react-icons/si";
 // ==================== SITE CONFIG ====================
 export const siteConfig = {
   name: "Ajinkya Kakade",
-  title: "Space Portfolio",
+  title: "Ajinkya Kakade Portfolio",
   role: "Full Stack Developer",
   tagline: "Providing the best project experience",
   description: "Full Stack Developer specializing in React, Spring Boot, and cloud-native applications.",
@@ -18,7 +18,7 @@ export const siteConfig = {
   github: "https://github.com/Ajinkyakakade02",
   linkedin: "https://www.linkedin.com/in/ajinkya-kakade-981a55288/",
   leetcode: "https://leetcode.com/u/Ajinkya_kakade_02/",
-  resumePath: "https://drive.google.com/uc?export=download&id=1Ivkz7_5eRYMmBya02PfTjBG8lRczVSEl",
+  resumePath: "https://drive.google.com/file/d/1hJtvspZ2ZJG-vw4c08YIwI6Zd2c-LM-v/view?usp=sharing",
 } as const;
 
 // ==================== NAVIGATION ====================
@@ -39,8 +39,6 @@ export const SOCIALS = [
     { name: "LeetCode", icon: SiLeetcode,     link: siteConfig.leetcode },
 ] as const;
 
-// ==================== PROJECTS ====================
-// ==================== PROJECTS ====================
 // ==================== PROJECTS ====================
 export const PROJECTS = [
   {
@@ -87,6 +85,22 @@ export const PROJECTS = [
     technologies: ["Gemini API", "React", "Spring Boot", "OAuth"],
     icon: "",
   },
+  {
+  id: 5,
+  title: "UK Wind Forecast Analysis",
+  description:
+    "Analysis and forecasting of wind-related weather data in the United Kingdom using data analysis and predictive techniques.",
+  image: "/projects/uk-wind-forecast-banner.webp",
+  link: "https://uk-wind-forecast-analysis.vercel.app/",
+  github:
+    "https://github.com/Ajinkyakade02/uk-wind-forecast-analysis",
+  technologies: [
+    "Python",
+    "Data Analysis",
+    "Machine Learning",
+  ],
+  icon: "",
+},
 ] as const;
 
 // ==================== EXPERIENCE / TIMELINE ====================
