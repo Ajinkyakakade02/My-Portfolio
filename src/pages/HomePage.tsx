@@ -732,7 +732,7 @@ LEFT SIDE
                   }
                 `}
               >
-                5+
+                8+
               </div>
 
               <div
@@ -834,7 +834,7 @@ LEFT SIDE
                   }
                 `}
               >
-                208+
+                225+
               </div>
 
               <div
