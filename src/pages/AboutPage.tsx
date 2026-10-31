@@ -120,14 +120,14 @@ const certificates = [
 
 const achievements = [
   {
-    title: "Software Engineer Intern",
-    organization: "Crescify Pvt Ltd",
-    period: "2025",
-    location: "Remote",
-    description:
-      "Full-stack development using React, Spring Boot, and REST APIs",
-    tech: ["React", "Spring Boot", "Java", "REST APIs"],
-  },
+  title: "Full-Stack Development Intern",
+  organization: "Nexvia Technologies Private Limited",
+  period: "October 2026 – November 2026",
+  location: "Remote",
+  description:
+    "Working on an assigned full-stack development project, with a focus on project completion, technical skills, and code quality.",
+  tech: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "SQL"],
+},
   {
     title: "Smart India Hackathon — Team Lead",
     organization: "Government of India",
