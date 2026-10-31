@@ -170,12 +170,12 @@ const educationData = [
     location: "Pune, India",
     description:
       "Focus on full-stack development and AI/ML.",
-    grade: "CGPA: 7.45/10",
+    grade: "CGPA: 7.5/10",
   },
   {
     degree: "Higher Secondary Certificate (HSC)",
     institution:
-      "Sant Tukaram Maharaj High School, Buldhana",
+      "Tukaram kayande High School, Buldhana",
     period: "2022",
     location: "Buldhana, India",
     description: "Science stream.",
